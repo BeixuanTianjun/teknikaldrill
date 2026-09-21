@@ -137,8 +137,8 @@ P.breakoutRetest = () => {
   return { data: fromPath(c, { vol: 1100, volBy: i => (i >= 15 && i <= 19) ? 2.1 : (i > 19 && i < 24) ? 0.6 : 0.95 }), lvl: 1200 };
 };
 P.goldenCross = () => {
-  const c = legs(1500, [[1080, 22], [1060, 10], [1240, 16], [1180, 8], [1460, 18]]);
-  return { data: fromPath(c, { vol: 1000, wick: 0.28 }) };
+  const c = legs(1560, [[1120, 24], [1180, 10], [1000, 22], [1140, 12], [1120, 8], [1420, 20]]);
+  return { data: fromPath(c, { vol: 1000, wick: 0.26 }) };
 };
 P.rsiDivergence = () => {
   const c = legs(900, [[1300, 9], [1180, 5], [1390, 8], [1300, 4], [1420, 7], [1180, 6]]);
@@ -211,6 +211,157 @@ const CS = {
     C(p * 1.034, p * 1.0412, p * 1.005, p * 1.009, 2300)], 1000),
   marubozu: () => trendThen(1000, 1, 9, p => [C(p * 1.0005, p * 1.046, p * 1.0, p * 1.0455, 3100)], 1000)
 };
+
+
+/* ---------- pola tambahan ---------- */
+P.descendingTriangle = () => {
+  const L = legsP(1400, [[1000, 5], [1190, 4], [1005, 4], [1120, 4], [1002, 4], [1070, 3], [900, 5]]);
+  const data = fromPath(L.closes, { vol: 1100, volBy: (i, n) => i > n - 6 ? 1.9 : 0.85 });
+  const pv = L.pivots;
+  return { data, sup: 1002, upper: thru(data, pv[2].i, pv[6].i, 'high', pv[6].i) };
+};
+P.risingWedge = () => {
+  const L = legsP(1000, [[1210, 5], [1120, 3], [1290, 4], [1215, 3], [1340, 4], [1285, 3], [1370, 3], [1150, 5]]);
+  const data = fromPath(L.closes, { vol: 1100, volBy: (i, n) => i > n - 6 ? 1.8 : 1.15 - 0.5 * (i / n) });
+  const pv = L.pivots;
+  return { data, upper: thru(data, pv[1].i, pv[5].i, 'high', pv[7].i), lower: thru(data, pv[2].i, pv[6].i, 'low', pv[7].i) };
+};
+P.inverseHeadShoulders = () => {
+  const L = legsP(1400, [[1220, 6], [1310, 4], [1100, 6], [1315, 5], [1225, 5], [1430, 6]]);
+  const data = fromPath(L.closes, { vol: 1300, volBy: (i, n) => i > n - 7 ? 1.9 : 0.85 });
+  return { data, neck: 1312 };
+};
+P.tripleBottom = () => {
+  const L = legsP(1300, [[1000, 5], [1130, 3], [1005, 4], [1125, 3], [1002, 4], [1260, 6]]);
+  const data = fromPath(L.closes, { vol: 1100, volBy: (i, n) => i > n - 7 ? 1.9 : 0.8 });
+  return { data, sup: 1002, res: 1128 };
+};
+P.channelUp = () => {
+  const L = legsP(900, [[1080, 4], [1000, 3], [1190, 4], [1110, 3], [1300, 4], [1220, 3], [1400, 4]]);
+  const data = fromPath(L.closes, { vol: 1050 });
+  const pv = L.pivots;
+  return { data, upper: thru(data, pv[1].i, pv[5].i, 'high', pv[7].i), lower: thru(data, pv[2].i, pv[6].i, 'low', pv[7].i) };
+};
+P.roundingBottom = () => {
+  const arr = [];
+  for (let i = 0; i <= 26; i++) { const t = i / 26; arr.push(1200 - 300 * Math.sin(Math.PI * t) + jit(8)); }
+  const c = [1200].concat(arr.slice(1), leg(arr[26], 1290, 4));
+  return { data: fromPath(c, { vol: 1000, volBy: (i, n) => (i > 8 && i < 18) ? 0.42 : (i > n - 6 ? 1.7 : 0.9) }) };
+};
+P.islandReversal = () => {
+  const up = legs(1000, [[1280, 9]]);
+  const d = fromPath(up, { vol: 1100 });
+  const top = d[d.length - 1][3];
+  const g = top * 1.055;                       // gap naik
+  [0, 1, 2].forEach(k => {
+    const o = g * (1 + k * 0.004), c = g * (1 + k * 0.004 + (k === 1 ? 0.006 : -0.004));
+    d.push([r2(o), r2(Math.max(o, c) * 1.012), r2(Math.min(o, c) * 0.994), r2(c), 2600]);
+  });
+  const lowAfter = top * 0.996;                // gap turun kembali ke bawah level sebelum gap
+  const down = legs(lowAfter, [[top * 0.9, 6]]);
+  const dd = fromPath(down, { vol: 2300 });
+  dd.forEach(x => d.push(x));
+  return { data: d };
+};
+P.measuringGap = () => {
+  const c1 = legs(1000, [[1200, 7]]);
+  const d = fromPath(c1, { vol: 1200 });
+  const last = d[d.length - 1][3];
+  const g = last * 1.06;
+  d.push([r2(g), r2(g * 1.03), r2(g * 0.997), r2(g * 1.025), 3400]);
+  const after = legs(g * 1.025, [[1420, 6]]);
+  fromPath(after, { vol: 1800 }).slice(1).forEach(x => d.push(x));
+  return { data: d, gapAt: d.length - 8 };
+};
+P.exhaustionGap = () => {
+  const c1 = legs(900, [[1450, 14]]);
+  const d = fromPath(c1, { vol: 1200, volBy: (i, n) => 0.7 + 1.1 * (i / n) });
+  const last = d[d.length - 1][3];
+  const g = last * 1.07;
+  d.push([r2(g), r2(g * 1.025), r2(g * 0.995), r2(g * 1.01), 5200]);       // gap + volume ekstrem
+  d.push([r2(g * 1.005), r2(g * 1.012), r2(g * 0.93), r2(g * 0.935), 4800]); // langsung berbalik
+  const after = legs(g * 0.935, [[last * 0.93, 5]]);
+  fromPath(after, { vol: 2600 }).slice(1).forEach(x => d.push(x));
+  return { data: d };
+};
+P.deathCross = () => {
+  // MA50 baru punya nilai di batang ke-50, jadi tren naik dibuat cukup panjang
+  // agar MA20 sudah berada DI ATAS MA50 sebelum penurunan dimulai — tanpa itu
+  // persilangannya terjadi di luar grafik dan soal tidak bisa dijawab.
+  const c = legs(900, [[1180, 22], [1120, 10], [1420, 24], [1360, 10], [1180, 16], [1240, 8], [980, 18]]);
+  return { data: fromPath(c, { vol: 1000, wick: 0.26 }) };
+};
+P.rsiBullDivergence = () => {
+  const c = legs(1400, [[1080, 9], [1200, 5], [1010, 8], [1090, 4], [985, 7], [1210, 6]]);
+  return { data: fromPath(c, { vol: 1100, wick: 0.3 }) };
+};
+P.bbSqueeze = () => {
+  const c = legs(1000, [[1060, 5], [995, 5], [1045, 5], [1012, 6], [1026, 7], [1016, 6], [1022, 6], [1125, 8]]);
+  return { data: fromPath(c, { vol: 1000, wick: 0.22, volBy: (i, n) => i > n - 9 ? 2.0 : 0.55 }) };
+};
+P.maBounce = () => {
+  const c = legs(900, [[1150, 10], [1075, 4], [1330, 10], [1245, 4], [1500, 10]]);
+  return { data: fromPath(c, { vol: 1050, wick: 0.3 }) };
+};
+P.fibRetrace = () => {
+  // Ayunan harus PERSIS 1.000 -> 1.500, dan koreksi berhenti tepat di 61,8 persen (1.191),
+  // karena soalnya menanyakan level retracement yang dibaca dari grafik. Sumbu candle
+  // yang menembus melewati anchor akan membuat jawabannya keliru, jadi ekstremnya dikunci.
+  const L = legsP(1000, [[1488, 11], [1200, 7], [1460, 8]], 0.04);
+  const data = fromPath(L.closes, { vol: 1100, wick: 0.18 });
+  const iHi = L.pivots[1].i, iLo = L.pivots[2].i;
+  const HI = 1500, LO = 1191;
+  data.forEach((b, i) => {
+    // tidak ada batang yang boleh melewati puncak ayunan
+    b[1] = Math.min(b[1], i === iHi ? HI : HI - 6);
+    b[1] = Math.max(b[1], Math.max(b[0], b[3]));
+    // selama fase koreksi, tidak ada batang yang boleh menembus di bawah level 61,8 persen
+    if (i > iHi && i <= iLo + 1) {
+      b[2] = Math.max(b[2], i === iLo ? LO : LO + 5);
+      b[2] = Math.min(b[2], Math.min(b[0], b[3]));
+    }
+  });
+  data[iHi][1] = HI;                       // puncak ayunan tepat di 1.500
+  data[iLo][2] = LO;                       // dasar koreksi tepat di 61,8 persen
+  data[iLo][0] = Math.max(data[iLo][0], LO);
+  data[iLo][3] = Math.max(data[iLo][3], LO);
+  return { data, lo: 1000, hi: HI, iHi, iLo };
+};
+P.sellingClimax = () => {
+  const c = legs(1400, [[1020, 11], [975, 2]]);
+  const d = fromPath(c, { vol: 1100, volBy: (i, n) => 0.7 + 0.5 * (i / n) });
+  const last = d[d.length - 1][3];
+  // batang klimaks: rentang lebar, volume ekstrem, ditutup jauh di atas titik terendah
+  d.push([r2(last), r2(last * 1.012), r2(last * 0.90), r2(last * 1.005), 7200]);
+  const after = legs(last * 1.005, [[last * 1.11, 5]]);
+  fromPath(after, { vol: 2400 }).slice(1).forEach(x => d.push(x));
+  return { data: d };
+};
+P.volumeDivergence = () => {
+  const c = legs(1000, [[1120, 6], [1080, 3], [1220, 6], [1180, 3], [1300, 6]]);
+  return { data: fromPath(c, { vol: 2600, volBy: (i, n) => 1.3 - 0.85 * (i / n) }) };
+};
+
+CS.hangingMan = () => trendThen(1000, 1, 11, p => [C(p * 1.002, p * 1.006, p * 0.952, p * 1.004, 2500)], 1000);
+CS.invertedHammer = () => trendThen(1400, -1, 11, p => [C(p * 0.997, p * 1.052, p * 0.994, p * 1.0, 2500)], 1000);
+CS.piercingLine = () => trendThen(1350, -1, 9, p => [
+  C(p * 1.0, p * 1.004, p * 0.968, p * 0.971, 1700),
+  C(p * 0.962, p * 1.0, p * 0.959, p * 0.996, 2800)], 1000);
+CS.darkCloudCover = () => trendThen(1000, 1, 9, p => [
+  C(p * 1.0, p * 1.034, p * 0.998, p * 1.031, 1700),
+  C(p * 1.042, p * 1.045, p * 1.006, p * 1.009, 2800)], 1000);
+CS.threeWhiteSoldiers = () => trendThen(1200, -1, 8, p => [
+  C(p * 1.0, p * 1.029, p * 0.997, p * 1.026, 2200),
+  C(p * 1.024, p * 1.055, p * 1.021, p * 1.052, 2500),
+  C(p * 1.05, p * 1.082, p * 1.047, p * 1.079, 2700)], 1000);
+CS.tweezerBottom = () => trendThen(1400, -1, 9, p => [
+  C(p * 1.0, p * 1.003, p * 0.962, p * 0.967, 1900),
+  C(p * 0.97, p * 1.005, p * 0.9622, p * 1.002, 2400)], 1000);
+CS.bullishHarami = () => trendThen(1350, -1, 9, p => [
+  C(p * 1.0, p * 1.003, p * 0.966, p * 0.969, 2200),
+  C(p * 0.976, p * 0.99, p * 0.973, p * 0.987, 700)], 1000);
+CS.dragonflyDoji = () => trendThen(1350, -1, 10, p => [C(p * 1.0, p * 1.004, p * 0.955, p * 1.001, 2600)], 1000);
+CS.gravestoneDoji = () => trendThen(1000, 1, 10, p => [C(p * 1.001, p * 1.048, p * 0.999, p * 1.0015, 2600)], 1000);
 
 /* ---------- daftar soal ---------- */
 const Q = [];
@@ -473,6 +624,233 @@ function build() {
               'Gelombang 4 memasuki wilayah harga gelombang 1'],
     answer: 1,
     explain: 'Aturan mutlak Elliott menyatakan gelombang 3 tidak boleh yang terpendek di antara gelombang 1, 3, dan 5, dan pada pasar saham gelombang 3 justru paling sering menjadi yang terpanjang sekaligus bervolume terbesar karena partisipasinya paling luas. Grafik ini juga memenuhi dua aturan mutlak lain: gelombang 2 tidak melewati titik awal gelombang 1, dan gelombang 4 tidak memasuki wilayah gelombang 1.' }); }
+
+
+  /* ===== batch 2 ===== */
+  seed(4001); { const p = P.descendingTriangle();
+  add({ id: 'rta-trend-chart-011', module: 'rta-trend', level: 'RTA', difficulty: 'sedang',
+    chart: { title: 'Saham BCDE · Harian', data: p.data, panels: ['volume'],
+      overlays: [{ type: 'hline', price: p.sup, label: 'Support mendatar' },
+                 { type: 'line', a: p.upper.a, b: p.upper.b, label: 'Puncak menurun' }],
+      alt: 'Support mendatar dengan rangkaian puncak yang makin rendah, lalu penembusan ke bawah' },
+    q: 'Pola pada grafik ini dan implikasinya adalah...',
+    options: ['Segitiga menaik — bullish', 'Segitiga menurun — bearish',
+              'Segitiga simetris — netral', 'Rectangle — netral'],
+    answer: 1,
+    explain: 'Support mendatar menunjukkan permintaan bertahan di satu level, sementara puncak yang terus menurun menunjukkan penjual makin agresif menurunkan harga jualnya. Ketimpangan itu biasanya berakhir dengan permintaan habis dan harga jebol ke bawah, seperti terlihat di ujung kanan grafik yang disertai lonjakan volume.' }); }
+
+  seed(4002); { const p = P.risingWedge();
+  add({ id: 'rta-trend-chart-012', module: 'rta-trend', level: 'RTA', difficulty: 'sulit',
+    chart: { title: 'Saham CDEF · Harian', data: p.data, panels: ['volume'],
+      overlays: [{ type: 'line', a: p.upper.a, b: p.upper.b, label: 'Batas atas' },
+                 { type: 'line', a: p.lower.a, b: p.lower.b, label: 'Batas bawah' }],
+      alt: 'Dua garis menaik yang menyempit dengan volume menurun, lalu penembusan ke bawah' },
+    q: 'Kedua garis pada pola ini menaik dan menyempit, dengan volume yang terus menurun. Pola ini adalah...',
+    options: ['Falling wedge — bullish', 'Rising wedge — bearish',
+              'Bull flag — penerusan bullish', 'Channel naik — netral'],
+    answer: 1,
+    explain: 'Rising wedge menyempit karena garis bawah naik lebih curam daripada garis atas, artinya harga masih naik tetapi ruang geraknya menipis dan momentumnya melemah. Volume yang menyusut menegaskan kenaikan kehilangan dukungan. Karena itu rising wedge umumnya berimplikasi bearish, berbeda dari channel naik yang netral terhadap tren.' }); }
+
+  seed(4003); { const p = P.inverseHeadShoulders();
+  add({ id: 'rta-trend-chart-013', module: 'rta-trend', level: 'RTA', difficulty: 'sedang',
+    chart: { title: 'Saham DEFG · Harian', data: p.data, panels: ['volume'],
+      overlays: [{ type: 'hline', price: p.neck, label: 'Neckline' }],
+      alt: 'Tiga dasar dengan dasar tengah paling rendah, di bawah neckline mendatar' },
+    q: 'Pola pada grafik ini adalah...',
+    options: ['Head and shoulders top — bearish', 'Inverse head and shoulders — bullish',
+              'Triple top — bearish', 'Rising wedge — bearish'],
+    answer: 1,
+    explain: 'Pola ini adalah kebalikan head and shoulders: tiga dasar dengan dasar tengah (head) paling rendah, diapit dua bahu yang lebih tinggi, dengan neckline di atasnya. Penembusan neckline ke atas disertai volume besar menjadi konfirmasi pembalikan bullish, dan targetnya diukur dari kedalaman head ke neckline.' }); }
+
+  seed(4004); { const p = P.tripleBottom();
+  add({ id: 'rta-trend-chart-014', module: 'rta-trend', level: 'RTA', difficulty: 'sedang',
+    chart: { title: 'Saham EFGH · Harian', data: p.data, panels: ['volume'],
+      overlays: [{ type: 'hline', price: p.sup, label: 'Support' }, { type: 'hline', price: p.res, label: 'Resistance' }],
+      alt: 'Support diuji tiga kali dan bertahan, lalu harga menembus resistance' },
+    q: 'Support pada grafik diuji tiga kali dan bertahan. Dibanding double bottom, pola ini umumnya dianggap...',
+    options: ['Lebih lemah karena butuh waktu lebih lama',
+              'Lebih kuat karena pasokan di level itu terbukti benar-benar terserap',
+              'Sama saja, jumlah pengujian tidak berpengaruh',
+              'Tidak valid karena pola hanya sah dengan dua sentuhan'],
+    answer: 1,
+    explain: 'Tiga kali pengujian yang berhasil ditahan menunjukkan pasokan di level tersebut benar-benar habis terserap. Basis yang lebih panjang umumnya menghasilkan penembusan yang lebih meyakinkan, meski menuntut kesabaran lebih lama untuk menunggunya terbentuk.' }); }
+
+  seed(4005); { const p = P.channelUp();
+  add({ id: 'rta-trend-chart-015', module: 'rta-trend', level: 'RTA', difficulty: 'mudah',
+    chart: { title: 'Saham FGHI · Harian', data: p.data, panels: [],
+      overlays: [{ type: 'line', a: p.upper.a, b: p.upper.b, label: 'Batas atas' },
+                 { type: 'line', a: p.lower.a, b: p.lower.b, label: 'Garis tren' }],
+      alt: 'Harga bergerak naik di antara dua garis sejajar' },
+    q: 'Selama channel naik ini masih berlaku, strategi yang paling masuk akal adalah...',
+    options: ['Membeli di batas atas channel dan menjual di batas bawah',
+              'Mencari peluang beli saat harga surut ke batas bawah, dan mengambil untung mendekati batas atas',
+              'Menjual setiap kali harga menyentuh garis tren',
+              'Menghindari saham yang bergerak dalam channel'],
+    answer: 1,
+    explain: 'Pada channel naik, garis tren bawah berperan sebagai support dinamis dan batas atas sebagai area ambil untung. Membeli saat harga surut ke batas bawah searah dengan tren utama dan memberi rasio risiko imbal hasil yang lebih baik, dengan level pembatalan tepat di bawah garis tren.' }); }
+
+  seed(4006); { const p = P.roundingBottom();
+  add({ id: 'rta-trend-chart-016', module: 'rta-trend', level: 'RTA', difficulty: 'sedang',
+    chart: { title: 'Saham GHIJ · Mingguan', data: p.data, panels: ['volume'],
+      alt: 'Dasar melengkung landai dengan volume mengering di titik terendah lalu membesar saat naik' },
+    q: 'Grafik menunjukkan dasar melengkung landai dengan volume yang mengering di titik terendah lalu membesar. Pola ini disebut...',
+    options: ['V bottom', 'Rounding bottom atau saucer bottom', 'Island reversal', 'Bear flag'],
+    answer: 1,
+    explain: 'Rounding bottom memperlihatkan pergeseran dominasi dari penjual ke pembeli yang berlangsung berangsur-angsur, bukan mendadak. Volume yang mengering di dasar menandakan tekanan jual habis, lalu membesar saat permintaan kembali. Pola ini butuh waktu lama namun implikasinya kuat.' }); }
+
+  seed(4007); { const p = P.islandReversal();
+  add({ id: 'rta-trend-chart-017', module: 'rta-trend', level: 'RTA', difficulty: 'sulit',
+    chart: { title: 'Saham HIJK · Harian', data: p.data, panels: ['volume'],
+      alt: 'Sekelompok candle terpisah dari sekitarnya oleh gap naik lalu gap turun' },
+    q: 'Beberapa candle di puncak grafik terpisah dari sekitarnya oleh gap naik di kiri dan gap turun di kanan. Formasi ini disebut...',
+    options: ['Island reversal', 'Breakaway gap', 'Runaway gap', 'Bull flag'],
+    answer: 0,
+    explain: 'Kelompok candle yang terkurung dua gap berlawanan arah tampak seperti pulau yang terpisah dari grafik di sekitarnya. Pola ini menandakan perubahan sentimen yang ekstrem dan mendadak, dan sering muncul di titik balik penting.' }); }
+
+  /* --- rta-level batch 2 --- */
+  seed(4008); { const p = P.measuringGap();
+  add({ id: 'rta-level-chart-004', module: 'rta-level', level: 'RTA', difficulty: 'sulit',
+    chart: { title: 'Saham IJKL · Harian', data: p.data, panels: ['volume'],
+      alt: 'Kenaikan dari 1.000 ke 1.200 lalu gap di tengah tren yang berlanjut naik' },
+    q: 'Harga naik dari sekitar 1.000 ke 1.200, lalu terjadi gap di sekitar 1.270 dan tren berlanjut. Bila gap ini adalah measuring gap, target proyeksinya sekitar...',
+    options: ['Sekitar 1.300', 'Sekitar 1.470', 'Sekitar 1.200', 'Tidak dapat diproyeksikan'],
+    answer: 1,
+    explain: 'Runaway atau measuring gap secara empiris sering berada di sekitar titik tengah keseluruhan pergerakan. Panjang kaki pertama adalah 1.200 dikurangi 1.000 sama dengan 200 poin, sehingga diproyeksikan dari area gap 1.270 menghasilkan target sekitar 1.470. Ini perkiraan, bukan kepastian, dan tetap perlu dicek terhadap resistance historis.' }); }
+
+  seed(4009); { const p = P.exhaustionGap();
+  add({ id: 'rta-level-chart-005', module: 'rta-level', level: 'RTA', difficulty: 'sulit',
+    chart: { title: 'Saham JKLM · Harian', data: p.data, panels: ['volume'],
+      alt: 'Gap naik dengan volume ekstrem di ujung tren panjang, langsung diikuti pembalikan tajam' },
+    q: 'Gap naik pada grafik ini muncul setelah tren naik panjang, disertai volume ekstrem, lalu harga langsung berbalik tajam. Gap jenis ini adalah...',
+    options: ['Breakaway gap — awal tren baru', 'Exhaustion gap — tanda klimaks di ujung tren',
+              'Common gap — tanpa makna', 'Measuring gap — titik tengah tren'],
+    answer: 1,
+    explain: 'Exhaustion gap muncul pada fase akhir tren ketika pelaku yang terlambat masuk secara panik, ditandai volume ekstrem. Ciri pembedanya adalah harga cepat berbalik dan gap tersebut segera tertutup, berbeda dari breakaway gap yang lahir dari perubahan sentimen nyata dan biasanya dibiarkan terbuka lama.' }); }
+
+  seed(4010); { const p = P.fibRetrace();
+  const f = (r) => r2(p.hi - (p.hi - p.lo) * r);
+  add({ id: 'rta-level-chart-006', module: 'rta-level', level: 'RTA', difficulty: 'sulit',
+    chart: { title: 'Saham KLMN · Harian', data: p.data, panels: [],
+      overlays: [{ type: 'hline', price: f(0.382), label: 'A · 38,2%' },
+                 { type: 'hline', price: f(0.5), label: 'B · 50%' },
+                 { type: 'hline', price: f(0.618), label: 'C · 61,8%' }],
+      alt: 'Kenaikan dari 1.000 ke 1.500 lalu koreksi yang berhenti di garis paling bawah dari tiga level Fibonacci' },
+    q: 'Harga naik dari 1.000 ke 1.500 lalu terkoreksi. Koreksi berhenti dan memantul di garis C. Berapa level retracement tersebut dan apa maknanya?',
+    options: ['38,2% — koreksi dangkal, tren sangat kuat',
+              '50% — koreksi normal',
+              '61,8% — koreksi dalam; tren masih mungkin berlanjut tetapi risiko pembalikan meningkat',
+              '78,6% — tren hampir pasti berbalik'],
+    answer: 2,
+    explain: 'Besar pergerakan 500 poin, sehingga koreksi 61,8 persen setara 309 poin dan mendarat di 1.191, yaitu garis C. Koreksi sedalam ini masih dalam batas wajar bagi tren yang sehat, tetapi makin dalam koreksi makin besar peluang yang terjadi sebenarnya pembalikan tren, bukan sekadar jeda.' }); }
+
+  seed(4011); { const p = P.sellingClimax();
+  add({ id: 'rta-level-chart-007', module: 'rta-level', level: 'RTA', difficulty: 'sulit',
+    chart: { title: 'Saham LMNO · Harian', data: p.data, panels: ['volume'],
+      alt: 'Batang dengan rentang sangat lebar dan volume ekstrem di akhir tren turun, ditutup jauh di atas titik terendahnya' },
+    q: 'Di akhir tren turun panjang muncul satu batang berentang sangat lebar dengan volume ekstrem, yang ditutup jauh di atas titik terendahnya. Pembacaan yang paling tepat adalah...',
+    options: ['Kelanjutan tren turun yang makin kuat',
+              'Kemungkinan selling climax — pasokan jual diserap pihak besar, berpotensi menandai area dasar',
+              'Data salah karena rentangnya tidak wajar',
+              'Exhaustion gap'],
+    answer: 1,
+    explain: 'Volume ekstrem dengan penutupan jauh di atas titik terendah menandakan ada pihak yang menyerap seluruh pasokan jual saat kepanikan memuncak. Pola ini disebut selling climax atau capitulation dan kerap muncul di area dasar, meskipun tetap memerlukan konfirmasi lanjutan sebelum dianggap pembalikan.' }); }
+
+  /* --- rta-indikator batch 2 --- */
+  seed(4012); { const p = P.deathCross();
+  add({ id: 'rta-ind-chart-003', module: 'rta-indikator', level: 'RTA', difficulty: 'sedang',
+    chart: { title: 'Saham MNOP · Harian', data: p.data, panels: [], height: 250,
+      overlays: [{ type: 'ma', period: 20, label: 'MA20' }, { type: 'ma', period: 50, label: 'MA50' }],
+      alt: 'Rata-rata bergerak 20 hari memotong ke bawah rata-rata 50 hari' },
+    q: 'MA20 memotong ke bawah MA50 pada grafik ini. Peristiwa dan sifat sinyalnya adalah...',
+    options: ['Golden cross — sinyal leading', 'Death cross — sinyal lagging yang muncul setelah sebagian penurunan terjadi',
+              'Divergensi bearish — sinyal leading', 'Bollinger squeeze — sinyal volatilitas'],
+    answer: 1,
+    explain: 'Persilangan MA pendek ke bawah MA panjang disebut death cross dan dibaca sebagai konfirmasi tren turun jangka menengah. Karena rata-rata bergerak dihitung dari harga yang sudah terbentuk, sinyalnya bersifat lagging: konfirmasinya baru datang setelah sebagian penurunan terjadi.' }); }
+
+  seed(4013); { const p = P.rsiBullDivergence();
+  add({ id: 'rta-ind-chart-004', module: 'rta-indikator', level: 'RTA', difficulty: 'sulit',
+    chart: { title: 'Saham NOPQ · Harian', data: p.data, panels: ['rsi'], height: 220,
+      overlays: [{ type: 'marker', i: 17, text: '1', pos: 'below' }, { type: 'marker', i: 28, text: '2', pos: 'below' }],
+      alt: 'Harga membentuk dasar kedua lebih rendah sementara RSI membentuk dasar kedua lebih tinggi' },
+    q: 'Harga mencetak dasar 2 lebih rendah dari dasar 1, tetapi RSI justru mencetak dasar yang lebih tinggi. Kondisi ini adalah...',
+    options: ['Divergensi bearish', 'Divergensi bullish', 'Hidden divergence bearish', 'Death cross'],
+    answer: 1,
+    explain: 'Harga mencetak dasar baru yang lebih rendah sementara momentum menolak ikut turun, menandakan tekanan jual sudah berkurang. Sinyal ini bersifat peringatan dan umumnya baru ditindaklanjuti setelah ada konfirmasi dari aksi harga, misalnya penembusan puncak terdekat.' }); }
+
+  seed(4014); { const p = P.bbSqueeze();
+  add({ id: 'rta-ind-chart-005', module: 'rta-indikator', level: 'RTA', difficulty: 'sulit',
+    chart: { title: 'Saham OPQR · Harian', data: p.data, panels: [], height: 250,
+      overlays: [{ type: 'bb', period: 20, mult: 2, label: 'BB 20' }],
+      alt: 'Pita Bollinger menyempit tajam lalu melebar bersamaan dengan pergerakan harga yang besar' },
+    q: 'Pita Bollinger menyempit tajam di bagian tengah grafik sebelum harga bergerak besar. Apa yang sebenarnya ditunjukkan penyempitan itu?',
+    options: ['Harga pasti akan naik setelah penyempitan',
+              'Volatilitas sedang rendah dan ekspansi biasanya menyusul, tanpa memberi tahu arahnya',
+              'Harga pasti akan turun setelah penyempitan',
+              'Pita menyempit berarti data tidak cukup'],
+    answer: 1,
+    explain: 'Lebar pita Bollinger mengikuti standar deviasi harga, sehingga penyempitan hanya berbicara tentang kondisi volatilitas, bukan arah. Setelah periode tenang biasanya muncul pergerakan besar, jadi analis menyiapkan rencana untuk kedua arah dan menunggu penembusan yang sebenarnya.' }); }
+
+  seed(4015); { const p = P.maBounce();
+  add({ id: 'rta-ind-chart-006', module: 'rta-indikator', level: 'RTA', difficulty: 'sedang',
+    chart: { title: 'Saham PQRS · Harian', data: p.data, panels: [], height: 250,
+      overlays: [{ type: 'ma', period: 20, label: 'MA20' }],
+      alt: 'Harga berulang kali surut ke garis rata-rata bergerak lalu memantul naik' },
+    q: 'Harga berulang kali surut ke MA20 lalu memantul naik. Peran MA20 di sini paling tepat disebut...',
+    options: ['Resistance statis', 'Support dinamis', 'Target keuntungan', 'Indikator volatilitas'],
+    answer: 1,
+    explain: 'Rata-rata bergerak sering menjadi titik reaksi harga karena banyak pelaku pasar memakainya sebagai acuan. Perannya disebut dinamis karena nilainya berubah setiap periode mengikuti harga, berbeda dari level horizontal yang tetap di satu angka.' }); }
+
+  seed(4016); { const p = P.volumeDivergence();
+  add({ id: 'rta-ind-chart-007', module: 'rta-indikator', level: 'RTA', difficulty: 'sulit',
+    chart: { title: 'Saham QRST · Harian', data: p.data, panels: ['volume'],
+      alt: 'Harga terus membentuk puncak lebih tinggi sementara volume terus menyusut' },
+    q: 'Harga terus mencetak puncak lebih tinggi, tetapi volume justru terus menyusut. Apa maknanya?',
+    options: ['Tren naik makin sehat karena tidak butuh volume besar',
+              'Partisipasi menipis sehingga tren naik kehilangan dukungan dan rawan berbalik',
+              'Volume tidak berkaitan dengan harga',
+              'Harga pasti berbalik pada sesi berikutnya'],
+    answer: 1,
+    explain: 'Pada tren naik yang sehat, volume membesar searah tren dan mengecil saat terkoreksi. Kenaikan yang berlangsung dengan volume terus menipis menandakan minat beli berkurang dan tren ditopang makin sedikit partisipan. Ini peringatan, bukan penentu waktu pembalikan.' }); }
+
+  /* --- cta-candle batch 2, termasuk soal jebakan lokasi --- */
+  const csq2 = [
+    ['hangingMan', 'sulit', 'Candle terakhir memiliki sumbu bawah panjang dengan badan kecil, tetapi muncul setelah tren NAIK. Pola ini adalah...',
+     ['Hammer — bullish', 'Hanging man — bearish', 'Dragonfly doji — bullish', 'Inverted hammer — bullish'],
+     1, 'Bentuknya identik dengan hammer, tetapi lokasinya di puncak tren naik sehingga disebut hanging man dan berimplikasi bearish. Sumbu bawah panjang di area puncak menunjukkan penjual sempat menekan harga cukup dalam, pertanda pasokan mulai muncul. Inilah alasan konteks lokasi selalu lebih menentukan daripada bentuk candle itu sendiri.'],
+    ['invertedHammer', 'sulit', 'Candle terakhir memiliki sumbu atas panjang dengan badan kecil, muncul setelah tren TURUN. Pola ini adalah...',
+     ['Shooting star — bearish', 'Inverted hammer — bullish', 'Hanging man — bearish', 'Marubozu — penerusan'],
+     1, 'Bentuknya sama persis dengan shooting star, tetapi karena muncul setelah tren turun namanya inverted hammer dan implikasinya bullish. Sumbu atas panjang menunjukkan pembeli mulai berani mendorong harga naik meski belum berhasil bertahan. Konfirmasi candle berikutnya tetap dibutuhkan.'],
+    ['piercingLine', 'sedang', 'Dua candle terakhir setelah tren turun membentuk pola...',
+     ['Dark cloud cover — bearish', 'Piercing line — bullish', 'Bearish engulfing — bearish', 'Harami — netral'],
+     1, 'Candle kedua dibuka di bawah penutupan sebelumnya lalu ditutup di atas titik tengah badan candle bearish pertama. Pembukaan yang lebih rendah sempat memperkuat kesan bearish sebelum pembeli membalikkan keadaan, sehingga pola ini dibaca sebagai pembalikan bullish.'],
+    ['darkCloudCover', 'sedang', 'Dua candle terakhir setelah tren naik membentuk pola...',
+     ['Piercing line — bullish', 'Dark cloud cover — bearish', 'Bullish engulfing — bullish', 'Tweezer bottom — bullish'],
+     1, 'Candle bearish dibuka di atas penutupan sebelumnya, menunjukkan optimisme awal, lalu ditutup di bawah titik tengah badan candle bullish sebelumnya. Makin dalam penetrasinya ke badan candle pertama, makin kuat implikasi bearish-nya.'],
+    ['threeWhiteSoldiers', 'sedang', 'Tiga candle terakhir setelah tren turun membentuk pola...',
+     ['Three black crows — bearish', 'Three white soldiers — bullish', 'Rising three methods — penerusan', 'Evening star — bearish'],
+     1, 'Tiga candle bullish berbadan panjang berturut-turut dengan penutupan yang terus meninggi menandakan permintaan yang konsisten. Muncul setelah tren turun, pola ini dibaca sebagai pembalikan bullish yang kuat, terutama bila disertai volume yang membesar.'],
+    ['tweezerBottom', 'sulit', 'Dua candle terakhir setelah tren turun memiliki harga TERENDAH yang hampir sama persis. Pola ini disebut...',
+     ['Tweezer top — resistance menguat', 'Tweezer bottom — support menguat', 'Harami — momentum melemah', 'Doji ganda — keraguan'],
+     1, 'Kesamaan level terendah pada dua candle berurutan menunjukkan pembeli muncul di harga yang sama persis dua kali, sehingga level tersebut terbukti menahan. Muncul setelah tren turun, pola ini menjadi indikasi pembalikan bullish.'],
+    ['bullishHarami', 'sedang', 'Candle terakhir berbadan kecil dan seluruhnya berada di dalam badan candle bearish sebelumnya, setelah tren turun. Pola ini adalah...',
+     ['Bullish engulfing', 'Bullish harami', 'Piercing line', 'Three white soldiers'],
+     1, 'Harami menandakan penyempitan rentang setelah candle besar, artinya tekanan jual kehilangan tenaga. Karena muncul setelah tren turun, pola ini dibaca bullish. Sifatnya peringatan jeda, bukan sinyal pembalikan langsung, sehingga umumnya menunggu konfirmasi candle berikutnya.'],
+    ['dragonflyDoji', 'sulit', 'Candle terakhir memiliki open, high, dan close hampir sama di bagian atas, dengan sumbu bawah panjang, muncul di area support. Pola ini adalah...',
+     ['Gravestone doji — bearish', 'Dragonfly doji — bullish', 'Marubozu — penerusan', 'Spinning top — netral'],
+     1, 'Dragonfly doji menunjukkan harga sempat ditekan jauh ke bawah tetapi seluruhnya ditarik kembali hingga ditutup di dekat puncak rentangnya. Itu penolakan tegas terhadap harga rendah, sehingga bila muncul di area support pola ini berimplikasi bullish.'],
+    ['gravestoneDoji', 'sulit', 'Candle terakhir memiliki open, low, dan close hampir sama di bagian bawah, dengan sumbu atas panjang, muncul di area resistance. Pola ini adalah...',
+     ['Dragonfly doji — bullish', 'Gravestone doji — bearish', 'Hammer — bullish', 'Harami — netral'],
+     1, 'Gravestone doji menunjukkan pembeli sempat mendorong harga jauh ke atas tetapi seluruh kenaikan itu dihapus sampai ditutup di dekat titik terendahnya. Itu penolakan tegas terhadap harga tinggi, sehingga bila muncul di area resistance pola ini berimplikasi bearish.']
+  ];
+  let cs2 = 5000;
+  csq2.forEach(([fn, diff, q, opts, ans, exp], i) => {
+    seed(cs2 += 91);
+    add({ id: 'cta-cs-chart-' + String(i + 10).padStart(3, '0'), module: 'cta-candle', level: 'CTA',
+      difficulty: diff,
+      chart: { title: 'Grafik harian · perbesaran pola', data: CS[fn](), panels: ['volume'], height: 230,
+        alt: 'Grafik candlestick dengan formasi pola pada beberapa candle terakhir' },
+      q: q, options: opts, answer: ans, explain: exp });
+  });
 
   return Q;
 }

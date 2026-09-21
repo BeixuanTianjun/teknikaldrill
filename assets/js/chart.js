@@ -33,6 +33,20 @@ function sma(closes, period) {
   return out;
 }
 
+function bollinger(closes, period, mult) {
+  const mid = sma(closes, period);
+  const up = [], lo = [];
+  for (let i = 0; i < closes.length; i++) {
+    if (mid[i] === null) { up.push(null); lo.push(null); continue; }
+    let sq = 0;
+    for (let j = i - period + 1; j <= i; j++) sq += Math.pow(closes[j] - mid[i], 2);
+    const sd = Math.sqrt(sq / period);
+    up.push(mid[i] + mult * sd);
+    lo.push(mid[i] - mult * sd);
+  }
+  return { mid, up, lo };
+}
+
 function rsi(closes, period) {
   const out = new Array(closes.length).fill(null);
   if (closes.length <= period) return out;
@@ -95,6 +109,12 @@ TD.renderChart = function (spec) {
     });
     [o.a, o.b].forEach(p => { if (Array.isArray(p)) { lo = Math.min(lo, p[1]); hi = Math.max(hi, p[1]); } });
   });
+  const bbo = overlays.find(o => o.type === 'bb');
+  if (bbo) {
+    const bb = bollinger(closes, bbo.period || 20, bbo.mult || 2);
+    bb.up.forEach(v => { if (v !== null) hi = Math.max(hi, v); });
+    bb.lo.forEach(v => { if (v !== null) lo = Math.min(lo, v); });
+  }
   const padY = (hi - lo) * 0.06 || 1;
   lo -= padY; hi += padY;
 
@@ -125,6 +145,30 @@ TD.renderChart = function (spec) {
     if (o.label) svg.appendChild(el('text', { x: PAD.l + 6, y: y1 - 4, class: 'tdc-label' }, o.label));
   });
 
+  // Bollinger Bands (digambar sebelum candle agar tidak menutupi data)
+  overlays.filter(o => o.type === 'bb').forEach(o => {
+    const bb = bollinger(closes, o.period || 20, o.mult || 2);
+    let area = '', top = '', bot = '';
+    const idx = [];
+    bb.up.forEach((v, i) => { if (v !== null) idx.push(i); });
+    idx.forEach((i, k) => {
+      top += (k ? 'L' : 'M') + x(i) + ',' + y(bb.up[i]);
+      bot += (k ? 'L' : 'M') + x(i) + ',' + y(bb.lo[i]);
+    });
+    if (idx.length) {
+      area = top + idx.slice().reverse().map(i => 'L' + x(i) + ',' + y(bb.lo[i])).join('') + 'Z';
+      svg.appendChild(el('path', { d: area, class: 'tdc-bb-area' }));
+      svg.appendChild(el('path', { d: top, class: 'tdc-bb' }));
+      svg.appendChild(el('path', { d: bot, class: 'tdc-bb' }));
+      let midP = '';
+      idx.forEach((i, k) => { midP += (k ? 'L' : 'M') + x(i) + ',' + y(bb.mid[i]); });
+      svg.appendChild(el('path', { d: midP, class: 'tdc-bb-mid' }));
+      const first = idx[0];
+      svg.appendChild(el('text', { x: x(first) + 4, y: y(bb.up[first]) - 6, class: 'tdc-label tdc-label-ma' },
+        o.label || ('BB' + (o.period || 20))));
+    }
+  });
+
   // moving average
   overlays.filter(o => o.type === 'ma').forEach((o, idx) => {
     const vals = sma(closes, o.period);
@@ -134,8 +178,9 @@ TD.renderChart = function (spec) {
       svg.appendChild(el('path', { d: d, class: 'tdc-ma tdc-ma-' + (idx % 2) }));
       const last = vals.length - 1;
       if (vals[last] !== null)
-        svg.appendChild(el('text', { x: x(last) + 4, y: y(vals[last]) + 3, class: 'tdc-label tdc-label-ma' },
-          o.label || ('MA' + o.period)));
+        // ditempatkan di dalam area plot agar tidak bertabrakan dengan label sumbu harga
+        svg.appendChild(el('text', { x: x(last) - 6, y: y(vals[last]) - 6, class: 'tdc-label tdc-label-ma',
+          'text-anchor': 'end' }, o.label || ('MA' + o.period)));
     }
   });
 

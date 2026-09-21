@@ -8,8 +8,8 @@ Statis sepenuhnya — tanpa build, tanpa server, tanpa dependency. Buka `index.h
 
 ## Isi bank soal
 
-**455 soal orisinal** yang disusun mengikuti unit kompetensi skema sertifikasi analis teknikal BNSP,
-**27 di antaranya soal baca chart** yang menampilkan grafik harga:
+**480 soal orisinal** yang disusun mengikuti unit kompetensi skema sertifikasi analis teknikal BNSP,
+**52 di antaranya soal baca chart** yang menampilkan grafik harga:
 
 | Level | Unit kompetensi | Soal |
 |---|---|---|
@@ -53,19 +53,25 @@ tema mengikuti sistem dengan tombol ganti manual, pintasan keyboard (`1`–`4` u
 
 ## Soal baca chart
 
-27 soal menampilkan grafik harga yang **digambar sebagai SVG dari deret OHLC yang menempel di
+52 soal menampilkan grafik harga yang **digambar sebagai SVG dari deret OHLC yang menempel di
 soal** — bukan berkas gambar. Konsekuensinya: tajam di resolusi apa pun, ikut tema gelap maupun
 terang, dan tidak menambah satu pun permintaan jaringan.
 
 Arah candle dikodekan lewat **bentuk** (naik = badan berongga, turun = badan padat), bukan warna
 saja, sehingga tetap terbaca oleh pembaca dengan buta warna dan saat dicetak hitam putih.
-Renderer mendukung panel volume, panel RSI yang dihitung di sisi klien, garis support resistance,
-garis tren, zona harga, moving average, dan penanda huruf pada candle tertentu.
+Renderer mendukung panel volume, panel RSI yang dihitung di sisi klien, Bollinger Bands, garis
+support resistance, garis tren, zona harga, moving average, dan penanda huruf pada candle tertentu.
 
-Polanya mencakup head and shoulders, double top dan bottom, segitiga menaik dan simetris, bull
-flag, falling wedge, cup and handle, struktur higher high–higher low, support resistance dan role
-reversal, breakaway gap, golden cross, divergensi RSI, hitungan lima gelombang Elliott, serta
-sembilan formasi candlestick.
+Polanya mencakup head and shoulders biasa dan terbalik, double dan triple bottom, double top,
+segitiga menaik, menurun, dan simetris, bull flag, rising dan falling wedge, channel, cup and
+handle, rounding bottom, island reversal, struktur higher high–higher low, support resistance dan
+role reversal, breakaway, measuring, dan exhaustion gap, retracement Fibonacci, selling climax,
+divergensi volume, golden dan death cross, divergensi RSI dua arah, Bollinger squeeze, moving
+average sebagai support dinamis, hitungan lima gelombang Elliott, serta 18 formasi candlestick.
+
+Beberapa soal candlestick sengaja dibuat berpasangan sebagai jebakan lokasi: hammer melawan
+hanging man, dan inverted hammer melawan shooting star. Bentuk candle-nya identik, yang
+membedakan hanya posisinya dalam tren — persis seperti yang diuji di sertifikasi.
 
 Deret OHLC-nya disintesis oleh `tools/gen-chart-questions.js` memakai PRNG ber-seed, sehingga
 menjalankan ulang menghasilkan berkas yang identik:
