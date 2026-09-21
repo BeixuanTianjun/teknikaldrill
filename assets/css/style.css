@@ -331,6 +331,7 @@ kbd{font-family:var(--mono);font-size:.78em;background:var(--surface-2);border:1
 
 /* ===== materi ringkas & mind map ===== */
 .mode-g{--mc:var(--ok)}
+.mode-h{--mc:var(--d)}
 .note-head{margin-bottom:26px}
 .note-head h1{font-size:clamp(24px,3.6vw,34px);margin:12px 0 8px}
 .note-tabs{display:inline-flex;margin-top:18px;flex-wrap:wrap}
@@ -395,4 +396,49 @@ kbd{font-family:var(--mono);font-size:.78em;background:var(--surface-2);border:1
   .mm-branch{gap:20px}
   .mm-root{max-width:150px;font-size:14px;padding:14px 16px}
   .mm-node{max-width:190px;font-size:12.8px}
+}
+
+/* ===== grafik soal (SVG, warna dari token tema) ===== */
+.q-chart{margin:0 0 22px;background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r);padding:14px 12px 8px}
+.q-chart[hidden]{display:none !important}
+.tdc-title{font-size:12.5px;font-weight:700;color:var(--ink-3);letter-spacing:.04em;margin:0 0 8px;padding-left:4px}
+.tdc{display:block;width:100%;height:auto;overflow:visible}
+
+.tdc-grid{stroke:var(--line);stroke-width:1;opacity:.55}
+.tdc-grid-dash{stroke-dasharray:3 4}
+.tdc-axis{fill:var(--ink-3);font-family:var(--mono);font-size:10.5px;
+  paint-order:stroke;stroke:var(--surface-2);stroke-width:3px;stroke-linejoin:round}
+.tdc-panel-title{fill:var(--ink-3);font-family:var(--font);font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+
+/* arah candle dikodekan lewat bentuk: naik berongga, turun padat */
+.tdc-wick{stroke-width:1.4}
+.tdc-wick.is-up{stroke:var(--ok)}
+.tdc-wick.is-down{stroke:var(--bad)}
+.tdc-body{stroke-width:1.4}
+.tdc-body.is-up{fill:var(--surface);stroke:var(--ok)}
+.tdc-body.is-down{fill:var(--bad);stroke:var(--bad)}
+
+.tdc-hline{stroke:var(--brand-2);stroke-width:1.6;stroke-dasharray:6 4}
+.tdc-trend{stroke:var(--brand-2);stroke-width:1.8;stroke-linecap:round}
+.tdc-zone{fill:var(--brand);opacity:.14}
+.tdc-ma{fill:none;stroke-width:1.8;stroke-linejoin:round;stroke-linecap:round}
+.tdc-ma-0{stroke:var(--info)}
+.tdc-ma-1{stroke:var(--accent)}
+.tdc-rsi{fill:none;stroke:var(--brand-2);stroke-width:1.8;stroke-linejoin:round}
+.tdc-rsi-dot{fill:var(--accent);stroke:var(--surface-2);stroke-width:2}
+.tdc-vol{opacity:.55}
+.tdc-vol.is-up{fill:var(--ok)}
+.tdc-vol.is-down{fill:var(--bad)}
+
+.tdc-label{fill:var(--ink);font-family:var(--font);font-size:11px;font-weight:700;
+  paint-order:stroke;stroke:var(--surface-2);stroke-width:3.5px;stroke-linejoin:round}
+.tdc-label-ma{font-family:var(--mono);font-size:10px;font-weight:700}
+.tdc-mark-bg{fill:var(--brand);opacity:.92}
+.tdc-mark{fill:#fff;font-family:var(--mono);font-size:11px;font-weight:700}
+
+.rev .q-chart{margin-bottom:14px;padding:10px 8px 6px}
+.flash-face .q-chart{margin-bottom:14px}
+@media (max-width:760px){
+  .q-chart{padding:10px 6px 6px}
+  .tdc-axis,.tdc-label{font-size:12px}
 }

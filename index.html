@@ -69,6 +69,12 @@
         <p>Baca konsep + pembahasan tanpa tekanan skor. Enak buat H-1.</p>
         <span class="mode-go">Mulai →</span>
       </button>
+      <button class="mode-card mode-h" data-mode="chart" type="button">
+        <span class="mode-emoji">🕯️</span>
+        <h3>Drill Baca Chart</h3>
+        <p>Khusus soal bergambar grafik: kenali pola, level, dan formasi candle langsung dari chart.</p>
+        <span class="mode-go">Mulai →</span>
+      </button>
       <button class="mode-card mode-g" data-mode="notes" type="button">
         <span class="mode-emoji">📚</span>
         <h3>Materi &amp; Mind Map</h3>
@@ -163,6 +169,7 @@
         <span class="tag tag-diff" id="qDiff">Sedang</span>
         <span class="tag tag-id" id="qId"></span>
       </div>
+      <div class="q-chart" id="qChart" hidden></div>
       <h2 class="q-text" id="qText"></h2>
       <div class="options" id="options"></div>
 
@@ -199,6 +206,7 @@
       <div class="flash-card" id="flashCard">
         <div class="flash-face flash-front">
           <span class="flash-hint">Soal · klik buat balik</span>
+          <div class="q-chart" id="flashChart" hidden></div>
           <p id="flashQ"></p>
         </div>
         <div class="flash-face flash-back">
@@ -308,6 +316,7 @@
 </footer>
 
 <script src="assets/js/data.js"></script>
+<script src="assets/js/chart.js"></script>
 
 <!-- bank soal -->
 <script src="data/rta-dasar.js"></script>
@@ -327,6 +336,7 @@
 <script src="data/cta-portfolio.js"></script>
 <script src="data/cta-aset.js"></script>
 <script src="data/cta-statistik.js"></script>
+<script src="data/chart-questions.js"></script>
 
 <!-- materi ringkas & mind map -->
 <script src="data/notes-rta-1.js"></script>

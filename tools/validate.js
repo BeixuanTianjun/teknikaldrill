@@ -45,6 +45,25 @@ bank.forEach(q => {
   if (q.options.some(o => !o || !o.trim())) errors.push(q.id + ': ada opsi kosong');
   if (!q.explain || q.explain.length < 40) errors.push(q.id + ': pembahasan terlalu pendek');
   if (!['mudah', 'sedang', 'sulit'].includes(q.difficulty)) warns.push(q.id + ': difficulty ' + q.difficulty);
+
+  // integritas data grafik: tiap batang harus punya OHLC yang konsisten
+  if (q.chart) {
+    const d = q.chart.data;
+    if (!Array.isArray(d) || d.length < 5) errors.push(q.id + ': data grafik kurang dari 5 batang');
+    else d.forEach((bar, bi) => {
+      if (!Array.isArray(bar) || bar.length < 4) { errors.push(q.id + ' batang ' + bi + ': bukan OHLC'); return; }
+      const [o, h, l, c] = bar;
+      if ([o, h, l, c].some(v => typeof v !== 'number' || !isFinite(v)))
+        errors.push(q.id + ' batang ' + bi + ': ada nilai bukan angka');
+      else {
+        if (h < Math.max(o, c) - 1e-9) errors.push(q.id + ' batang ' + bi + ': high di bawah badan');
+        if (l > Math.min(o, c) + 1e-9) errors.push(q.id + ' batang ' + bi + ': low di atas badan');
+        if (l > h) errors.push(q.id + ' batang ' + bi + ': low di atas high');
+        if (o <= 0 || l <= 0) errors.push(q.id + ' batang ' + bi + ': harga nol atau negatif');
+      }
+    });
+    if (!q.chart.alt) warns.push(q.id + ': grafik tanpa teks alternatif');
+  }
   if (!/[?.]$|\.\.\.$/.test(q.q.trim())) warns.push(q.id + ': pertanyaan tidak diakhiri tanda baca');
 });
 
@@ -64,7 +83,10 @@ TD.MODULES.forEach(m => {
 });
 const diff = {};
 bank.forEach(q => { diff[q.difficulty] = (diff[q.difficulty] || 0) + 1; });
-console.log('\nSebaran kesulitan:', JSON.stringify(diff));
+const withChart = bank.filter(q => q.chart);
+console.log('\nSoal dengan grafik:', withChart.length,
+            '| total batang OHLC:', withChart.reduce((a, q) => a + q.chart.data.length, 0));
+console.log('Sebaran kesulitan:', JSON.stringify(diff));
 
 // sebaran posisi kunci jawaban (deteksi bias)
 const keyPos = [0, 0, 0, 0];

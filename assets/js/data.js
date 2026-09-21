@@ -64,6 +64,7 @@ TD.register = function (list) {
       options: q.options.slice(),
       answer: q.answer,
       explain: q.explain || 'Belum ada pembahasan untuk soal ini.',
+      chart: q.chart || null,
       source: q.source || 'bawaan'
     });
     added++;

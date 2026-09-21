@@ -127,7 +127,8 @@ const MODE_INFO = {
   exam:     { title: 'Simulasi Ujian',   sub: '100 soal, 120 menit, pembahasan baru dibuka di akhir. Passing grade 70%.', counts: [50, 75, 100] },
   rapid:    { title: 'Rapid Fire',       sub: '20 detik per soal. Makin cepat & makin panjang streak, makin gede poinnya.', counts: [10, 20, 30, 50] },
   weak:     { title: 'Drill Soal Salah', sub: 'Khusus soal yang pernah lo jawab salah atau lo tandai.', counts: [10, 20, 30, 0] },
-  flash:    { title: 'Flashcard',        sub: 'Balik kartu buat lihat jawaban + pembahasan. Nggak ada skor.', counts: [10, 20, 30, 50] }
+  flash:    { title: 'Flashcard',        sub: 'Balik kartu buat lihat jawaban + pembahasan. Nggak ada skor.', counts: [10, 20, 30, 50] },
+  chart:    { title: 'Drill Baca Chart',  sub: 'Hanya soal yang menampilkan grafik. Latih mata baca pola, level, dan formasi candle.', counts: [10, 20, 0] }
 };
 
 function openSetup(mode, presetModules) {
@@ -194,6 +195,7 @@ function bindSetup() {
 function candidatePool() {
   let pool = allQuestions().filter(q =>
     setupState.levels.includes(q.level) && setupState.modules.includes(q.module));
+  if (setupState.mode === 'chart') pool = pool.filter(q => q.chart);
   if (setupState.mode === 'weak') {
     pool = pool.filter(q => {
       const r = S.seen[q.id];
@@ -294,6 +296,7 @@ function renderQuestion() {
   $('#qModule').textContent = modOf(q.module).emoji + ' ' + modOf(q.module).name;
   $('#qDiff').textContent = DIFF_LABEL[q.difficulty] || q.difficulty;
   $('#qId').textContent = q.id;
+  TD.mountChart($('#qChart'), q.chart);
   $('#qText').textContent = q.q;
   $('#explain').hidden = true;
   $('#qFoot').hidden = false;
@@ -457,12 +460,16 @@ function renderReview(filter) {
         ${sess.flags[i] ? '<span class="tag">🔖 ditandai</span>' : ''}
         <span class="tag tag-id">${esc(q.id)}</span>
       </div>
+      ${q.chart ? `<div class="q-chart" data-chart="${i}"></div>` : ''}
       <p class="rev-q">${i + 1}. ${esc(q.q)}</p>
       <p class="rev-line ${ok ? 'ok' : 'bad'}">Jawaban lo: <b>${pickTxt}</b></p>
       ${ok ? '' : `<p class="rev-line ok">Kunci: <b>${esc(q.options[q.answer])}</b></p>`}
       <p class="rev-exp">${esc(q.explain)}</p>
     </div>`;
   }).join('');
+  $$('#reviewList [data-chart]').forEach(box => {
+    TD.mountChart(box, sess.qs[Number(box.dataset.chart)].chart);
+  });
 }
 
 /* ---------------- flashcard ---------------- */
@@ -475,6 +482,7 @@ function startFlash(qs) {
 function renderFlash() {
   const q = flash.qs[flash.idx];
   $('#flashCard').classList.remove('is-flipped');
+  TD.mountChart($('#flashChart'), q.chart);
   $('#flashQ').textContent = q.q;
   $('#flashA').textContent = 'Jawaban: ' + q.options[q.answer];
   $('#flashE').textContent = q.explain;

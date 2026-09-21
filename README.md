@@ -8,7 +8,8 @@ Statis sepenuhnya — tanpa build, tanpa server, tanpa dependency. Buka `index.h
 
 ## Isi bank soal
 
-**428 soal orisinal** yang disusun mengikuti unit kompetensi skema sertifikasi analis teknikal BNSP:
+**455 soal orisinal** yang disusun mengikuti unit kompetensi skema sertifikasi analis teknikal BNSP,
+**27 di antaranya soal baca chart** yang menampilkan grafik harga:
 
 | Level | Unit kompetensi | Soal |
 |---|---|---|
@@ -41,6 +42,7 @@ milik pihak lain** dan bukan soal ujian resmi BNSP/LSP.
 | ⏱️ **Simulasi Ujian** | 50/75/100 soal, timer 120 menit, pembahasan baru dibuka di akhir, passing grade 70% |
 | ⚡ **Rapid Fire** | 20 detik per soal, poin bonus untuk kecepatan dan streak |
 | 🩹 **Drill Soal Salah** | Hanya soal yang pernah dijawab salah atau ditandai |
+| 🕯️ **Drill Baca Chart** | Khusus soal bergrafik: kenali pola, level, dan formasi candle dari chart |
 | 🃏 **Flashcard** | Kartu bolak-balik soal ↔ jawaban + pembahasan, tanpa skor |
 | 📚 **Materi & Mind Map** | Ringkasan per unit, peta konsep interaktif, daftar jebakan ujian |
 | 📊 **Progress & Rapor** | Akurasi per unit, topik terlemah, riwayat sesi |
@@ -48,6 +50,31 @@ milik pihak lain** dan bukan soal ujian resmi BNSP/LSP.
 Fitur lain: poin & streak, tandai soal, review lengkap di akhir sesi (filter semua/salah/ditandai),
 tema mengikuti sistem dengan tombol ganti manual, pintasan keyboard (`1`–`4` untuk menjawab, `Enter` untuk lanjut,
 `←`/`→`/`Space` di flashcard), dan progress tersimpan otomatis di browser (localStorage).
+
+## Soal baca chart
+
+27 soal menampilkan grafik harga yang **digambar sebagai SVG dari deret OHLC yang menempel di
+soal** — bukan berkas gambar. Konsekuensinya: tajam di resolusi apa pun, ikut tema gelap maupun
+terang, dan tidak menambah satu pun permintaan jaringan.
+
+Arah candle dikodekan lewat **bentuk** (naik = badan berongga, turun = badan padat), bukan warna
+saja, sehingga tetap terbaca oleh pembaca dengan buta warna dan saat dicetak hitam putih.
+Renderer mendukung panel volume, panel RSI yang dihitung di sisi klien, garis support resistance,
+garis tren, zona harga, moving average, dan penanda huruf pada candle tertentu.
+
+Polanya mencakup head and shoulders, double top dan bottom, segitiga menaik dan simetris, bull
+flag, falling wedge, cup and handle, struktur higher high–higher low, support resistance dan role
+reversal, breakaway gap, golden cross, divergensi RSI, hitungan lima gelombang Elliott, serta
+sembilan formasi candlestick.
+
+Deret OHLC-nya disintesis oleh `tools/gen-chart-questions.js` memakai PRNG ber-seed, sehingga
+menjalankan ulang menghasilkan berkas yang identik:
+
+```bash
+node tools/gen-chart-questions.js    # menulis ulang data/chart-questions.js
+```
+
+Berkas `data/chart-questions.js` dibangkitkan otomatis — sunting generatornya, bukan berkas itu.
 
 ## Materi ringkas & mind map
 
@@ -142,8 +169,9 @@ node tools/validate.js
 ```
 
 Mengecek id ganda, indeks kunci jawaban, modul tak dikenal, opsi duplikat/kosong, pembahasan
-terlalu pendek, soal kembar, plus kelengkapan materi tiap unit (section, label mind map, poin,
-jebakan) dan ringkasan sebaran soal per unit maupun tingkat kesulitan.
+terlalu pendek, soal kembar, integritas tiap batang OHLC pada soal bergrafik (high tidak boleh di
+bawah badan, low tidak boleh di atasnya, tidak ada harga nol atau negatif), plus kelengkapan materi
+tiap unit dan ringkasan sebaran soal per unit maupun tingkat kesulitan.
 
 ## Struktur
 
@@ -156,6 +184,8 @@ RTA_CTA_Quiz/
 ├── data/rta-*.js           # bank soal RTA per unit kompetensi
 ├── data/cta-*.js           # bank soal CTA per unit kompetensi
 ├── data/notes-*.js         # materi ringkas + label mind map + jebakan ujian
+├── data/chart-questions.js # soal baca chart (dibangkitkan otomatis)
+├── assets/js/chart.js      # penggambar grafik SVG dari deret OHLC
 └── tools/validate.js       # validator bank soal
 ```
 
