@@ -171,6 +171,65 @@ P.elliottImpulse = () => {
   return { data: fromPath(c, { vol: 1100, volBy: i => (i >= 8 && i <= 14) ? 1.7 : 0.9 }) };
 };
 
+
+/* ---------- pola tambahan batch 3 ---------- */
+P.bearFlag = () => {
+  const L = legsP(1600, [[1080, 5], [1150, 3], [1120, 2], [1205, 3], [1175, 2], [1255, 3], [860, 7]]);
+  const data = fromPath(L.closes, { vol: 1300, volBy: i => i < 6 ? 2.0 : i < 20 ? 0.45 : 2.0, wick: 0.3 });
+  const pv = L.pivots;
+  return { data, upper: thru(data, pv[2].i, pv[6].i, 'high', pv[6].i),
+                 lower: thru(data, pv[1].i, pv[5].i, 'low', pv[6].i) };
+};
+P.broadening = () => {
+  const L = legsP(1100, [[1200, 3], [1030, 3], [1290, 4], [950, 4], [1380, 4], [880, 4], [1450, 5]]);
+  const data = fromPath(L.closes, { vol: 1200, volBy: (i, n) => 0.8 + 0.9 * (i / n) });
+  const pv = L.pivots;
+  return { data, upper: thru(data, pv[1].i, pv[5].i, 'high', pv[7].i),
+                 lower: thru(data, pv[2].i, pv[6].i, 'low', pv[7].i) };
+};
+P.diamondTop = () => {
+  const L = legsP(1200, [[1290, 3], [1130, 3], [1370, 4], [1060, 4], [1330, 4], [1140, 3], [1270, 3], [1180, 3], [980, 5]]);
+  return { data: fromPath(L.closes, { vol: 1200, volBy: (i, n) => i > n - 6 ? 1.8 : 1.0 }) };
+};
+P.vBottom = () => {
+  const L = legsP(1500, [[900, 9], [1480, 9]]);
+  return { data: fromPath(L.closes, { vol: 1200, volBy: (i, n) => Math.abs(i - n / 2) < 2 ? 2.4 : 0.95 }) };
+};
+P.downChannel = () => {
+  const L = legsP(1500, [[1360, 4], [1430, 3], [1240, 4], [1310, 3], [1120, 4], [1190, 3], [1000, 4]]);
+  const data = fromPath(L.closes, { vol: 1050 });
+  const pv = L.pivots;
+  return { data, upper: thru(data, pv[2].i, pv[6].i, 'high', pv[7].i),
+                 lower: thru(data, pv[1].i, pv[5].i, 'low', pv[7].i) };
+};
+P.ichimokuBreak = () => {
+  // Senkou B memakai 52 periode lalu digeser maju 26, sehingga awan baru
+  // muncul setelah batang ke-78. Deret dibuat jauh lebih panjang agar
+  // awannya benar-benar tergambar dan pertanyaannya dapat dijawab.
+  // Ayunan di fase basis dibuat cukup lebar agar Senkou B (titik tengah 52
+  // periode) terpisah jelas dari Senkou A, sehingga awannya tebal dan terbaca.
+  // Kenaikan akhir dibatasi supaya harga berada di atas awan tanpa meninggalkannya
+  // jauh di luar jangkauan pandang.
+  const c = legs(1300, [[960, 30], [1120, 16], [950, 18], [1130, 16], [960, 16], [1080, 12], [1210, 26]]);
+  return { data: fromPath(c, { vol: 1050, wick: 0.26 }) };
+};
+P.macdCross = () => {
+  // Penurunan dibuat cukup dalam dan panjang agar MACD benar-benar berada
+  // jauh di bawah nol saat persilangan terjadi, sesuai yang ditanyakan soal.
+  // Garis sinyal baru bernilai pada batang ke-33 (26 untuk MACD + 9 untuk sinyal),
+  // jadi penurunan harus berlanjut melewati titik itu agar persilangannya
+  // benar-benar tergambar, bukan terjadi di masa pemanasan indikator.
+  const c = legs(1500, [[1150, 20], [1200, 8], [900, 24], [965, 8], [1250, 28]]);
+  return { data: fromPath(c, { vol: 1050, wick: 0.28 }) };
+};
+P.pennant = () => {
+  const L = legsP(900, [[1380, 5], [1290, 3], [1350, 2], [1305, 2], [1335, 2], [1318, 2], [1620, 6]]);
+  const data = fromPath(L.closes, { vol: 1300, volBy: i => i < 6 ? 2.0 : i < 18 ? 0.4 : 2.0, wick: 0.28 });
+  const pv = L.pivots;
+  return { data, upper: thru(data, pv[1].i, pv[5].i, 'high', pv[6].i),
+                 lower: thru(data, pv[2].i, pv[6].i, 'low', pv[6].i) };
+};
+
 /* ---------- pola candlestick: tren dasar + formasi eksplisit ---------- */
 function trendThen(startPrice, dir, n, candles, volBase) {
   const pts = [];
@@ -818,6 +877,117 @@ function build() {
         alt: 'Grafik candlestick dengan formasi pola pada beberapa candle terakhir' },
       q: q, options: opts, answer: ans, explain: exp });
   });
+
+
+  /* ===== batch 3 ===== */
+  seed(6001); { const p = P.bearFlag();
+  add({ id: 'rta-trend-chart-018', module: 'rta-trend', level: 'RTA', difficulty: 'sedang',
+    chart: { title: 'Saham TUVW · Harian', data: p.data, panels: ['volume'],
+      overlays: [{ type: 'line', a: p.upper.a, b: p.upper.b }, { type: 'line', a: p.lower.a, b: p.lower.b, label: 'Bendera' }],
+      alt: 'Penurunan tajam, konsolidasi miring naik bervolume tipis, lalu penurunan tajam lagi' },
+    q: 'Konsolidasi miring naik bervolume tipis setelah penurunan tajam pada grafik ini adalah...',
+    options: ['Bear flag — penerusan bearish', 'Bull flag — penerusan bullish',
+              'Rising wedge — pembalikan bearish', 'Channel naik — tren berbalik arah'],
+    answer: 0,
+    explain: 'Penurunan tajam membentuk flagpole, lalu harga terkonsolidasi dalam channel kecil yang miring melawan arah tren dengan volume mengering. Setelah jeda itu selesai tren turun berlanjut, dan targetnya diukur sepanjang tiang bendera yang diproyeksikan dari titik penembusan.' }); }
+
+  seed(6002); { const p = P.broadening();
+  add({ id: 'rta-trend-chart-019', module: 'rta-trend', level: 'RTA', difficulty: 'sulit',
+    chart: { title: 'Saham UVWA · Harian', data: p.data, panels: ['volume'],
+      overlays: [{ type: 'line', a: p.upper.a, b: p.upper.b, label: 'Puncak makin tinggi' },
+                 { type: 'line', a: p.lower.a, b: p.lower.b, label: 'Lembah makin rendah' }],
+      alt: 'Puncak makin tinggi dan lembah makin rendah sehingga rentangnya terus melebar' },
+    q: 'Pola dengan puncak makin tinggi dan lembah makin rendah seperti grafik ini disebut dan menandakan...',
+    options: ['Broadening formation — ketidaksepakatan pelaku pasar meningkat',
+              'Segitiga simetris — volatilitas sedang terkompresi',
+              'Channel naik — tren naik yang masih terkendali',
+              'Cup and handle — akumulasi bertahap sebelum breakout'],
+    answer: 0,
+    explain: 'Pola megaphone ini mencerminkan meningkatnya ketidaksepakatan pelaku pasar sehingga ayunan harga makin liar ke kedua arah. Kondisi seperti ini sulit ditransaksikan karena stop mudah tersentuh, dan sering muncul di puncak pasar yang dipenuhi emosi.' }); }
+
+  seed(6003); { const p = P.diamondTop();
+  add({ id: 'rta-trend-chart-020', module: 'rta-trend', level: 'RTA', difficulty: 'sulit',
+    chart: { title: 'Saham VWAB · Harian', data: p.data, panels: ['volume'],
+      alt: 'Rentang melebar di paruh awal lalu menyempit di paruh akhir sebelum harga jatuh' },
+    q: 'Grafik menunjukkan rentang yang melebar di paruh awal lalu menyempit di paruh akhir. Pola ini adalah...',
+    options: ['Diamond top — pembalikan bearish', 'Segitiga simetris — netral terhadap arah',
+              'Rectangle — konsolidasi dalam rentang mendatar', 'Rounding top — pembalikan bertahap'],
+    answer: 0,
+    explain: 'Diamond top adalah gabungan broadening formation di paruh awal dan segitiga simetris di paruh akhir. Struktur ini menggambarkan pasar yang mula-mula liar lalu meredam, dan penembusan ke bawah sisi kanannya memberi sinyal bearish.' }); }
+
+  seed(6004); { const p = P.vBottom();
+  add({ id: 'rta-trend-chart-021', module: 'rta-trend', level: 'RTA', difficulty: 'sulit',
+    chart: { title: 'Saham WABC · Harian', data: p.data, panels: ['volume'],
+      alt: 'Penurunan tajam yang langsung berbalik naik tanpa fase basis di titik terendah' },
+    q: 'Pembalikan pada grafik ini terjadi tanpa fase basis sama sekali. Kesulitan utama menransaksikan pola seperti ini adalah...',
+    options: ['Konfirmasinya baru muncul saat harga sudah jauh dari titik terendahnya',
+              'Polanya terlalu sering muncul sehingga sulit dibedakan dari noise',
+              'Volume pada pola ini tidak dapat dijadikan konfirmasi sama sekali',
+              'Targetnya tidak dapat dihitung karena tidak ada neckline yang jelas'],
+    answer: 0,
+    explain: 'V bottom tidak menyediakan fase akumulasi yang bisa diamati, sehingga saat pembalikan terkonfirmasi harga sudah naik jauh dan rasio risiko imbal hasilnya memburuk. Analis biasanya menunggu pengujian ulang atau memakai ukuran posisi lebih kecil untuk menghadapi pola ini.' }); }
+
+  seed(6005); { const p = P.downChannel();
+  add({ id: 'rta-trend-chart-022', module: 'rta-trend', level: 'RTA', difficulty: 'sedang',
+    chart: { title: 'Saham ABCE · Harian', data: p.data, panels: [],
+      overlays: [{ type: 'line', a: p.upper.a, b: p.upper.b, label: 'Garis tren turun' },
+                 { type: 'line', a: p.lower.a, b: p.lower.b }],
+      alt: 'Harga bergerak turun di antara dua garis sejajar yang menurun' },
+    q: 'Selama channel turun ini berlaku, peran garis tren atas pada grafik adalah...',
+    options: ['Resistance dinamis yang menahan setiap upaya kenaikan harga',
+              'Support dinamis yang menahan setiap upaya penurunan harga',
+              'Target keuntungan bagi posisi beli yang dibuka di batas bawah',
+              'Level pembatalan yang menandakan tren turun sudah berakhir'],
+    answer: 0,
+    explain: 'Garis atas channel turun menghubungkan puncak-puncak yang makin rendah, dan setiap kali harga naik mendekatinya penjual kembali masuk. Perannya disebut dinamis karena nilainya bergerak turun seiring waktu, berbeda dari level horizontal yang tetap.' }); }
+
+  seed(6006); { const p = P.pennant();
+  add({ id: 'rta-trend-chart-023', module: 'rta-trend', level: 'RTA', difficulty: 'sulit',
+    chart: { title: 'Saham BCEF · Harian', data: p.data, panels: ['volume'],
+      overlays: [{ type: 'line', a: p.upper.a, b: p.upper.b }, { type: 'line', a: p.lower.a, b: p.lower.b, label: 'Pennant' }],
+      alt: 'Kenaikan tajam diikuti segitiga kecil menyempit bervolume tipis, lalu kenaikan tajam lagi' },
+    q: 'Konsolidasi berbentuk segitiga kecil menyempit setelah kenaikan tajam pada grafik ini disebut...',
+    options: ['Pennant — penerusan bullish', 'Segitiga simetris — pola netral berdurasi panjang',
+              'Diamond — pembalikan bearish', 'Falling wedge — pembalikan bullish'],
+    answer: 0,
+    explain: 'Pennant mirip bendera tetapi batas atas dan bawahnya konvergen membentuk segitiga kecil, dan durasinya jauh lebih pendek daripada segitiga simetris biasa. Volume yang mengering selama konsolidasi lalu membesar saat penembusan adalah konfirmasi khasnya.' }); }
+
+  seed(6007); { const p = P.ichimokuBreak();
+  add({ id: 'rta-ind-chart-008', module: 'rta-indikator', level: 'RTA', difficulty: 'sulit',
+    chart: { title: 'Saham CEFG · Harian', data: p.data, panels: [], height: 260,
+      overlays: [{ type: 'ichimoku', p1: 9, p2: 26, p3: 52 }],
+      alt: 'Harga menembus ke atas awan Ichimoku setelah lama bergerak di bawahnya' },
+    q: 'Harga pada bagian kanan grafik bergerak di atas awan Ichimoku. Pembacaan yang paling tepat adalah...',
+    options: ['Bias bullish, dengan awan berperan sebagai area support di bawahnya',
+              'Bias bearish, karena harga sudah terlalu jauh meninggalkan awannya',
+              'Pasar tanpa arah, karena posisi harga terhadap awan belum menentukan',
+              'Sinyal jual, karena harga akan kembali masuk ke dalam awan'],
+    answer: 0,
+    explain: 'Posisi harga terhadap kumo menentukan bias arah: di atas awan bullish, di bawah awan bearish, dan di dalam awan menandakan pasar tanpa arah. Ketebalan awan menggambarkan seberapa kuat area support resistance tersebut, sehingga awan tebal lebih sulit ditembus balik.' }); }
+
+  seed(6008); { const p = P.macdCross();
+  add({ id: 'rta-ind-chart-009', module: 'rta-indikator', level: 'RTA', difficulty: 'sulit',
+    chart: { title: 'Saham EFGH · Harian', data: p.data, panels: ['macd'], height: 230,
+      alt: 'MACD line memotong ke atas garis sinyal saat keduanya masih berada di bawah nol' },
+    q: 'Pada panel MACD, garis MACD memotong ke atas garis sinyal ketika keduanya masih di bawah nol. Sinyal ini dinilai...',
+    options: ['Lebih bertenaga, karena pembalikan muncul setelah kondisi jenuh jual',
+              'Lebih lemah, karena persilangan di bawah nol biasanya sinyal palsu',
+              'Netral, karena posisi terhadap garis nol tidak mempengaruhi maknanya',
+              'Tidak sah, karena persilangan hanya berlaku bila terjadi di atas nol'],
+    answer: 0,
+    explain: 'Persilangan MACD ke atas garis sinyal menandakan momentum mulai berbalik positif. Terjadinya jauh di bawah garis nol berarti pembalikan itu muncul setelah tekanan jual yang dalam, sehingga ruang pemulihannya lebih besar dibanding persilangan yang terjadi saat harga sudah tinggi.' }); }
+
+  seed(6009); { const p = P.rsiDivergence();
+  add({ id: 'rta-ind-chart-010', module: 'rta-indikator', level: 'RTA', difficulty: 'sulit',
+    chart: { title: 'Saham FGHI · Harian', data: p.data, panels: ['macd'], height: 230,
+      alt: 'Harga mencetak puncak lebih tinggi sementara histogram MACD memendek' },
+    q: 'Harga mencetak puncak yang lebih tinggi, tetapi histogram MACD justru memendek. Apa yang ditunjukkan histogram tersebut?',
+    options: ['Jarak MACD terhadap garis sinyal menyempit, jadi laju penguatan berkurang',
+              'MACD sudah memotong ke bawah garis sinyal sehingga tren berbalik',
+              'Volume transaksi menurun meski harga masih mencetak puncak baru',
+              'Perhitungan MACD keliru karena histogram seharusnya ikut membesar'],
+    answer: 0,
+    explain: 'Histogram MACD mengukur selisih antara garis MACD dan garis sinyalnya, sehingga pemendekan berarti keduanya saling mendekat dan laju penguatan momentum berkurang. Ini peringatan dini perlambatan, bukan sinyal jual, karena persilangan sesungguhnya belum terjadi.' }); }
 
   return Q;
 }

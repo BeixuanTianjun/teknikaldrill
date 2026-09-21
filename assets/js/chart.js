@@ -33,6 +33,47 @@ function sma(closes, period) {
   return out;
 }
 
+function ema(vals, period) {
+  const k = 2 / (period + 1), out = [];
+  let prev = null;
+  vals.forEach((v, i) => {
+    if (v === null || v === undefined) { out.push(null); return; }
+    prev = prev === null ? v : v * k + prev * (1 - k);
+    out.push(i < period - 1 ? null : prev);
+  });
+  return out;
+}
+
+function macd(closes, fast, slow, sig) {
+  const ef = ema(closes, fast), es = ema(closes, slow);
+  const line = closes.map((_, i) => (ef[i] === null || es[i] === null) ? null : ef[i] - es[i]);
+  const valid = line.map(v => v === null ? null : v);
+  const signal = ema(valid.filter(v => v !== null), sig);
+  const firstIdx = line.findIndex(v => v !== null);
+  const sigFull = line.map(() => null);
+  signal.forEach((v, i) => { if (v !== null) sigFull[firstIdx + i] = v; });
+  const hist = line.map((v, i) => (v === null || sigFull[i] === null) ? null : v - sigFull[i]);
+  return { line, signal: sigFull, hist };
+}
+
+/* Ichimoku: hanya Tenkan, Kijun, dan awan (Senkou A & B) yang digambar,
+   karena ketiganya yang dipakai membaca posisi harga terhadap kumo. */
+function ichimoku(data, p1, p2, p3) {
+  const hl = (i, n) => {
+    if (i < n - 1) return null;
+    let hi = -Infinity, lo = Infinity;
+    for (let j = i - n + 1; j <= i; j++) { hi = Math.max(hi, data[j][1]); lo = Math.min(lo, data[j][2]); }
+    return (hi + lo) / 2;
+  };
+  const tenkan = data.map((_, i) => hl(i, p1));
+  const kijun = data.map((_, i) => hl(i, p2));
+  const spanB = data.map((_, i) => hl(i, p3));
+  const spanA = data.map((_, i) => (tenkan[i] === null || kijun[i] === null) ? null : (tenkan[i] + kijun[i]) / 2);
+  // awan digeser maju p2 periode, sesuai konstruksi aslinya
+  const shift = arr => arr.map((_, i) => (i - p2 >= 0 ? arr[i - p2] : null));
+  return { tenkan, kijun, spanA: shift(spanA), spanB: shift(spanB) };
+}
+
 function bollinger(closes, period, mult) {
   const mid = sma(closes, period);
   const up = [], lo = [];
@@ -97,7 +138,7 @@ TD.renderChart = function (spec) {
 
   const H_PRICE = spec.height || 260;
   const H_SUB = 68;
-  const subCount = (hasVol ? 1 : 0) + (hasRsi ? 1 : 0);
+  const subCount = (hasVol ? 1 : 0) + (hasRsi ? 1 : 0) + (panels.includes('macd') ? 1 : 0);
   const H = PAD.t + H_PRICE + subCount * (H_SUB + 14) + PAD.b;
 
   // skala harga: rentang data ditambah setiap garis/zona overlay, diberi ruang 6%
@@ -114,6 +155,12 @@ TD.renderChart = function (spec) {
     const bb = bollinger(closes, bbo.period || 20, bbo.mult || 2);
     bb.up.forEach(v => { if (v !== null) hi = Math.max(hi, v); });
     bb.lo.forEach(v => { if (v !== null) lo = Math.min(lo, v); });
+  }
+  const icho = overlays.find(o => o.type === 'ichimoku');
+  if (icho) {
+    const ic = ichimoku(data, icho.p1 || 9, icho.p2 || 26, icho.p3 || 52);
+    [ic.spanA, ic.spanB, ic.tenkan, ic.kijun].forEach(arr =>
+      arr.forEach(v => { if (v !== null) { hi = Math.max(hi, v); lo = Math.min(lo, v); } }));
   }
   const padY = (hi - lo) * 0.06 || 1;
   lo -= padY; hi += padY;
@@ -143,6 +190,37 @@ TD.renderChart = function (spec) {
     const y1 = y(Math.max(o.from, o.to)), y2 = y(Math.min(o.from, o.to));
     svg.appendChild(el('rect', { x: PAD.l, y: y1, width: plotW, height: Math.max(2, y2 - y1), class: 'tdc-zone' }));
     if (o.label) svg.appendChild(el('text', { x: PAD.l + 6, y: y1 - 4, class: 'tdc-label' }, o.label));
+  });
+
+  // Awan Ichimoku (digambar paling belakang)
+  overlays.filter(o => o.type === 'ichimoku').forEach(o => {
+    const ic = ichimoku(data, o.p1 || 9, o.p2 || 26, o.p3 || 52);
+    const idx = [];
+    ic.spanA.forEach((v, i) => { if (v !== null && ic.spanB[i] !== null) idx.push(i); });
+    if (idx.length) {
+      // awan dipecah per segmen agar warnanya mengikuti posisi span A terhadap span B
+      let seg = [idx[0]];
+      const flush = () => {
+        if (seg.length < 2) { seg = []; return; }
+        const up = ic.spanA[seg[0]] >= ic.spanB[seg[0]];
+        let d = seg.map(i => 'L' + x(i) + ',' + y(ic.spanA[i])).join('').replace('L', 'M');
+        d += seg.slice().reverse().map(i => 'L' + x(i) + ',' + y(ic.spanB[i])).join('') + 'Z';
+        svg.appendChild(el('path', { d: d, class: 'tdc-kumo ' + (up ? 'is-up' : 'is-down') }));
+        seg = [];
+      };
+      for (let k = 1; k < idx.length; k++) {
+        const prevUp = ic.spanA[idx[k - 1]] >= ic.spanB[idx[k - 1]];
+        const curUp = ic.spanA[idx[k]] >= ic.spanB[idx[k]];
+        seg.push(idx[k]);
+        if (prevUp !== curUp) { flush(); seg = [idx[k]]; }
+      }
+      flush();
+      [['tenkan', 'tdc-tenkan'], ['kijun', 'tdc-kijun']].forEach(([key, cls]) => {
+        let d = '';
+        ic[key].forEach((v, i) => { if (v !== null) d += (d ? 'L' : 'M') + x(i) + ',' + y(v); });
+        if (d) svg.appendChild(el('path', { d: d, class: cls }));
+      });
+    }
   });
 
   // Bollinger Bands (digambar sebelum candle agar tidak menutupi data)
@@ -238,6 +316,33 @@ TD.renderChart = function (spec) {
         x: x(i) - bw / 2, y: yCur + H_SUB - hgt, width: bw, height: Math.max(1, hgt),
         class: 'tdc-vol ' + (d[3] >= d[0] ? 'is-up' : 'is-down')
       }));
+    });
+    yCur += H_SUB + 14;
+  }
+
+  // panel MACD
+  if (panels.includes('macd')) {
+    const mc = macd(closes, 12, 26, 9);
+    const all = mc.line.concat(mc.signal, mc.hist).filter(v => v !== null && isFinite(v));
+    const mx = Math.max.apply(null, all.map(Math.abs)) || 1;
+    const my = v => yCur + H_SUB / 2 - (v / mx) * (H_SUB / 2 - 4);
+    svg.appendChild(el('text', { x: PAD.l, y: yCur - 3, class: 'tdc-panel-title' }, 'MACD (12, 26, 9)'));
+    // garis nol dibuat tegas: posisi persilangan terhadap nol adalah
+    // informasi yang dibaca dari panel ini, bukan sekadar latar
+    svg.appendChild(el('line', { x1: PAD.l, y1: my(0), x2: W - PAD.r, y2: my(0), class: 'tdc-zero' }));
+    svg.appendChild(el('text', { x: W - PAD.r + 7, y: my(0) + 3.5, class: 'tdc-axis' }, '0'));
+    mc.hist.forEach((v, i) => {
+      if (v === null) return;
+      const y0 = my(0), y1 = my(v);
+      svg.appendChild(el('rect', {
+        x: x(i) - bw / 2, y: Math.min(y0, y1), width: bw, height: Math.max(1, Math.abs(y1 - y0)),
+        class: 'tdc-macd-hist ' + (v >= 0 ? 'is-up' : 'is-down')
+      }));
+    });
+    [['line', 'tdc-macd-line'], ['signal', 'tdc-macd-signal']].forEach(([key, cls]) => {
+      let d = '';
+      mc[key].forEach((v, i) => { if (v !== null) d += (d ? 'L' : 'M') + x(i) + ',' + my(v); });
+      if (d) svg.appendChild(el('path', { d: d, class: cls }));
     });
     yCur += H_SUB + 14;
   }

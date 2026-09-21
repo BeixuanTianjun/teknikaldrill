@@ -8,8 +8,8 @@ Statis sepenuhnya — tanpa build, tanpa server, tanpa dependency. Buka `index.h
 
 ## Isi bank soal
 
-**504 soal orisinal** yang disusun mengikuti unit kompetensi skema sertifikasi analis teknikal BNSP,
-**52 di antaranya soal baca chart** yang menampilkan grafik harga:
+**537 soal orisinal** yang disusun mengikuti unit kompetensi skema sertifikasi analis teknikal BNSP,
+**61 di antaranya soal baca chart** yang menampilkan grafik harga:
 
 | Level | Unit kompetensi | Soal |
 |---|---|---|
@@ -54,13 +54,16 @@ tema mengikuti sistem dengan tombol ganti manual, pintasan keyboard (`1`–`4` u
 
 ## Studi kasus
 
-Enam skenario bergaya vignette, masing-masing dengan empat soal turunan, total 24 soal tingkat
-sulit. Tiap kasus menyajikan narasi situasi plus tabel data, lalu soal-soalnya menuntut hitungan
+Dua belas skenario bergaya vignette, masing-masing dengan empat soal turunan, total 48 soal
+tingkat sulit. Tiap kasus menyajikan narasi situasi plus tabel data, lalu soal-soalnya menuntut hitungan
 berlapis atau penimbangan bukti yang saling bertentangan — bukan sekadar mengenali istilah.
 
 Topiknya: penentuan ukuran posisi berlapis, sinyal yang bertentangan antar timeframe, risiko
 tersembunyi pada portofolio berkorelasi tinggi, membaca hasil backtest yang mencurigakan,
-pergeseran antar pasar, dan benturan kepentingan pada penerbitan riset.
+pergeseran antar pasar, benturan kepentingan pada penerbitan riset, penembusan menjelang rilis
+laporan keuangan, mengelola posisi yang sudah jauh menguntungkan, instrumen yang likuiditasnya
+tidak sepadan dengan ukuran mandat, memilih antara dua sistem berbeda karakter, pasar yang
+indeksnya naik tetapi breadth-nya menyempit, dan rollover kontrak berjangka pada pasar contango.
 
 ## Mutu pengecoh
 
@@ -76,21 +79,24 @@ sehingga posisi kunci pada berkas data tidak pernah terbaca pengguna.
 
 ## Soal baca chart
 
-52 soal menampilkan grafik harga yang **digambar sebagai SVG dari deret OHLC yang menempel di
+61 soal menampilkan grafik harga yang **digambar sebagai SVG dari deret OHLC yang menempel di
 soal** — bukan berkas gambar. Konsekuensinya: tajam di resolusi apa pun, ikut tema gelap maupun
 terang, dan tidak menambah satu pun permintaan jaringan.
 
 Arah candle dikodekan lewat **bentuk** (naik = badan berongga, turun = badan padat), bukan warna
 saja, sehingga tetap terbaca oleh pembaca dengan buta warna dan saat dicetak hitam putih.
-Renderer mendukung panel volume, panel RSI yang dihitung di sisi klien, Bollinger Bands, garis
-support resistance, garis tren, zona harga, moving average, dan penanda huruf pada candle tertentu.
+Renderer mendukung panel volume, panel RSI dan panel MACD yang dihitung di sisi klien, Bollinger
+Bands, awan Ichimoku, garis support resistance, garis tren, zona harga, moving average, dan
+penanda huruf pada candle tertentu.
 
 Polanya mencakup head and shoulders biasa dan terbalik, double dan triple bottom, double top,
 segitiga menaik, menurun, dan simetris, bull flag, rising dan falling wedge, channel, cup and
 handle, rounding bottom, island reversal, struktur higher high–higher low, support resistance dan
 role reversal, breakaway, measuring, dan exhaustion gap, retracement Fibonacci, selling climax,
 divergensi volume, golden dan death cross, divergensi RSI dua arah, Bollinger squeeze, moving
-average sebagai support dinamis, hitungan lima gelombang Elliott, serta 18 formasi candlestick.
+average sebagai support dinamis, bear flag, pennant, broadening formation, diamond top, V bottom,
+channel turun, penembusan awan Ichimoku, persilangan MACD di bawah nol, hitungan lima gelombang
+Elliott, serta 18 formasi candlestick.
 
 Beberapa soal candlestick sengaja dibuat berpasangan sebagai jebakan lokasi: hammer melawan
 hanging man, dan inverted hammer melawan shooting star. Bentuk candle-nya identik, yang

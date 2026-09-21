@@ -64,8 +64,8 @@ TD.register([
 
 {id:"cta-as-011",module:"cta-aset",level:"CTA",difficulty:"sedang",
  q:"Commitment of Traders report berguna bagi analis teknikal terutama karena menunjukkan...",
- options:["Jumlah kontrak yang akan jatuh tempo pada bulan penyerahan berikutnya","Posisi kelompok pelaku seperti commercial dan large speculator sebagai ukuran sentimen","Perkiraan harga wajar komoditas menurut konsensus pelaku pasar berjangka","Volume transaksi harian yang dipecah menurut bursa tempat terjadinya"],
- answer:1,
+ options:["Volume transaksi harian yang dipecah menurut bursa tempat terjadinya","Jumlah kontrak yang akan jatuh tempo pada bulan penyerahan berikutnya","Posisi kelompok pelaku seperti commercial dan large speculator sebagai ukuran sentimen","Perkiraan harga wajar komoditas menurut konsensus pelaku pasar berjangka"],
+ answer:2,
  explain:"Posisi commercial umumnya bersifat lindung nilai dan bergerak berlawanan dengan spekulan besar. Ketika posisi spekulan mencapai level ekstrem secara historis, kondisi itu sering dipakai sebagai indikasi contrarian menjelang titik balik, bukan sebagai pemicu transaksi langsung."},
 
 {id:"cta-as-012",module:"cta-aset",level:"CTA",difficulty:"sedang",
@@ -142,8 +142,8 @@ TD.register([
 
 {id:"cta-as-024",module:"cta-aset",level:"CTA",difficulty:"sulit",
  q:"Saham tambang batu bara bergerak naik tajam sementara harga batu bara mendatar. Pembacaan yang paling tepat adalah...",
- options:["Konfirmasi bahwa harga batu bara akan segera menyusul naik mengikuti sahamnya","Hal biasa, karena harga saham tambang bergerak bebas dari komoditasnya","Divergensi yang perlu ditelusuri, mungkin dari ekspektasi laba, utang, atau aksi korporasi","Tanda bahwa saham itu sedang dipakai sebagai lindung nilai oleh produsen"],
- answer:2,
+ options:["Tanda bahwa saham itu sedang dipakai sebagai lindung nilai oleh produsen","Konfirmasi bahwa harga batu bara akan segera menyusul naik mengikuti sahamnya","Hal biasa, karena harga saham tambang bergerak bebas dari komoditasnya","Divergensi yang perlu ditelusuri, mungkin dari ekspektasi laba, utang, atau aksi korporasi"],
+ answer:3,
  explain:"Saham komoditas umumnya mengikuti harga komoditas dasarnya, sehingga penyimpangan dari hubungan itu adalah informasi, bukan gangguan. Penyebabnya bisa perubahan ekspektasi laba, restrukturisasi utang, aksi korporasi, atau perbaikan efisiensi, dan penelusuran itu yang menentukan apakah divergensinya berkelanjutan."},
 
 {id:"cta-as-025",module:"cta-aset",level:"CTA",difficulty:"sulit",

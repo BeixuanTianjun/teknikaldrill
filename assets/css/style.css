@@ -472,3 +472,16 @@ kbd{font-family:var(--mono);font-size:.78em;background:var(--surface-2);border:1
 @media (max-width:760px){
   .case-facts th{white-space:normal}
 }
+
+/* panel MACD & awan Ichimoku */
+.tdc-zero{stroke:var(--ink-3);stroke-width:1.2;stroke-dasharray:5 4;opacity:.85}
+.tdc-macd-hist{opacity:.6}
+.tdc-macd-hist.is-up{fill:var(--ok)}
+.tdc-macd-hist.is-down{fill:var(--bad)}
+.tdc-macd-line{fill:none;stroke:var(--brand-2);stroke-width:1.7}
+.tdc-macd-signal{fill:none;stroke:var(--accent);stroke-width:1.5;stroke-dasharray:4 3}
+.tdc-kumo{stroke:none}
+.tdc-kumo.is-up{fill:var(--ok);opacity:.26}
+.tdc-kumo.is-down{fill:var(--bad);opacity:.26}
+.tdc-tenkan{fill:none;stroke:var(--info);stroke-width:1.5}
+.tdc-kijun{fill:none;stroke:var(--d);stroke-width:1.5}
