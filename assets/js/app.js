@@ -708,7 +708,7 @@ function openNote(moduleId) {
   $('#paneRingkas').innerHTML = note.sections.map((sec, i) => `
     <div class="note-sec" style="border-left-color:${MM_COLORS[i % MM_COLORS.length]}">
       <h3>${esc(sec.h)}</h3>
-      <div class="chip-row">${sec.mm.map(k => `<span class="note-kw">${esc(k)}</span>`).join('')}</div>
+      <div class="chip-row">${sec.mm.map(n => `<span class="note-kw"${n.d ? ` title="${esc(n.d)}"` : ''}>${esc(n.k)}</span>`).join('')}</div>
       <ul>${sec.points.map(pt => `<li>${esc(pt)}</li>`).join('')}</ul>
     </div>`).join('');
 
@@ -740,7 +740,10 @@ function renderMindmap() {
       const c = MM_COLORS[i % MM_COLORS.length];
       return `<div class="mm-branch is-open" style="--bc:${c}">
         <button class="mm-node" type="button">${esc(sec.h)}</button>
-        <div class="mm-leaves">${sec.mm.map(k => `<span class="mm-leaf">${esc(k)}</span>`).join('')}</div>
+        <div class="mm-leaves">${sec.mm.map((n, li) => n.d
+          ? `<button class="mm-leaf has-detail" type="button" aria-expanded="false" data-leaf="${i}-${li}">${esc(n.k)}</button>`
+          : `<span class="mm-leaf">${esc(n.k)}</span>`).join('')}</div>
+        <div class="mm-detail" id="mmDetail-${i}" hidden></div>
       </div>`;
     }).join('') + '</div>';
 
@@ -748,6 +751,30 @@ function renderMindmap() {
     btn.closest('.mm-branch').classList.toggle('is-open');
     requestAnimationFrame(drawMindmapLines);
   }));
+
+  /* Daun berketerangan: mengetuk daun membuka penjelasan satu kalimat di
+     bawah cabangnya. Hanya satu keterangan terbuka per cabang, supaya peta
+     tetap ringkas dan tidak berubah menjadi dinding teks. */
+  $$('#mindmap .mm-leaf.has-detail').forEach(leaf => leaf.addEventListener('click', () => {
+    const [bi, li] = leaf.dataset.leaf.split('-').map(Number);
+    const box = $('#mmDetail-' + bi);
+    const sama = leaf.classList.contains('is-active');
+
+    $$('.mm-leaf.has-detail', leaf.closest('.mm-branch')).forEach(l => {
+      l.classList.remove('is-active');
+      l.setAttribute('aria-expanded', 'false');
+    });
+
+    if (sama) { box.hidden = true; }
+    else {
+      leaf.classList.add('is-active');
+      leaf.setAttribute('aria-expanded', 'true');
+      box.textContent = currentNote.sections[bi].mm[li].d;
+      box.hidden = false;
+    }
+    requestAnimationFrame(drawMindmapLines);
+  }));
+
   requestAnimationFrame(drawMindmapLines);
 }
 

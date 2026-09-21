@@ -77,6 +77,24 @@ TD.NOTES = {};
 
 /* Dipanggil tiap file catatan materi. Mind map diturunkan dari sections[].mm
    supaya isinya tidak perlu ditulis dua kali. */
+/* Menyeragamkan daun mind map.
+
+   Bentuk lama berupa string saja masih diterima, supaya materi yang belum
+   diberi keterangan tidak perlu diubah sekaligus. Bentuk baru memakai
+   "Label :: keterangan" agar labelnya tetap pendek dan mudah dipindai,
+   sementara keterangannya muncul saat daun itu dibuka. */
+function normalMm(mm) {
+  if (!Array.isArray(mm)) return [];
+  return mm.map(function (item) {
+    if (item && typeof item === 'object') return { k: item.k || '', d: item.d || '' };
+    var teks = String(item == null ? '' : item);
+    var pisah = teks.indexOf(' :: ');
+    return pisah < 0
+      ? { k: teks.trim(), d: '' }
+      : { k: teks.slice(0, pisah).trim(), d: teks.slice(pisah + 4).trim() };
+  });
+}
+
 TD.registerNotes = function (list) {
   if (!Array.isArray(list)) return 0;
   let n = 0;
@@ -86,7 +104,7 @@ TD.registerNotes = function (list) {
       module: note.module,
       tagline: note.tagline || '',
       sections: note.sections.map(function (sec) {
-        return { h: sec.h || '', mm: sec.mm || [], points: sec.points || [] };
+        return { h: sec.h || '', mm: normalMm(sec.mm), points: sec.points || [] };
       }),
       jebakan: note.jebakan || []
     };
