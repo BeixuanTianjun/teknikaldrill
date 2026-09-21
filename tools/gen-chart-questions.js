@@ -1018,7 +1018,7 @@ function build() {
       chart: { kind: 'pf', title: 'Saham ABCD · point and figure (box 20)', data: d, box: 20, reversal: 3, height: 270,
         alt: 'Kolom X terakhir menembus satu kotak di atas puncak kolom X sebelumnya' },
       q: 'Kolom X terakhir pada grafik menembus satu box di atas puncak kolom X sebelumnya. Formasi ini dikenal sebagai...',
-      options: ['Double top breakout, sinyal beli klasik point and figure', 'Triple bottom, sinyal jual', 'Bearish catapult, sinyal jual', 'Pole reversal, sinyal netral'],
+      options: ['Double top breakout, sinyal beli klasik point and figure', 'Triple bottom breakdown, sinyal jual klasik point and figure', 'Bearish catapult, penerusan turun setelah gagal menembus', 'Pole reversal, sinyal netral yang menunggu konfirmasi lanjutan'],
       answer: 0,
       explain: 'Double top breakout: kolom X terbaru ngelewatin satu box di atas puncak kolom X sebelumnya. Yang bikin sistem ini menarik, sinyalnya OBJEKTIF banget — nggak ada subjektivitas narik garis, cuma ngitung kotak. Dua orang dengan setelan sama bakal dapet sinyal yang persis sama, dan itu keunggulan yang jarang ada di analisis teknikal.' }); }
 
