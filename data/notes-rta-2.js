@@ -87,7 +87,7 @@ TD.registerNotes([
    "Analisis teknikal kerja di ranah PELUANG, bukan kepastian. Ngejanjiin hasil itu pelanggaran etika, dan jaminan lisan sama beratnya sama yang tertulis.",
    "Istilah teknis yang spesifik dijelasin singkat. Nulis buat mengesankan itu yang bikin amatir, bukan nulis buat dipahami."]},
   {h:"Etika & benturan kepentingan", mm:["Disclosure","Front running","Manipulasi","Churning"], points:[
-   "WAJIB ungkapin kepemilikan posisi dan hubungan bisnis sama emiten. Kode etik bertumpu pada KETERBUKAAN, bukan larangan punya — boleh pegang, asal ditulis.",
+   "WAJIB ungkapin kepemilikan posisi dan hubungan bisnis sama emiten. Inti kode etiknya KETERBUKAAN, bukan larangan punya — boleh pegang, asal ditulis di risetnya.",
    "Rekomendasi beli sambil diam-diam JUAL = front running. Ini bukan cuma nggak etis, ini pelanggaran berat yang bisa bikin izin dicabut.",
    "Nyebarin rekomendasi buat GERAKIN HARGA demi posisi sendiri = indikasi manipulasi pasar, bisa berujung pidana. Bedanya sama pelanggaran etika biasa ada di NIAT.",
    "Ndorong transaksi berlebihan demi komisi = churning. Kepentingan nasabah dikorbanin buat komisi broker."]},
