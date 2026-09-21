@@ -2,14 +2,14 @@
 TD.register([
 {id:"cta-teori-001",module:"cta-teori",level:"CTA",difficulty:"sedang",
  q:"Adaptive Market Hypothesis yang dikemukakan Andrew Lo menyatakan bahwa...",
- options:["Efisiensi pasar berubah-ubah mengikuti adaptasi pelaku terhadap kondisi","Efisiensi pasar meningkat secara tetap seiring bertambahnya jumlah pelaku","Pasar efisien pada jangka panjang meski tidak efisien pada jangka pendek","Pasar tidak pernah efisien karena pelakunya tidak pernah sepenuhnya rasional"],
- answer:0,
+ options:["Pasar efisien pada jangka panjang meski tidak efisien pada jangka pendek","Pasar tidak pernah efisien karena pelakunya tidak pernah sepenuhnya rasional","Efisiensi pasar berubah-ubah mengikuti adaptasi pelaku terhadap kondisi","Efisiensi pasar meningkat secara tetap seiring bertambahnya jumlah pelaku"],
+ answer:2,
  explain:"Lo memadukan efficient market hypothesis dengan sudut pandang evolusioner: peluang muncul dan hilang seiring pelaku pasar belajar dan beradaptasi. Kerangka ini menjelaskan mengapa sebuah strategi bisa bekerja pada satu periode lalu memudar setelah banyak pihak memakainya."},
 
 {id:"cta-teori-002",module:"cta-teori",level:"CTA",difficulty:"sulit",
  q:"Temuan Jegadeesh dan Titman yang menjadi dukungan akademis bagi premis tren adalah...",
- options:["Saham dengan kinerja terbaik 3–12 bulan cenderung melanjutkan kinerjanya","Saham dengan kinerja terburuk cenderung berbalik menguat dalam satu bulan","Saham berkapitalisasi kecil memberi imbal hasil lebih tinggi sepanjang tahun","Saham dengan volume tertinggi cenderung memberi imbal hasil abnormal"],
- answer:0,
+ options:["Saham dengan kinerja terburuk cenderung berbalik menguat dalam satu bulan","Saham berkapitalisasi kecil memberi imbal hasil lebih tinggi sepanjang tahun","Saham dengan volume tertinggi cenderung memberi imbal hasil abnormal","Saham dengan kinerja terbaik 3–12 bulan cenderung melanjutkan kinerjanya"],
+ answer:3,
  explain:"Studi mereka menemukan strategi membeli pemenang dan menjual pecundang berdasarkan kinerja tiga hingga dua belas bulan menghasilkan imbal hasil abnormal. Ini salah satu bukti empiris terkuat bahwa harga bergerak dalam tren, bukan sepenuhnya acak."},
 
 {id:"cta-teori-003",module:"cta-teori",level:"CTA",difficulty:"sedang",
@@ -20,20 +20,20 @@ TD.register([
 
 {id:"cta-teori-004",module:"cta-teori",level:"CTA",difficulty:"sulit",
  q:"Konsep reflexivity yang dikemukakan George Soros berpendapat bahwa...",
- options:["Persepsi pelaku pasar dapat mengubah fundamental yang dipersepsikannya","Harga selalu kembali ke nilai fundamental setelah penyimpangan sementara","Fundamental menentukan harga tanpa dipengaruhi persepsi pelaku pasar","Persepsi dan fundamental bergerak bebas tanpa hubungan satu sama lain"],
- answer:0,
+ options:["Persepsi dan fundamental bergerak bebas tanpa hubungan satu sama lain","Persepsi pelaku pasar dapat mengubah fundamental yang dipersepsikannya","Harga selalu kembali ke nilai fundamental setelah penyimpangan sementara","Fundamental menentukan harga tanpa dipengaruhi persepsi pelaku pasar"],
+ answer:1,
  explain:"Soros menolak pemisahan tegas antara harga dan fundamental. Harga saham yang naik mempermudah perusahaan menghimpun modal sehingga fundamentalnya benar-benar membaik, lalu perbaikan itu mendorong harga naik lagi. Umpan balik dua arah inilah yang membentuk gelembung sekaligus keruntuhannya."},
 
 {id:"cta-teori-005",module:"cta-teori",level:"CTA",difficulty:"sedang",
  q:"Herding behavior berkontribusi pada terbentuknya tren karena pelaku pasar...",
- options:["Cenderung mengikuti tindakan mayoritas sehingga pergerakan saling menguatkan","Cenderung mengambil posisi berlawanan agar memperoleh harga yang lebih baik","Menunggu konfirmasi fundamental sebelum menyesuaikan posisinya","Membagi modalnya merata sehingga aliran dana tersebar ke banyak saham"],
- answer:0,
+ options:["Menunggu konfirmasi fundamental sebelum menyesuaikan posisinya","Membagi modalnya merata sehingga aliran dana tersebar ke banyak saham","Cenderung mengikuti tindakan mayoritas sehingga pergerakan saling menguatkan","Cenderung mengambil posisi berlawanan agar memperoleh harga yang lebih baik"],
+ answer:2,
  explain:"Kecenderungan mengikuti kelompok memperkuat arah pergerakan hingga harga melampaui nilai wajarnya. Fenomena ini menjelaskan mengapa tren dapat bertahan jauh lebih lama daripada yang diperkirakan model pelaku rasional."},
 
 {id:"cta-teori-006",module:"cta-teori",level:"CTA",difficulty:"sedang",
  q:"Prospect theory dari Kahneman dan Tversky relevan bagi analis teknikal karena menjelaskan mengapa...",
- options:["Kerugian terasa lebih menyakitkan daripada keuntungan yang setara besarnya","Pelaku pasar menilai peluang secara akurat bila diberi data yang memadai","Keputusan investasi membaik seiring bertambahnya pengalaman bertransaksi","Harga bergerak acak karena keputusan tiap pelaku saling meniadakan"],
- answer:0,
+ options:["Pelaku pasar menilai peluang secara akurat bila diberi data yang memadai","Keputusan investasi membaik seiring bertambahnya pengalaman bertransaksi","Harga bergerak acak karena keputusan tiap pelaku saling meniadakan","Kerugian terasa lebih menyakitkan daripada keuntungan yang setara besarnya"],
+ answer:3,
  explain:"Loss aversion menjelaskan mengapa investor menahan posisi rugi terlalu lama dan cepat merealisasikan untung. Perilaku itu menciptakan pola harga berulang yang dapat dikenali, sekaligus menjadi alasan mengapa disiplin stop loss begitu sulit dijalankan."},
 
 {id:"cta-teori-007",module:"cta-teori",level:"CTA",difficulty:"sulit",
@@ -44,20 +44,20 @@ TD.register([
 
 {id:"cta-teori-008",module:"cta-teori",level:"CTA",difficulty:"sedang",
  q:"Survivorship bias dalam pengujian strategi saham muncul karena...",
- options:["Data hanya mencakup emiten yang masih tercatat, mengabaikan yang delisting","Data mencakup terlalu banyak emiten sehingga hasilnya menjadi terlalu umum","Data harga historis selalu disesuaikan terhadap dividen dan stock split","Data volume tidak tersedia untuk emiten yang jarang diperdagangkan"],
- answer:0,
+ options:["Data volume tidak tersedia untuk emiten yang jarang diperdagangkan","Data hanya mencakup emiten yang masih tercatat, mengabaikan yang delisting","Data mencakup terlalu banyak emiten sehingga hasilnya menjadi terlalu umum","Data harga historis selalu disesuaikan terhadap dividen dan stock split"],
+ answer:1,
  explain:"Mengabaikan emiten yang bangkrut atau keluar dari bursa membuat hasil pengujian tampak jauh lebih baik dari kenyataan, karena kegagalan terburuknya tidak pernah ikut terhitung. Basis data yang benar harus menyertakan seluruh emiten yang pernah tercatat pada periode uji."},
 
 {id:"cta-teori-009",module:"cta-teori",level:"CTA",difficulty:"sedang",
  q:"Fractal Market Hypothesis yang dikaitkan dengan Edgar Peters menekankan bahwa kestabilan pasar berasal dari...",
- options:["Beragamnya horizon waktu pelaku pasar yang menjaga ketersediaan likuiditas","Besarnya jumlah pelaku pasar yang aktif bertransaksi setiap harinya","Ketatnya pengawasan otoritas terhadap perilaku pelaku pasar","Rendahnya biaya transaksi yang mendorong perdagangan berlangsung lancar"],
- answer:0,
+ options:["Ketatnya pengawasan otoritas terhadap perilaku pelaku pasar","Rendahnya biaya transaksi yang mendorong perdagangan berlangsung lancar","Beragamnya horizon waktu pelaku pasar yang menjaga ketersediaan likuiditas","Besarnya jumlah pelaku pasar yang aktif bertransaksi setiap harinya"],
+ answer:2,
  explain:"Menurut kerangka ini, pasar stabil ketika pelaku berhorizon panjang bersedia membeli dari pelaku berhorizon pendek. Krisis terjadi saat semua horizon menyatu menjadi jangka sangat pendek, sehingga tidak ada lagi pembeli dan likuiditas menguap."},
 
 {id:"cta-teori-010",module:"cta-teori",level:"CTA",difficulty:"sulit",
  q:"Distribusi imbal hasil pasar yang berekor gemuk atau fat tails berarti...",
- options:["Peristiwa ekstrem terjadi lebih sering daripada prediksi distribusi normal","Imbal hasil terkumpul rapat di sekitar rata-ratanya sepanjang waktu","Volatilitas imbal hasil bersifat tetap dari satu periode ke periode lain","Imbal hasil positif dan negatif muncul dengan frekuensi yang seimbang"],
- answer:0,
+ options:["Imbal hasil terkumpul rapat di sekitar rata-ratanya sepanjang waktu","Volatilitas imbal hasil bersifat tetap dari satu periode ke periode lain","Imbal hasil positif dan negatif muncul dengan frekuensi yang seimbang","Peristiwa ekstrem terjadi lebih sering daripada prediksi distribusi normal"],
+ answer:3,
  explain:"Data pasar menunjukkan kejadian ekstrem jauh lebih sering daripada yang diprediksi kurva normal. Implikasinya, model risiko yang berasumsi normalitas secara sistematis meremehkan potensi kerugian besar, tepat pada bagian distribusi yang paling menentukan kelangsungan portofolio."},
 
 {id:"cta-teori-011",module:"cta-teori",level:"CTA",difficulty:"sedang",
@@ -68,20 +68,20 @@ TD.register([
 
 {id:"cta-teori-012",module:"cta-teori",level:"CTA",difficulty:"sedang",
  q:"Anchoring bias dalam analisis teknikal tampak ketika analis...",
- options:["Terpaku pada harga perolehan pribadinya saat menilai kondisi terkini","Mengikuti arah yang sedang diambil mayoritas pelaku pasar","Memberi bobot berlebihan pada data beberapa sesi terakhir","Mencari data tambahan yang membenarkan kesimpulan awalnya"],
- answer:0,
+ options:["Mencari data tambahan yang membenarkan kesimpulan awalnya","Terpaku pada harga perolehan pribadinya saat menilai kondisi terkini","Mengikuti arah yang sedang diambil mayoritas pelaku pasar","Memberi bobot berlebihan pada data beberapa sesi terakhir"],
+ answer:1,
  explain:"Harga perolehan pribadi tidak punya arti apa pun bagi pasar, tetapi sering menjadi jangkar yang mendistorsi keputusan menahan atau melepas posisi. Cara meredamnya adalah mengevaluasi posisi seolah baru akan dibuka hari ini, tanpa melihat harga belinya."},
 
 {id:"cta-teori-013",module:"cta-teori",level:"CTA",difficulty:"sulit",
  q:"Kritik akademis paling kuat terhadap pengujian pola grafik adalah...",
- options:["Definisi polanya subjektif sehingga sulit dikodifikasi dan direplikasi","Pola grafik terlalu jarang muncul untuk diuji secara statistik","Pola grafik hanya berlaku pada instrumen dengan likuiditas tinggi","Pola grafik tidak pernah diteliti secara serius di jurnal akademis"],
- answer:0,
+ options:["Pola grafik hanya berlaku pada instrumen dengan likuiditas tinggi","Pola grafik tidak pernah diteliti secara serius di jurnal akademis","Definisi polanya subjektif sehingga sulit dikodifikasi dan direplikasi","Pola grafik terlalu jarang muncul untuk diuji secara statistik"],
+ answer:2,
  explain:"Tanpa definisi algoritmik yang tegas, dua analis bisa melihat pola berbeda pada grafik yang sama sehingga hasilnya tidak dapat direplikasi. Riset modern menjawabnya dengan pengenalan pola terkuantifikasi, misalnya pendekatan kernel regression yang dipakai Lo, Mamaysky, dan Wang."},
 
 {id:"cta-teori-014",module:"cta-teori",level:"CTA",difficulty:"sedang",
  q:"Mean reversion dan momentum dapat hidup berdampingan di pasar karena keduanya...",
- options:["Bekerja pada horizon waktu yang berbeda","Berlaku pada kelas aset yang berbeda satu sama lain","Diukur dengan indikator yang berbeda meski hasilnya sama","Hanya berlaku pada kondisi pasar yang sedang bergejolak"],
- answer:0,
+ options:["Berlaku pada kelas aset yang berbeda satu sama lain","Diukur dengan indikator yang berbeda meski hasilnya sama","Hanya berlaku pada kondisi pasar yang sedang bergejolak","Bekerja pada horizon waktu yang berbeda"],
+ answer:3,
  explain:"Secara empiris, imbal hasil jangka sangat pendek cenderung berbalik, jangka menengah menunjukkan momentum, dan jangka sangat panjang kembali mean reverting. Menyadari perbedaan horizon ini mencegah penerapan strategi pada rentang waktu yang keliru."},
 
 {id:"cta-teori-015",module:"cta-teori",level:"CTA",difficulty:"sedang",
@@ -92,20 +92,20 @@ TD.register([
 
 {id:"cta-teori-016",module:"cta-teori",level:"CTA",difficulty:"sulit",
  q:"Peran analisis teknikal dalam kerangka manajemen investasi modern paling tepat digambarkan sebagai...",
- options:["Alat pengelolaan risiko dan penentuan waktu yang melengkapi pemilihan aset","Metode utama pemilihan aset yang menggantikan analisis fundamental","Pelengkap yang hanya relevan bagi pelaku pasar berhorizon sangat pendek","Pendekatan yang dihindari institusi karena tidak memiliki dasar akademis"],
- answer:0,
+ options:["Pendekatan yang dihindari institusi karena tidak memiliki dasar akademis","Alat pengelolaan risiko dan penentuan waktu yang melengkapi pemilihan aset","Metode utama pemilihan aset yang menggantikan analisis fundamental","Pelengkap yang hanya relevan bagi pelaku pasar berhorizon sangat pendek"],
+ answer:1,
  explain:"Banyak institusi memakai sinyal teknikal untuk mengatur waktu eksekusi, menakar besar eksposur, dan mengendalikan risiko drawdown. Perannya melengkapi proses pemilihan aset yang tetap dapat berbasis fundamental maupun kuantitatif."},
 
 {id:"cta-teori-017",module:"cta-teori",level:"CTA",difficulty:"sedang",
  q:"Recency bias membuat analis cenderung...",
- options:["Memberi bobot berlebihan pada peristiwa terbaru dan mengabaikan konteks panjangnya","Terlalu lama bertahan pada pandangan lama meski data baru bertentangan","Menunda keputusan sampai seluruh data yang mungkin terkumpul lengkap","Menyamaratakan bobot seluruh data historis tanpa mempertimbangkan relevansinya"],
- answer:0,
+ options:["Menunda keputusan sampai seluruh data yang mungkin terkumpul lengkap","Menyamaratakan bobot seluruh data historis tanpa mempertimbangkan relevansinya","Memberi bobot berlebihan pada peristiwa terbaru dan mengabaikan konteks panjangnya","Terlalu lama bertahan pada pandangan lama meski data baru bertentangan"],
+ answer:2,
  explain:"Setelah beberapa sesi turun tajam, pelaku pasar cenderung memperkirakan penurunan berlanjut tanpa mempertimbangkan posisi harga dalam struktur besar. Meninjau grafik jangka panjang secara rutin adalah cara sederhana meredam bias ini."},
 
 {id:"cta-teori-018",module:"cta-teori",level:"CTA",difficulty:"sedang",
  q:"Metode Wyckoff memandang pergerakan pasar sebagai hasil dari...",
- options:["Keseimbangan penawaran dan permintaan yang digerakkan pelaku besar","Reaksi berantai pelaku ritel terhadap berita yang dirilis emiten","Perhitungan indikator yang dipakai serentak oleh banyak pelaku pasar","Aliran dana asing yang masuk dan keluar mengikuti siklus tahunan"],
- answer:0,
+ options:["Reaksi berantai pelaku ritel terhadap berita yang dirilis emiten","Perhitungan indikator yang dipakai serentak oleh banyak pelaku pasar","Aliran dana asing yang masuk dan keluar mengikuti siklus tahunan","Keseimbangan penawaran dan permintaan yang digerakkan pelaku besar"],
+ answer:3,
  explain:"Wyckoff merumuskan siklus akumulasi, markup, distribusi, dan markdown yang digerakkan composite operator. Analisisnya menekankan hubungan harga, volume, dan waktu, bukan indikator turunan."},
 
 {id:"cta-teori-019",module:"cta-teori",level:"CTA",difficulty:"sulit",
@@ -116,19 +116,19 @@ TD.register([
 
 {id:"cta-teori-020",module:"cta-teori",level:"CTA",difficulty:"sedang",
  q:"Hukum effort versus result dalam analisis Wyckoff menyatakan bahwa...",
- options:["Volume besar seharusnya menghasilkan pergerakan harga yang setara besarnya","Volume besar selalu mendahului pergerakan harga pada arah yang sama","Pergerakan harga besar selalu menarik masuk volume yang lebih besar lagi","Volume dan pergerakan harga bergerak bebas tanpa hubungan yang berarti"],
- answer:0,
+ options:["Volume dan pergerakan harga bergerak bebas tanpa hubungan yang berarti","Volume besar seharusnya menghasilkan pergerakan harga yang setara besarnya","Volume besar selalu mendahului pergerakan harga pada arah yang sama","Pergerakan harga besar selalu menarik masuk volume yang lebih besar lagi"],
+ answer:1,
  explain:"Bila volume besar hanya menghasilkan pergerakan harga kecil, berarti ada pihak yang menyerap di sisi berlawanan. Ketidaksesuaian antara upaya dan hasil inilah yang sering menandai titik balik penting sebelum terlihat pada indikator apa pun."},
 
 {id:"cta-teori-021",module:"cta-teori",level:"CTA",difficulty:"sedang",
  q:"Analisis teknikal pada indeks umumnya lebih andal daripada pada saham individual karena indeks...",
- options:["Merupakan agregat banyak emiten sehingga tahan terhadap peristiwa spesifik perusahaan","Selalu memiliki likuiditas lebih tinggi daripada saham anggotanya","Dihitung bursa sehingga datanya lebih akurat daripada data saham","Bergerak lebih lambat sehingga polanya lebih mudah dikenali analis"],
- answer:0,
+ options:["Dihitung bursa sehingga datanya lebih akurat daripada data saham","Bergerak lebih lambat sehingga polanya lebih mudah dikenali analis","Merupakan agregat banyak emiten sehingga tahan terhadap peristiwa spesifik perusahaan","Selalu memiliki likuiditas lebih tinggi daripada saham anggotanya"],
+ answer:2,
  explain:"Agregasi meredam pengaruh peristiwa idiosinkratik dan aksi segelintir pihak pada satu emiten. Karena itu pola dan level pada indeks umumnya lebih mencerminkan psikologi pasar secara keseluruhan dan lebih sulit dimanipulasi."},
 
 {id:"cta-teori-022",module:"cta-teori",level:"CTA",difficulty:"sulit",
  q:"Mengenai batas kemampuan analisis teknikal terhadap guncangan mendadak, pernyataan yang benar adalah...",
- options:["Tidak dapat memprediksinya, tetapi kerangka risiko yang disiapkan lebih dulu membantu menghadapinya","Dapat memprediksinya lewat divergensi yang muncul pada indikator momentum","Dapat memprediksinya bila data volume institusi tersedia secara lengkap","Tidak terpengaruh olehnya karena harga sudah mendiskontokan seluruh kemungkinan"],
- answer:0,
+ options:["Dapat memprediksinya lewat divergensi yang muncul pada indikator momentum","Dapat memprediksinya bila data volume institusi tersedia secara lengkap","Tidak terpengaruh olehnya karena harga sudah mendiskontokan seluruh kemungkinan","Tidak dapat memprediksinya, tetapi kerangka risiko yang disiapkan lebih dulu membantu menghadapinya"],
+ answer:3,
  explain:"Bencana, perubahan regulasi mendadak, dan peristiwa sejenis tidak bisa dibaca dari grafik sebelum terjadi. Nilai analisis teknikal justru terletak pada level pembatalan dan ukuran posisi yang sudah ditetapkan sebelumnya, sehingga responsnya tidak bergantung pada kemampuan meramal."}
 ]);

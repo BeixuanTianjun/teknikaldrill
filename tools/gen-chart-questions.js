@@ -378,9 +378,7 @@ function build() {
       overlays: [{ type: 'line', a: [10, p.neck], b: [26, p.neck], label: 'Neckline' }],
       alt: 'Tiga puncak dengan puncak tengah tertinggi di atas sebuah neckline mendatar' },
     q: 'Pola apa yang terbentuk pada grafik ini, dan apa implikasinya?',
-    options: ['Head and shoulders top — implikasi bearish setelah neckline ditembus',
-              'Cup and handle — implikasi bullish', 'Segitiga menaik — implikasi bullish',
-              'Double bottom — implikasi bullish'],
+    options:['Head and shoulders top — pembalikan bearish','Cup and handle — penerusan bullish','Segitiga menaik — penerusan bullish','Triple bottom — pembalikan bullish'],
     answer: 0,
     explain: 'Terlihat tiga puncak dengan puncak tengah (head) paling tinggi, diapit dua bahu yang lebih rendah, dan kedua lembah di antaranya membentuk neckline. Volume juga menipis dari bahu kiri ke head ke bahu kanan lalu melonjak saat neckline ditembus — konfirmasi klasik pola pembalikan bearish ini.' });
 
@@ -410,11 +408,8 @@ function build() {
       overlays: [{ type: 'hline', price: p.neck, label: 'Neckline' }],
       alt: 'Dua dasar setara diikuti penembusan ke atas neckline dengan volume membesar' },
     q: 'Berdasarkan grafik, tindakan yang paling sesuai prinsip analisis teknikal adalah...',
-    options: ['Menjual karena harga sudah naik dari dasar',
-              'Mempertimbangkan posisi beli setelah penembusan neckline yang didukung volume, dengan stop di bawah dasar terakhir',
-              'Menunggu harga kembali ke dasar sebelumnya',
-              'Mengabaikan pola karena tidak ada tren sebelumnya'],
-    answer: 1,
+    options:['Membeli setelah neckline ditembus dengan volume, stop di bawah dasar terakhir','Menjual karena harga sudah naik cukup jauh dari titik terendahnya','Menunggu harga kembali ke dasar sebelumnya sebelum mengambil posisi','Menahan diri karena pola ini baru sah setelah diuji ulang tiga kali'],
+    answer: 0,
     explain: 'Double bottom adalah pola pembalikan bullish yang sah setelah neckline ditembus, dan pada grafik penembusan itu disertai volume yang membesar. Level pembatalan skenario yang logis berada di bawah dasar terakhir, sehingga stop ditempatkan di sana.' }); }
 
   seed(404); { const p = P.ascendingTriangle();
@@ -424,11 +419,8 @@ function build() {
                  { type: 'line', a: p.lower.a, b: p.lower.b, label: 'Support menaik' }],
       alt: 'Resistance mendatar dengan rangkaian lembah yang makin tinggi, lalu breakout ke atas' },
     q: 'Pola ini dikenal sebagai segitiga menaik. Apa yang membuatnya condong bullish?',
-    options: ['Karena resistance-nya mendatar',
-              'Karena lembah makin tinggi, menandakan pembeli makin agresif menyerap pasokan di level yang sama',
-              'Karena volumenya selalu menurun',
-              'Karena selalu muncul di akhir tren turun'],
-    answer: 1,
+    options:['Lembah yang makin tinggi menandakan pembeli makin agresif menyerap pasokan','Resistance yang mendatar menandakan penjual kehabisan barang untuk dilepas','Volume yang menyusut menandakan tekanan jual sudah habis terserap','Kemunculannya yang selalu di akhir tren turun menandakan pembalikan'],
+    answer: 0,
     explain: 'Resistance mendatar menunjukkan pasokan terkumpul di satu level, sementara lembah yang terus meninggi menunjukkan pembeli bersedia membayar makin mahal. Ketimpangan itu biasanya berakhir dengan pasokan habis dan harga menembus ke atas, seperti terlihat di ujung kanan grafik.' }); }
 
   seed(505); { const p = P.symmetricalTriangle();
@@ -438,11 +430,8 @@ function build() {
                  { type: 'line', a: p.lower.a, b: p.lower.b, label: 'Batas bawah' }],
       alt: 'Dua garis konvergen menyempit dengan volume yang terus menipis' },
     q: 'Grafik menunjukkan segitiga simetris dengan volume yang terus menipis. Kesimpulan yang paling tepat adalah...',
-    options: ['Harga pasti menembus ke atas',
-              'Harga pasti menembus ke bawah',
-              'Arah penembusan belum dapat dipastikan; yang pasti hanya volatilitas sedang terkompresi dan ekspansi biasanya menyusul',
-              'Pola ini tidak punya implikasi apa pun'],
-    answer: 2,
+    options:['Arah penembusan belum tentu, yang pasti volatilitas sedang terkompresi','Harga akan menembus ke atas karena pola ini berimplikasi bullish','Harga akan menembus ke bawah karena volumenya terus menyusut','Harga akan bertahan dalam rentang sampai apex segitiga tercapai'],
+    answer: 0,
     explain: 'Segitiga simetris adalah pola kompresi dari dua sisi tanpa bias arah yang jelas, berbeda dari segitiga menaik atau menurun. Volume yang menipis menegaskan keseimbangan sementara. Analis menyiapkan rencana untuk kedua arah dan menunggu penembusan, yang paling andal terjadi di setengah sampai tiga perempat panjang pola.' }); }
 
   seed(606); { const p = P.bullFlag();
@@ -497,11 +486,8 @@ function build() {
       overlays: [{ type: 'hline', price: p.res, label: 'Resistance' }, { type: 'hline', price: p.sup, label: 'Support' }],
       alt: 'Harga terpantul berulang antara dua level mendatar' },
     q: 'Berdasarkan grafik, strategi yang paling sesuai selama rentang ini masih berlaku adalah...',
-    options: ['Beli saat menyentuh resistance, jual saat menyentuh support',
-              'Beli mendekati support, jual mendekati resistance, dengan stop di luar rentang',
-              'Beli di tengah rentang tanpa stop loss',
-              'Hindari semua transaksi karena grafik tidak bisa dibaca'],
-    answer: 1,
+    options:['Beli mendekati support, jual mendekati resistance, stop di luar rentang','Beli saat menyentuh resistance, jual saat menyentuh support','Beli di tengah rentang agar jarak ke kedua batas sama jauhnya','Tunggu rentang ditembus dulu, baru ambil posisi searah penembusan'],
+    answer: 0,
     explain: 'Pada pasar yang bergerak dalam rentang, harga berulang kali tertahan di support dan tertolak di resistance. Strategi yang logis adalah beli dekat support dan jual dekat resistance. Stop ditempatkan di luar rentang karena penembusan berarti rentangnya sudah tidak berlaku lagi.' }); }
 
   seed(1111); { const p = P.breakoutRetest();
@@ -510,9 +496,8 @@ function build() {
       overlays: [{ type: 'hline', price: p.lvl, label: 'Level 1.200' }],
       alt: 'Resistance ditembus dengan volume besar lalu diuji ulang dari atas sebelum melanjutkan kenaikan' },
     q: 'Setelah level 1.200 ditembus, harga kembali turun menyentuhnya lalu memantul naik. Fenomena ini disebut...',
-    options: ['False breakout', 'Role reversal — bekas resistance berubah menjadi support',
-              'Exhaustion gap', 'Divergensi bearish'],
-    answer: 1,
+    options:['Role reversal — bekas resistance berubah menjadi support','False breakout yang menjebak pembeli terlambat','Throwback yang membatalkan penembusan sebelumnya','Konsolidasi ulang sebelum arah baru terbentuk'],
+    answer: 0,
     explain: 'Setelah resistance ditembus, pihak yang sebelumnya menjual di level itu kini ingin masuk kembali, sementara pembeli awal menambah posisi. Tekanan beli tersebut membuat bekas resistance berperan sebagai support. Pengujian ulang seperti ini memberi peluang masuk dengan risiko lebih terukur karena stop bisa ditempatkan tepat di bawah level.' }); }
 
   seed(1212); { const p = P.breakawayGap();
@@ -520,9 +505,8 @@ function build() {
     chart: { title: 'Saham STUV · Harian', data: p.data, panels: ['volume'],
       alt: 'Celah harga kosong setelah konsolidasi mendatar, disertai volume sangat besar' },
     q: 'Celah harga yang muncul setelah konsolidasi mendatar dan disertai lonjakan volume seperti pada grafik ini adalah...',
-    options: ['Common gap yang akan segera tertutup', 'Breakaway gap yang menandai awal tren baru',
-              'Exhaustion gap yang menandai akhir tren', 'Kesalahan data'],
-    answer: 1,
+    options:['Breakaway gap yang menandai awal tren baru','Common gap yang biasanya tertutup dalam beberapa sesi','Exhaustion gap yang menandai berakhirnya tren berjalan','Measuring gap yang menandai titik tengah pergerakan'],
+    answer: 0,
     explain: 'Breakaway gap muncul saat harga keluar dari basis konsolidasi dengan dukungan volume besar, menandakan perubahan sentimen yang nyata. Gap jenis ini jarang tertutup dalam waktu dekat dan sering menjadi titik awal tren yang kuat, berbeda dari exhaustion gap yang muncul di ujung tren.' }); }
 
   /* --- rta-indikator --- */
@@ -562,10 +546,7 @@ function build() {
     chart: { title: 'Saham HIJK · Harian', data: CS.doji(), panels: ['volume'],
       alt: 'Candle terakhir memiliki badan sangat tipis dengan sumbu di kedua sisi, muncul setelah tren naik' },
     q: 'Candle terakhir memiliki harga pembukaan dan penutupan hampir sama, muncul setelah tren naik dengan volume tinggi. Pembacaan yang paling tepat adalah...',
-    options: ['Doji yang menandakan keseimbangan dan potensi titik balik, tetapi butuh konfirmasi candle berikutnya',
-              'Doji yang merupakan sinyal jual pasti',
-              'Marubozu yang menandakan tren menguat',
-              'Data tidak valid karena badan candle terlalu tipis'],
+    options:['Doji — keseimbangan dan potensi titik balik yang masih butuh konfirmasi','Doji — sinyal jual yang sudah pasti karena muncul setelah tren naik','Marubozu — dominasi pembeli yang menandakan tren makin menguat','Spinning top — keraguan yang lazim muncul di tengah tren berjalan'],
     answer: 0,
     explain: 'Doji terbentuk ketika harga kembali ke titik awal pada akhir periode, menandakan pembeli dan penjual seimbang setelah sebelumnya pembeli dominan. Itu indikasi perubahan keseimbangan, tetapi doji sendiri tidak menunjukkan arah sehingga konfirmasi dari candle berikutnya tetap diperlukan.' });
 
@@ -596,7 +577,7 @@ function build() {
      ['Three white soldiers — bullish', 'Three black crows — bearish', 'Rising three methods — penerusan bullish', 'Tweezer bottom — bullish'],
      1, 'Tiga candle bearish berbadan panjang berturut-turut dengan penutupan yang terus menurun menandakan tekanan jual yang konsisten. Pola ini paling bermakna ketika muncul setelah tren naik atau di area resistance, seperti pada grafik ini.'],
     ['tweezerTop', 'sulit', 'Dua candle terakhir memiliki harga tertinggi yang hampir sama persis. Pola ini disebut dan menandakan...',
-     ['Tweezer top — penjual konsisten menahan di level yang sama sehingga resistance menguat', 'Tweezer bottom — support menguat', 'Doji ganda — keraguan', 'Gap kembar — kelanjutan tren'],
+     ['Tweezer top — resistance menguat karena penjual menahan di level sama','Tweezer bottom — support menguat karena pembeli menahan dua kali','Harami — momentum melemah setelah candle besar sebelumnya','Dark cloud cover — penjual merebut kendali dari pembeli'],
      0, 'Kesamaan level tertinggi pada dua candle berurutan menunjukkan penjual muncul di harga yang sama persis dua kali. Pola ini memperkuat validitas level resistance tersebut, dan bila muncul setelah tren naik menjadi indikasi pembalikan.']
   ];
   let cs = 2000;
@@ -682,11 +663,8 @@ function build() {
                  { type: 'line', a: p.lower.a, b: p.lower.b, label: 'Garis tren' }],
       alt: 'Harga bergerak naik di antara dua garis sejajar' },
     q: 'Selama channel naik ini masih berlaku, strategi yang paling masuk akal adalah...',
-    options: ['Membeli di batas atas channel dan menjual di batas bawah',
-              'Mencari peluang beli saat harga surut ke batas bawah, dan mengambil untung mendekati batas atas',
-              'Menjual setiap kali harga menyentuh garis tren',
-              'Menghindari saham yang bergerak dalam channel'],
-    answer: 1,
+    options:['Membeli saat harga surut ke batas bawah, ambil untung mendekati batas atas','Membeli saat harga menembus batas atas, jual saat kembali ke batas bawah','Menjual setiap kali harga menyentuh garis tren di batas bawah channel','Menunggu channel ditembus lebih dulu sebelum mengambil posisi apa pun'],
+    answer: 0,
     explain: 'Pada channel naik, garis tren bawah berperan sebagai support dinamis dan batas atas sebagai area ambil untung. Membeli saat harga surut ke batas bawah searah dengan tren utama dan memberi rasio risiko imbal hasil yang lebih baik, dengan level pembatalan tepat di bawah garis tren.' }); }
 
   seed(4006); { const p = P.roundingBottom();
@@ -722,9 +700,8 @@ function build() {
     chart: { title: 'Saham JKLM · Harian', data: p.data, panels: ['volume'],
       alt: 'Gap naik dengan volume ekstrem di ujung tren panjang, langsung diikuti pembalikan tajam' },
     q: 'Gap naik pada grafik ini muncul setelah tren naik panjang, disertai volume ekstrem, lalu harga langsung berbalik tajam. Gap jenis ini adalah...',
-    options: ['Breakaway gap — awal tren baru', 'Exhaustion gap — tanda klimaks di ujung tren',
-              'Common gap — tanpa makna', 'Measuring gap — titik tengah tren'],
-    answer: 1,
+    options:['Exhaustion gap — tanda klimaks di ujung tren yang sedang berjalan','Breakaway gap — tanda dimulainya tren baru yang didukung volume','Measuring gap — penanda titik tengah dari keseluruhan pergerakan','Common gap — celah biasa pada saham yang perdagangannya tipis'],
+    answer: 0,
     explain: 'Exhaustion gap muncul pada fase akhir tren ketika pelaku yang terlambat masuk secara panik, ditandai volume ekstrem. Ciri pembedanya adalah harga cepat berbalik dan gap tersebut segera tertutup, berbeda dari breakaway gap yang lahir dari perubahan sentimen nyata dan biasanya dibiarkan terbuka lama.' }); }
 
   seed(4010); { const p = P.fibRetrace();
@@ -736,11 +713,8 @@ function build() {
                  { type: 'hline', price: f(0.618), label: 'C · 61,8%' }],
       alt: 'Kenaikan dari 1.000 ke 1.500 lalu koreksi yang berhenti di garis paling bawah dari tiga level Fibonacci' },
     q: 'Harga naik dari 1.000 ke 1.500 lalu terkoreksi. Koreksi berhenti dan memantul di garis C. Berapa level retracement tersebut dan apa maknanya?',
-    options: ['38,2% — koreksi dangkal, tren sangat kuat',
-              '50% — koreksi normal',
-              '61,8% — koreksi dalam; tren masih mungkin berlanjut tetapi risiko pembalikan meningkat',
-              '78,6% — tren hampir pasti berbalik'],
-    answer: 2,
+    options:['61,8% — koreksi dalam, tren masih mungkin berlanjut tapi risikonya naik','38,2% — koreksi dangkal yang menandakan tren utamanya sangat kuat','50% — koreksi normal yang tidak mengubah penilaian atas trennya','78,6% — koreksi sangat dalam yang menandakan tren sudah berbalik'],
+    answer: 0,
     explain: 'Besar pergerakan 500 poin, sehingga koreksi 61,8 persen setara 309 poin dan mendarat di 1.191, yaitu garis C. Koreksi sedalam ini masih dalam batas wajar bagi tren yang sehat, tetapi makin dalam koreksi makin besar peluang yang terjadi sebenarnya pembalikan tren, bukan sekadar jeda.' }); }
 
   seed(4011); { const p = P.sellingClimax();
@@ -748,11 +722,8 @@ function build() {
     chart: { title: 'Saham LMNO · Harian', data: p.data, panels: ['volume'],
       alt: 'Batang dengan rentang sangat lebar dan volume ekstrem di akhir tren turun, ditutup jauh di atas titik terendahnya' },
     q: 'Di akhir tren turun panjang muncul satu batang berentang sangat lebar dengan volume ekstrem, yang ditutup jauh di atas titik terendahnya. Pembacaan yang paling tepat adalah...',
-    options: ['Kelanjutan tren turun yang makin kuat',
-              'Kemungkinan selling climax — pasokan jual diserap pihak besar, berpotensi menandai area dasar',
-              'Data salah karena rentangnya tidak wajar',
-              'Exhaustion gap'],
-    answer: 1,
+    options:['Selling climax — pasokan jual diserap pihak besar, berpotensi area dasar','Kelanjutan tren turun dengan tekanan jual yang justru makin besar','Exhaustion gap yang menandai berakhirnya tren turun berjalan','Distribusi akhir sebelum penurunan lanjutan yang lebih dalam'],
+    answer: 0,
     explain: 'Volume ekstrem dengan penutupan jauh di atas titik terendah menandakan ada pihak yang menyerap seluruh pasokan jual saat kepanikan memuncak. Pola ini disebut selling climax atau capitulation dan kerap muncul di area dasar, meskipun tetap memerlukan konfirmasi lanjutan sebelum dianggap pembalikan.' }); }
 
   /* --- rta-indikator batch 2 --- */
@@ -762,9 +733,8 @@ function build() {
       overlays: [{ type: 'ma', period: 20, label: 'MA20' }, { type: 'ma', period: 50, label: 'MA50' }],
       alt: 'Rata-rata bergerak 20 hari memotong ke bawah rata-rata 50 hari' },
     q: 'MA20 memotong ke bawah MA50 pada grafik ini. Peristiwa dan sifat sinyalnya adalah...',
-    options: ['Golden cross — sinyal leading', 'Death cross — sinyal lagging yang muncul setelah sebagian penurunan terjadi',
-              'Divergensi bearish — sinyal leading', 'Bollinger squeeze — sinyal volatilitas'],
-    answer: 1,
+    options:['Death cross — sinyal lagging, muncul setelah sebagian penurunan terjadi','Golden cross — sinyal lagging yang menandakan tren naik terkonfirmasi','Divergensi bearish — sinyal leading dari melemahnya momentum harga','Bollinger squeeze — sinyal bahwa volatilitas akan segera melebar'],
+    answer: 0,
     explain: 'Persilangan MA pendek ke bawah MA panjang disebut death cross dan dibaca sebagai konfirmasi tren turun jangka menengah. Karena rata-rata bergerak dihitung dari harga yang sudah terbentuk, sinyalnya bersifat lagging: konfirmasinya baru datang setelah sebagian penurunan terjadi.' }); }
 
   seed(4013); { const p = P.rsiBullDivergence();
@@ -783,11 +753,8 @@ function build() {
       overlays: [{ type: 'bb', period: 20, mult: 2, label: 'BB 20' }],
       alt: 'Pita Bollinger menyempit tajam lalu melebar bersamaan dengan pergerakan harga yang besar' },
     q: 'Pita Bollinger menyempit tajam di bagian tengah grafik sebelum harga bergerak besar. Apa yang sebenarnya ditunjukkan penyempitan itu?',
-    options: ['Harga pasti akan naik setelah penyempitan',
-              'Volatilitas sedang rendah dan ekspansi biasanya menyusul, tanpa memberi tahu arahnya',
-              'Harga pasti akan turun setelah penyempitan',
-              'Pita menyempit berarti data tidak cukup'],
-    answer: 1,
+    options:['Volatilitas sedang rendah, ekspansi biasanya menyusul tanpa arah tertentu','Harga akan naik karena penyempitan menandakan akumulasi sedang terjadi','Harga akan turun karena penyempitan menandakan minat pasar mengering','Tren yang berlaku akan berlanjut dengan kecepatan yang sama'],
+    answer: 0,
     explain: 'Lebar pita Bollinger mengikuti standar deviasi harga, sehingga penyempitan hanya berbicara tentang kondisi volatilitas, bukan arah. Setelah periode tenang biasanya muncul pergerakan besar, jadi analis menyiapkan rencana untuk kedua arah dan menunggu penembusan yang sebenarnya.' }); }
 
   seed(4015); { const p = P.maBounce();
