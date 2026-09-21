@@ -896,13 +896,24 @@ function bind() {
     if (!(S.imported || []).length) { toast('Belum ada soal import.'); return; }
     if (confirm('Hapus semua soal hasil import?')) { S.imported = []; save(); renderHome(); toast('Soal import dihapus.', 'ok'); }
   });
-  $('#resetProgress').addEventListener('click', () => {
-    if (confirm('Reset semua progress, poin, dan riwayat? Soal import tetap aman.')) {
-      const imported = S.imported, theme = S.theme;
-      S = defaultState(); S.imported = imported; S.theme = theme;
-      save(); renderStats(); renderHome(); toast('Progress direset.', 'ok');
-    }
-  });
+  /* Reset pencapaian: seluruh penguasaan per unit, poin, dan riwayat kembali
+     ke nol. Soal hasil import dan pilihan tema sengaja dipertahankan karena
+     keduanya bukan bagian dari pencapaian. */
+  function resetProgress() {
+    const answered = Object.keys(S.seen).length;
+    const pesan = answered
+      ? 'Reset pencapaian ke 0? ' + answered + ' soal yang sudah dikerjakan, poin, '
+        + 'dan riwayat sesi akan dihapus supaya bisa mulai ngulang dari awal. '
+        + 'Soal import tetap aman.'
+      : 'Pencapaian sudah kosong. Tetap reset?';
+    if (!confirm(pesan)) return;
+    const imported = S.imported, theme = S.theme;
+    S = defaultState(); S.imported = imported; S.theme = theme;
+    save(); renderStats(); renderHome();
+    toast('Pencapaian direset ke 0 — semua unit balik ke belum disentuh.', 'ok');
+  }
+  $('#resetProgress').addEventListener('click', resetProgress);
+  $('#resetHome').addEventListener('click', resetProgress);
 
   document.addEventListener('keydown', e => {
     if ($('#view-quiz').classList.contains('is-active') && sess) {
