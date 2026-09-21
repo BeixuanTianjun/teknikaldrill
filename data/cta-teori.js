@@ -4,7 +4,7 @@ TD.register([
  q:"Adaptive Market Hypothesis yang dikemukakan Andrew Lo menyatakan bahwa...",
  options:["Pasar efisien pada jangka panjang meski tidak efisien pada jangka pendek","Pasar tidak pernah efisien karena pelakunya tidak pernah sepenuhnya rasional","Efisiensi pasar berubah-ubah mengikuti adaptasi pelaku terhadap kondisi","Efisiensi pasar meningkat secara tetap seiring bertambahnya jumlah pelaku"],
  answer:2,
- explain:"Andrew Lo bilang efisiensi pasar itu BERUBAH-UBAH ngikutin adaptasi pelakunya, bukan kondisi tetap. Dia mandang pasar kayak ekosistem: strategi itu spesies yang rebutan makanan terbatas. Begitu sebuah pola dipublikasi dan rame dipakai, untungnya kekikis sampai abis. Ini jalan tengah antara EMH (nggak pernah ada keunggulan) dan keyakinan naif (ada sistem yang jalan selamanya). Konsekuensinya: pantau terus, dan siap mensiunin sistem."},
+ explain:"Andrew Lo bilang efisiensi pasar itu BERUBAH-UBAH ngikutin adaptasi pelakunya, bukan kondisi tetap. Dia mandang pasar kayak ekosistem: strategi itu spesies yang rebutan makanan terbatas. Begitu sebuah pola dipublikasi dan rame dipakai, untungnya kekikis sampai abis. Ini jalan tengah antara EMH (nggak pernah ada keunggulan) dan keyakinan naif (ada sistem yang jalan selamanya). Efeknya: pantau terus, dan siap mensiunin sistem."},
 
 {id:"cta-teori-002",module:"cta-teori",level:"CTA",difficulty:"sulit",
  q:"Temuan Jegadeesh dan Titman yang menjadi dukungan akademis bagi premis tren adalah...",

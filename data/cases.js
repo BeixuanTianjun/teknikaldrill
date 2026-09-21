@@ -65,13 +65,13 @@ TD.register([
  q:"Analis mempertimbangkan memakai stop 2 kali ATR dari harga masuk menggantikan stop di bawah support. Konsekuensi paling tepat dari pergantian itu adalah...",
  options:["Stop menjadi Rp3.890, ukuran posisi naik menjadi 15.625 lembar, dan rasio imbal hasil tetap di 1 banding 1,8","Stop menjadi Rp4.010, ukuran posisi tetap 12.500 lembar, dan rasio imbal hasil tidak berubah","Stop menjadi Rp4.010, ukuran posisi naik menjadi 15.625 lembar, dan rasio imbal hasil membaik menjadi sekitar 1 banding 2,3","Stop menjadi Rp4.010, ukuran posisi turun menjadi 10.000 lembar, dan rasio imbal hasil memburuk menjadi sekitar 1 banding 1,5"],
  answer:2,
- explain:"Stop 2x ATR jadi Rp4.010, lebih RAPAT dari stop support di 3.950. Jarak risiko turun dari 300 ke 240 poin. Efek berantainya: dengan risiko rupiah yang sama, ukuran posisi NAIK jadi 15.625 lembar, dan rasio imbal hasil membaik jadi sekitar 1 banding 2,3. Kelihatan enak. Tapi ada ongkosnya yang harus lo sadar: stop lebih rapat artinya lebih gampang kesentuh sama goyangan normal."},
+ explain:"Stop 2x ATR jadi Rp4.010, lebih RAPAT dari stop support di 3.950. Jarak risiko turun dari 300 ke 240 poin. Efek berantainya: dengan risiko rupiah yang sama, ukuran posisi NAIK jadi 15.625 lembar, dan rasio return membaik jadi sekitar 1 banding 2,3. Kelihatan enak. Tapi ada ongkosnya yang harus lo sadar: stop lebih rapat artinya lebih gampang kesentuh sama goyangan normal."},
 
 {id:"case-01-q4",caseId:"case-01",module:"rta-plan",level:"RTA",difficulty:"sulit",
  q:"Ukuran posisi 12.500 lembar setara sekitar Rp53 juta nilai transaksi. Terhadap rata-rata volume harian saham ini, pertimbangan yang paling relevan adalah...",
  options:["Volume harian tidak relevan selama stop loss sudah ditetapkan","Posisi perlu dipecah karena melebihi 10% volume harian saham","Nilai posisi terlalu besar sehingga eksekusinya pasti menggerakkan harga","Posisi setara sekitar 0,5% volume harian sehingga likuiditasnya memadai"],
  answer:3,
- explain:"Posisi Rp53 juta setara sekitar 0,5 persen volume harian. Itu aman banget. Patokan yang lazim: maksimal 1-5 persen volume harian rata-rata. Kenapa penting? Karena stop loss lo nggak ada artinya kalau pas mau keluar order lo sendiri yang ndorong harga jatuh. Ini yang bikin strategi yang jalan di modal kecil bisa ambruk total di modal besar — bukan strateginya yang berubah, tapi dampak pasarnya."},
+ explain:"Posisi Rp53 juta setara sekitar 0,5 persen volume harian. Itu aman banget. Patokan yang umum dipakai: maksimal 1-5 persen volume harian rata-rata. Kenapa penting? Karena stop loss lo nggak ada artinya kalau pas mau keluar order lo sendiri yang ndorong harga jatuh. Ini yang bikin strategi yang jalan di modal kecil bisa ambruk total di modal besar — bukan strateginya yang berubah, tapi dampak pasarnya."},
 
 /* ===== case-02: menimbang sinyal yang bertentangan ===== */
 {id:"case-02-q1",caseId:"case-02",module:"rta-indikator",level:"RTA",difficulty:"sulit",
@@ -178,7 +178,7 @@ TD.register([
  q:"Mengenai kepemilikan pribadi analis atas saham yang direkomendasikan, ketentuan yang berlaku adalah...",
  options:["Wajib diungkapkan dalam riset, karena pembaca berhak menilai independensi analisisnya","Dilarang sepenuhnya, sehingga analis harus menjual posisinya sebelum riset diterbitkan","Cukup dilaporkan kepada atasan, tanpa perlu dicantumkan dalam dokumen risetnya","Diperbolehkan tanpa syarat selama analis tidak menjual saat riset terbit"],
  answer:0,
- explain:"Kepemilikan pribadi analis atas saham yang direkomendasiin itu WAJIB DIUNGKAPKAN di risetnya. Kode etik bertumpu pada KETERBUKAAN, bukan larangan punya. Boleh kok lo pegang, asal pembaca tau biar bisa nilai independensinya sendiri. Nyembunyiin itu pelanggaran berat, dan kalau ditambah niat gerakin harga, itu naik kelas jadi pidana. Satu baris disclosure itu murah banget dibanding risikonya."},
+ explain:"Kepemilikan pribadi analis atas saham yang direkomendasiin itu WAJIB DIUNGKAPKAN di risetnya. Kode etik bergantung penuh ke KETERBUKAAN, bukan larangan punya. Boleh kok lo pegang, asal pembaca tau biar bisa nilai independensinya sendiri. Nyembunyiin itu pelanggaran berat, dan kalau ditambah niat gerakin harga, itu naik kelas jadi pidana. Satu baris disclosure itu murah banget dibanding risikonya."},
 
 {id:"case-06-q2",caseId:"case-06",module:"rta-riset",level:"RTA",difficulty:"sulit",
  q:"Permintaan atasan untuk menghapus bagian risiko penurunan paling tepat disikapi dengan...",

@@ -72,7 +72,7 @@ TD.register([
  q:"Karakteristik pasar aset kripto yang paling mempengaruhi penerapan analisis teknikal adalah...",
  options:["Jam perdagangan terbatas sehingga gap akhir pekan menjadi sangat sering","Volatilitas yang rendah sehingga sinyal teknikal jarang memberi peluang","Adanya otoritas tunggal yang menetapkan harga acuan harian tiap aset","Perdagangan 24 jam sepanjang pekan dengan volatilitas yang umumnya tinggi"],
  answer:3,
- explain:"Kripto jalan 24/7, jadi konsep gap antar sesi hampir nggak berlaku dan batas 'hari' itu relatif banget tergantung zona waktu bursa yang lo pakai. Candle harian Binance sama Indodax bisa beda bentuk padahal aset sama. Terus volatilitasnya: gerak 10% sehari itu biasa. Konsekuensinya stop harus lebih lebar, dan supaya rugi rupiahnya tetep sama, ukuran posisi harus dikecilin. Bukan stop-nya yang dipepetin."},
+ explain:"Kripto jalan 24/7, jadi konsep gap antar sesi hampir nggak berlaku dan batas 'hari' itu relatif banget tergantung zona waktu bursa yang lo pakai. Candle harian Binance sama Indodax bisa beda bentuk padahal aset sama. Terus volatilitasnya: gerak 10% sehari itu biasa. Efeknya stop harus lebih lebar, dan supaya rugi rupiahnya tetep sama, ukuran posisi harus dikecilin. Bukan stop-nya yang dipepetin."},
 
 {id:"cta-as-013",module:"cta-aset",level:"CTA",difficulty:"sulit",
  q:"Tantangan khusus dalam menganalisis volume pada aset kripto adalah...",

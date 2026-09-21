@@ -109,7 +109,7 @@ TD.register([
  q:"Kelemahan utama pola candlestick pada timeframe sangat pendek adalah...",
  options:["Rasio noise yang tinggi membuat banyak pola terbentuk secara kebetulan","Data candle pada periode sangat pendek sering tidak lengkap tercatat","Volume tidak tersedia pada timeframe yang lebih pendek dari lima menit","Pola candlestick secara teori hanya berlaku pada grafik harian ke atas"],
  answer:0,
- explain:"Di timeframe sangat pendek, rasio NOISE-nya tinggi banget, jadi banyak pola kebentuk murni karena kebetulan. Di chart lima menit lo bakal 'lihat' belasan pin bar per sesi, dan hampir semuanya nggak berarti. Penyaring yang lazim: cuma perhatiin pola yang muncul di LEVEL PENTING dari timeframe lebih besar. Jumlahnya langsung nyusut drastis, tapi kualitasnya melonjak."},
+ explain:"Di timeframe sangat pendek, rasio NOISE-nya tinggi banget, jadi banyak pola kebentuk murni karena kebetulan. Di chart lima menit lo bakal 'lihat' belasan pin bar per sesi, dan hampir semuanya nggak berarti. Penyaring yang umum dipakai: cuma perhatiin pola yang muncul di LEVEL PENTING dari timeframe lebih besar. Jumlahnya langsung nyusut drastis, tapi kualitasnya melonjak."},
 {id:"cta-cs-023",module:"cta-candle",level:"CTA",difficulty:"sedang",
  q:"Pola evening star merupakan kebalikan dari morning star dan menandakan...",
  options:["Pembalikan bullish","Pembalikan bearish setelah tren naik","Penerusan bullish","Konsolidasi"],

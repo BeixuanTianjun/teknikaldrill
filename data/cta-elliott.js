@@ -44,12 +44,12 @@ TD.register([
  q:"Extension pada Elliott Wave berarti...",
  options:["Salah satu gelombang impulse memanjang dan terbagi menjadi lima sub gelombang","Seluruh gelombang impulse memanjang secara proporsional bersamaan","Gelombang koreksi memanjang melampaui gelombang impulse sebelumnya","Siklus berulang lebih dari satu kali tanpa koreksi di antaranya"],
  answer:0,
- explain:"Extension artinya salah satu gelombang impuls MEMANJANG dan kebagi jadi lima sub gelombang yang jelas kelihatan. Pedomannya: biasanya cuma SATU dari tiga gelombang pendorong yang manjang, dan di pasar saham paling sering gelombang 3. Gunanya praktis: kalau gelombang 3 udah manjang banget, jangan berharap gelombang 5 ikut manjang. Ekspektasi kegedean di gelombang 5 itu cara klasik nyerahin balik untung."},
+ explain:"Extension artinya salah satu gelombang impuls MEMANJANG dan kebagi jadi lima sub gelombang yang jelas kelihatan. Pedomannya: biasanya cuma SATU dari tiga gelombang impuls yang manjang, dan di pasar saham paling sering gelombang 3. Gunanya praktis: kalau gelombang 3 udah manjang banget, jangan berharap gelombang 5 ikut manjang. Ekspektasi kegedean di gelombang 5 itu cara klasik nyerahin balik untung."},
 {id:"cta-ew-010",module:"cta-elliott",level:"CTA",difficulty:"sedang",
  q:"Truncated fifth atau gelombang 5 yang gagal terjadi ketika...",
  options:["Gelombang 5 terbagi menjadi tiga sub gelombang, bukan lima","Gelombang 5 gagal melampaui puncak gelombang 3","Gelombang 5 melampaui gelombang 3 lebih dari dua kali lipat","Gelombang 5 berakhir tepat pada level awal gelombang 4"],
  answer:1,
- explain:"Truncated fifth alias gelombang 5 yang gagal: gelombang 5 nggak sanggup ngelewatin puncak gelombang 3. Ini tanda kelelahan tren yang ekstrem — tenaganya bahkan nggak cukup buat bikin puncak baru. Biasanya muncul setelah gelombang 3 yang sangat bertenaga. Implikasinya serius: koreksi yang nyusul biasanya tajam, karena pasar udah kehabisan pembeli jauh lebih awal dari yang keliatan."},
+ explain:"Truncated fifth alias gelombang 5 yang gagal: gelombang 5 nggak sanggup ngelewatin puncak gelombang 3. Ini tanda kelelahan tren yang ekstrem — tenaganya bahkan nggak cukup buat bikin puncak baru. Biasanya muncul setelah gelombang 3 yang sangat bertenaga. Efeknya serius: koreksi yang nyusul biasanya tajam, karena pasar udah kehabisan pembeli jauh lebih awal dari yang keliatan."},
 {id:"cta-ew-011",module:"cta-elliott",level:"CTA",difficulty:"sedang",
  q:"Gelombang koreksi C dalam pola zigzag sering berakhir di sekitar rasio...",
  options:["161,8 persen sampai 261,8 persen dari gelombang A","Tepat 50 persen dari panjang gelombang A","61,8 persen sampai 100 persen dari panjang gelombang A","23,6 persen sampai 38,2 persen dari panjang gelombang A"],
@@ -114,7 +114,7 @@ TD.register([
  q:"Ketika analis tidak dapat mengidentifikasi struktur gelombang dengan jelas, tindakan terbaik adalah...",
  options:["Berpindah ke instrumen lain yang struktur gelombangnya lebih rapi","Memakai penghitungan dari derajat gelombang yang lebih kecil","Menunggu struktur lebih jelas sambil bersandar pada level konvensional","Memaksakan satu penghitungan agar analisisnya tetap dapat diterbitkan"],
  answer:2,
- explain:"Kalau struktur gelombangnya nggak jelas, tindakan terbaik: TUNGGU, sambil bersandar ke level konvensional (support resistance, moving average). Ini jawaban yang nggak keren tapi paling profesional. Maksain hitungan di struktur yang ambigu itu sumber kerugian terbesar pemakai Elliott, karena lo jadi punya keyakinan yang nggak ada dasarnya. Elliott itu alat yang kadang diem, dan diemnya harus dihormati."},
+ explain:"Kalau struktur gelombangnya nggak jelas, tindakan terbaik: TUNGGU, sambil pakai level konvensional (support resistance, moving average). Ini jawaban yang nggak keren tapi paling profesional. Maksain hitungan di struktur yang ambigu itu sumber kerugian terbesar pemakai Elliott, karena lo jadi punya keyakinan yang nggak ada dasarnya. Elliott itu alat yang kadang diem, dan diemnya harus dihormati."},
 {id:"cta-ew-024",module:"cta-elliott",level:"CTA",difficulty:"sulit",
  q:"Gelombang 5 yang mencetak puncak baru sementara indikator momentum gagal mengikuti umumnya dipandang sebagai...",
  options:["Konfirmasi bahwa gelombang 5 akan mengalami extension lebih lanjut","Tanda bahwa penghitungan gelombangnya keliru dan perlu direvisi","Indikasi bahwa yang sedang berlangsung sebenarnya gelombang 3","Divergensi bearish yang konsisten dengan berakhirnya siklus lima gelombang"],
@@ -124,5 +124,5 @@ TD.register([
  q:"Derajat gelombang dalam Elliott Wave perlu dicantumkan karena...",
  options:["Memastikan analisis dan rekomendasi merujuk horizon waktu yang sama","Memenuhi ketentuan penulisan riset yang ditetapkan asosiasi profesi","Mempermudah pembaca menghitung target harga dari rasio Fibonacci","Menentukan besar posisi yang sesuai dengan derajat gelombangnya"],
  answer:0,
- explain:"Derajat gelombang WAJIB dicantumkan biar analisis dan rekomendasinya ngerujuk horizon waktu yang sama. Tanpa itu, analis bilang 'kita di gelombang 4' dan pembaca nggak tau maksudnya gelombang 4 harian (koreksi seminggu) atau gelombang 4 bulanan (koreksi dua tahun). Beda banget konsekuensinya. Ini bukan formalitas — salah nilai derajat itu sumber kekeliruan terbesar pemakai Elliott."}
+ explain:"Derajat gelombang WAJIB dicantumkan biar analisis dan rekomendasinya ngerujuk horizon waktu yang sama. Tanpa itu, analis bilang 'kita di gelombang 4' dan pembaca nggak tau maksudnya gelombang 4 harian (koreksi seminggu) atau gelombang 4 bulanan (koreksi dua tahun). Beda banget efeknya. Ini bukan formalitas — salah nilai derajat itu sumber kekeliruan terbesar pemakai Elliott."}
 ]);

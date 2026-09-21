@@ -161,7 +161,7 @@ TD.register([
  q:"Lima emiten terbesar menyumbang sekitar 70% kenaikan indeks. Hal ini terjadi terutama karena...",
  options:["Bursa membatasi bobot emiten kecil agar indeksnya tidak terlalu bergejolak","Indeks dihitung berbobot kapitalisasi sehingga emiten raksasa menyetir pergerakannya","Emiten besar selalu bergerak lebih dulu sebelum diikuti emiten yang lebih kecil","Investor asing hanya diizinkan bertransaksi pada emiten berkapitalisasi besar"],
  answer:1,
- explain:"Lima emiten nyumbang 70 persen kenaikan indeks karena indeks dihitung BERBOBOT KAPITALISASI — emiten raksasa nyetir pergerakannya. Ini bukan kelainan, ini cara kerja indeksnya. Dan di IHSG yang konsentrasinya tinggi di segelintir bank dan konglomerasi, ini kejadian rutin. Konsekuensinya: makin terkonsentrasi bursanya, makin PENTING lo mantau indikator breadth."},
+ explain:"Lima emiten nyumbang 70 persen kenaikan indeks karena indeks dihitung BERBOBOT KAPITALISASI — emiten raksasa nyetir pergerakannya. Ini bukan kelainan, ini cara kerja indeksnya. Dan di IHSG yang konsentrasinya tinggi di segelintir bank dan konglomerasi, ini kejadian rutin. Efeknya: makin terkonsentrasi bursanya, makin PENTING lo mantau indikator breadth."},
 
 {id:"case-11-q3",caseId:"case-11",module:"cta-breadth",level:"CTA",difficulty:"sulit",
  q:"Survei sentimen menunjukkan optimisme tertinggi dalam dua tahun. Bagi analis, informasi ini paling tepat dipakai untuk...",

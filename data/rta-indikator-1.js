@@ -49,7 +49,7 @@ TD.register([
  q:"Periode default RSI yang diperkenalkan J. Welles Wilder adalah...",
  options:["14","21","7","9"],
  answer:0,
- explain:"Wilder ngenalin RSI dengan periode 14 di bukunya tahun 1978, kira-kira setengah siklus bulanan di data harian saat itu. Periode lebih pendek kayak 9 bikin RSI lebih sensitif dan lebih sering nyentuh area ekstrem; periode 21 bikin lebih halus. Angka 14 itu titik awal yang lazim, BUKAN angka keramat. Kalau lo ubah, ubah karena karakter instrumennya, bukan karena backtest kebetulan bagus di angka tertentu."},
+ explain:"Wilder ngenalin RSI dengan periode 14 di bukunya tahun 1978, kira-kira setengah siklus bulanan di data harian saat itu. Periode lebih pendek kayak 9 bikin RSI lebih sensitif dan lebih sering nyentuh area ekstrem; periode 21 bikin lebih halus. Angka 14 itu titik awal yang umum dipakai, BUKAN angka keramat. Kalau lo ubah, ubah karena karakter instrumennya, bukan karena backtest kebetulan bagus di angka tertentu."},
 {id:"rta-ind-011",module:"rta-indikator",level:"RTA",difficulty:"mudah",
  q:"Rentang nilai RSI berada di antara...",
  options:["Minus 100 sampai 100","0 sampai 100","0 sampai 1","Tidak terbatas"],

@@ -233,7 +233,7 @@ TD.register([
  q:"Analis memegang enam posisi beli, seluruhnya pada saham sektor perbankan, masing-masing dengan risiko 1 persen. Berapa risiko sesungguhnya dan mengapa?",
  options:["Tidak dapat dihitung karena risiko portofolio hanya berlaku untuk posisi lintas sektor","Mendekati 6 persen, karena saham satu sektor cenderung bergerak bersama saat sektornya tertekan","Tetap 1 persen, karena stop loss masing-masing posisi sudah dipasang secara terpisah","Sekitar 2 persen, karena penyebaran ke enam saham berbeda meredam sebagian besar risikonya"],
  answer:1,
- explain:"Risiko per transaksi cuma berarti kalau transaksinya saling bebas. Enam saham perbankan itu pada dasarnya SATU taruhan yang dipecah enam: satu kebijakan suku bunga bisa jatuhin semuanya di hari yang sama. Jadi risiko lo mendekati 6%, bukan 1%. Praktik yang lazim: batasin total risiko per sektor, misal 2-3%, berapa pun jumlah posisi di dalem sektor itu. Diversifikasi yang cuma ganti nama tapi sektornya sama itu ilusi."},
+ explain:"Risiko per transaksi cuma berarti kalau transaksinya saling bebas. Enam saham perbankan itu pada dasarnya SATU taruhan yang dipecah enam: satu kebijakan suku bunga bisa jatuhin semuanya di hari yang sama. Jadi risiko lo mendekati 6%, bukan 1%. Praktik yang umum dipakai: batasin total risiko per sektor, misal 2-3%, berapa pun jumlah posisi di dalem sektor itu. Diversifikasi yang cuma ganti nama tapi sektornya sama itu ilusi."},
 
 {id:"rta-plan-h12",module:"rta-plan",level:"RTA",difficulty:"sulit",
  q:"Catatan transaksi menunjukkan kerugian terbesar selalu terjadi pada transaksi yang tidak tercantum dalam rencana harian. Apa langkah perbaikan yang paling tepat?",

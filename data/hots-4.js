@@ -172,5 +172,5 @@ TD.register([
  q:"Pada grafik lima menit sebuah saham muncul belasan pola pin bar dalam satu sesi. Mengapa sebagian besar di antaranya tidak bermakna?",
  options:["Pin bar secara teori hanya berlaku pada grafik harian ke atas","Volume pada grafik lima menit tidak tersedia sehingga polanya tidak dapat dikonfirmasi","Pola yang muncul berulang dalam satu sesi saling meniadakan maknanya","Pada timeframe sangat pendek banyak pola terbentuk karena fluktuasi acak semata"],
  answer:3,
- explain:"Makin pendek periodenya, makin besar porsi pergerakan yang cuma noise acak. Di chart lima menit, bentuk yang mirip pola muncul terus-terusan tanpa bawa informasi apa pun — itu cuma kebetulan statistik, dan otak lo yang emang dirancang nemuin pola. Penyaring yang lazim dipakai: cuma perhatiin pola yang muncul di LEVEL PENTING dari timeframe lebih besar. Jumlahnya langsung nyusut drastis, tapi kualitasnya melonjak."}
+ explain:"Makin pendek periodenya, makin besar porsi pergerakan yang cuma noise acak. Di chart lima menit, bentuk yang mirip pola muncul terus-terusan tanpa bawa informasi apa pun — itu cuma kebetulan statistik, dan otak lo yang emang dirancang nemuin pola. Penyaring yang umum dipakai dipakai: cuma perhatiin pola yang muncul di LEVEL PENTING dari timeframe lebih besar. Jumlahnya langsung nyusut drastis, tapi kualitasnya melonjak."}
 ]);

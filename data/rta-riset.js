@@ -69,7 +69,7 @@ TD.register([
  q:"Benturan kepentingan yang wajib diungkapkan analis meliputi...",
  options:["Metodologi dan parameter indikator yang dipakai dalam analisis","Sumber data pasar beserta periode pengambilan datanya","Rekam jejak akurasi rekomendasi analis pada periode sebelumnya","Kepemilikan posisi pada instrumen dianalisis dan hubungan bisnis dengan emiten"],
  answer:3,
- explain:"Yang wajib diungkapin: KEPEMILIKAN POSISI di instrumen yang dianalisis, dan HUBUNGAN BISNIS sama emitennya. Kode etik bertumpu pada KETERBUKAAN, bukan larangan punya. Boleh kok lo pegang sahamnya, asal ditulis biar pembaca bisa nimbang sendiri. Nyembunyiin itu pelanggaran berat. Satu baris disclosure itu murah, reputasi yang ilang nggak bisa dibeli."},
+ explain:"Yang wajib diungkapin: KEPEMILIKAN POSISI di instrumen yang dianalisis, dan HUBUNGAN BISNIS sama emitennya. Kode etik bergantung penuh ke KETERBUKAAN, bukan larangan punya. Boleh kok lo pegang sahamnya, asal ditulis biar pembaca bisa nimbang sendiri. Nyembunyiin itu pelanggaran berat. Satu baris disclosure itu murah, reputasi yang ilang nggak bisa dibeli."},
 {id:"rta-riset-015",module:"rta-riset",level:"RTA",difficulty:"mudah",
  q:"Tujuan utama riset teknikal yang dipublikasikan adalah...",
  options:["Memberi kerangka pengambilan keputusan yang jelas dan dapat ditindaklanjuti","Meningkatkan volume transaksi nasabah pada instrumen yang direkomendasikan","Menunjukkan kedalaman analisis yang dikuasai penulisnya","Memenuhi kewajiban penerbitan riset berkala kepada nasabah"],

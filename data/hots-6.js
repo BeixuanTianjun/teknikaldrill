@@ -98,7 +98,7 @@ TD.register([
  q:"Analis menarik koreksi Fibonacci dari titik terendah 1.000 ke puncak 2.000, tetapi rekan kerjanya menariknya dari 1.200 ke 2.000 karena memakai awal ayunan yang berbeda. Apa yang menentukan penarikan mana yang sahih?",
  options:["Penarikan dari titik terendah absolut selalu yang paling sahih dalam setiap keadaan","Keduanya sahih sehingga seluruh level dari kedua penarikan dapat dipakai bersamaan","Yang sahih adalah penarikan yang menghasilkan level terdekat dengan harga saat ini","Ayunan yang dipilih harus merupakan pergerakan bermakna yang diakui struktur grafik, bukan titik yang dipilih sesuka hati"],
  answer:3,
- explain:"Kelemahan terbesar Fibonacci itu kebebasan milih titik jangkar, dan di situlah bias nyelinap. Geser dikit jangkarnya, level 61,8% pindah ke tempat yang lo pengenin. Disiplin yang lazim: jangkarin di ayunan yang JELAS keliatan di timeframe yang lagi dianalisis, tandain SEBELUM posisi dibuka, dan jangan pernah geser jangkar cuma biar sebuah level jatuh di tempat yang nyaman. Fibonacci yang dijangkar setelah kejadian itu sulap, bukan analisis."},
+ explain:"Kelemahan terbesar Fibonacci itu kebebasan milih titik jangkar, dan di situlah bias nyelinap. Geser dikit jangkarnya, level 61,8% pindah ke tempat yang lo pengenin. Disiplin yang umum dipakai: jangkarin di ayunan yang JELAS keliatan di timeframe yang lagi dianalisis, tandain SEBELUM posisi dibuka, dan jangan pernah geser jangkar cuma biar sebuah level jatuh di tempat yang nyaman. Fibonacci yang dijangkar setelah kejadian itu sulap, bukan analisis."},
 
 {id:"rta-level-h10",module:"rta-level",level:"RTA",difficulty:"sulit",
  q:"Sebuah saham menembus resistance psikologis di angka bulat 10.000 dengan volume besar. Mengapa angka bulat sering berperilaku seperti level teknikal sungguhan?",
@@ -172,13 +172,13 @@ TD.register([
  q:"Sebuah posisi tumbuh dari bobot awal 5 persen menjadi 22 persen portofolio karena kenaikan harganya. Apa pertimbangan utama dalam menyikapinya?",
  options:["Selalu memangkasnya kembali ke 5 persen karena bobot awal adalah aturan yang tidak boleh dilanggar","Selalu membiarkannya karena memangkas pemenang adalah kesalahan terbesar dalam berinvestasi","Menambah posisi itu lagi karena kenaikannya membuktikan pilihan awalnya tepat","Menimbang antara membiarkan pemenang berjalan dan risiko satu posisi yang kini menentukan nasib portofolio"],
  answer:3,
- explain:"Dua sisinya sama-sama ada dasarnya, jadi jangan percaya yang jawab mutlak. Ngebiarin pemenang lari itu sumber sebagian besar untung jangka panjang. Tapi konsentrasi 22% artinya SATU berita buruk sanggup ngapus kinerja setahun. Jalan tengah yang lazim: pangkas sebagian di ambang tertentu, sisain inti posisinya. Potensinya nggak dimatiin, tapi risiko bencananya dibatasi."},
+ explain:"Dua sisinya sama-sama ada dasarnya, jadi jangan percaya yang jawab mutlak. Ngebiarin pemenang lari itu sumber sebagian besar untung jangka panjang. Tapi konsentrasi 22% artinya SATU berita buruk sanggup ngapus kinerja setahun. Jalan tengah yang umum dipakai: pangkas sebagian di ambang tertentu, sisain inti posisinya. Potensinya nggak dimatiin, tapi risiko bencananya dibatasi."},
 
 {id:"cta-pf-h09",module:"cta-portfolio",level:"CTA",difficulty:"sulit",
  q:"Portofolio memiliki beta 1,4 terhadap indeks. Bila analis memperkirakan pasar akan turun tetapi tidak ingin menjual posisinya, apa pilihan yang paling relevan?",
  options:["Melakukan lindung nilai dengan menjual kontrak berjangka indeks sebesar eksposur beta yang ingin dinetralkan","Membeli lebih banyak saham berbeta tinggi agar rata-rata betanya turun dengan sendirinya","Mengabaikan beta karena ukuran ini hanya berlaku pada pasar yang sedang naik","Menjual seluruh portofolio karena lindung nilai selalu lebih mahal daripada menjual langsung"],
  answer:0,
- explain:"Beta 1,4 artinya portofolio lo diperkirakan gerak 1,4 kali indeks. Jadi nilai hedge-nya = nilai portofolio x 1,4, BUKAN nilai portofolio doang. Salah itung di sini bikin lindung nilai lo kurang 40%. Cara ini nahan posisi saham lo beserta keunggulan pemilihannya sambil numpulin risiko pasar. Biayanya nyata: kalau perkiraan turunnya meleset, untung lo ikut kepotong."},
+ explain:"Beta 1,4 artinya portofolio lo diperkirakan gerak 1,4 kali indeks. Jadi nilai hedge-nya = nilai portofolio x 1,4, BUKAN nilai portofolio doang. Salah itung di sini bikin hedging lo kurang 40%. Cara ini nahan posisi saham lo beserta keunggulan pemilihannya sambil numpulin risiko pasar. Biayanya nyata: kalau perkiraan turunnya meleset, untung lo ikut kepotong."},
 
 {id:"cta-pf-h10",module:"cta-portfolio",level:"CTA",difficulty:"sulit",
  q:"Aturan portofolio menetapkan penyeimbangan ulang setiap kuartal. Pada pasar yang sedang bertren kuat, apa kelemahan aturan ini?",
@@ -197,7 +197,7 @@ TD.register([
  q:"Sebuah sistem mekanis memberi sinyal jual, tetapi analis merasa keadaan pasar hari itu tidak biasa dan memilih mengabaikannya. Apa risiko terbesar dari keputusan ini?",
  options:["Tidak ada risiko selama penilaian manusia dilakukan oleh analis yang berpengalaman","Risikonya hanya pada satu transaksi itu saja dan tidak berpengaruh pada jangka panjang","Sistem mekanis memang seharusnya selalu disaring lebih dulu oleh penilaian manusia","Statistik sistem menjadi tidak berarti karena yang dijalankan bukan lagi sistem yang diuji"],
  answer:3,
- explain:"Nilai sistem mekanis itu SEPENUHNYA bertumpu di dijalanin secara utuh. Begitu sinyal disaring pakai perasaan, angka harapan keuntungan hasil uji nggak lagi ngegambarin apa yang lo jalanin, dan nggak ada cara tau penyaringan lo nambah atau ngurangin nilai. Kalau emang ada keadaan yang perlu dikecualiin, jadiin ATURAN TERTULIS yang bisa diuji. Kebijaksanaan sesaat itu nggak bisa di-backtest."},
+ explain:"Nilai sistem mekanis itu SEPENUHNYA bergantung ke dijalanin secara utuh. Begitu sinyal disaring pakai perasaan, angka expectancy hasil uji nggak lagi ngegambarin apa yang lo jalanin, dan nggak ada cara tau penyaringan lo nambah atau ngurangin nilai. Kalau emang ada keadaan yang perlu dikecualiin, jadiin ATURAN TERTULIS yang bisa diuji. Kebijaksanaan sesaat itu nggak bisa di-backtest."},
 
 {id:"cta-sis-h11",module:"cta-sistem",level:"CTA",difficulty:"sulit",
  q:"Sistem pengikut tren memiliki rasio kemenangan 38 persen tetapi menguntungkan. Mengapa sistem semacam ini sulit dijalankan secara psikologis?",
@@ -221,7 +221,7 @@ TD.register([
  q:"Uji balik mencatat kemampuan membeli 500.000 lembar tepat pada harga sinyal, padahal volume harian rata-rata saham itu hanya 900.000 lembar. Apa masalahnya?",
  options:["Tidak ada masalah selama volume hariannya masih lebih besar daripada jumlah yang dibeli","Masalahnya hanya pada waktu eksekusi yang lebih lama, bukan pada harga yang diperoleh","Uji balik memang tidak perlu memperhatikan volume karena hanya menyimulasikan harga","Dampak pasar diabaikan, padahal pesanan sebesar itu akan menggerakkan harga melawan pelakunya sendiri"],
  answer:3,
- explain:"Beli 500.000 dari volume harian 900.000 lembar itu artinya lo jadi lebih dari SEPARO pasar hari itu. Order segede ini nyapu order book: harga naik pas lo beli, dan nekan pas lo jual. Kerugian tersembunyi itu bisa nelen seluruh keunggulan sistem lo. Batasan yang lazim: maksimal 1-5% volume harian rata-rata. Backtest yang nggak ngitung dampak pasar itu ngasih angka yang cuma ada di komputer."},
+ explain:"Beli 500.000 dari volume harian 900.000 lembar itu artinya lo jadi lebih dari SEPARO pasar hari itu. Order segede ini nyapu order book: harga naik pas lo beli, dan nekan pas lo jual. Kerugian tersembunyi itu bisa nelen seluruh keunggulan sistem lo. Batasan yang umum dipakai: maksimal 1-5% volume harian rata-rata. Backtest yang nggak ngitung dampak pasar itu ngasih angka yang cuma ada di komputer."},
 
 /* ===== cta-aset ===== */
 {id:"cta-as-h07",module:"cta-aset",level:"CTA",difficulty:"sulit",

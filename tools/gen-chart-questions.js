@@ -514,7 +514,7 @@ function build() {
     options: ['Bearish, kelanjutan tren turun', 'Bullish, potensi pembalikan ke atas',
               'Netral tanpa implikasi arah', 'Selalu berakhir sideways'],
     answer: 1,
-    explain: 'Dua garis yang nyempit dan dua-duanya MENURUN itu falling wedge, dan implikasinya BULLISH meskipun bentuknya turun. Ini sering bikin bingung. Logikanya: garis yang nyempit artinya tiap gelombang turun makin pendek jangkauannya — tekanan jualnya lagi melemah. Penjual kehabisan tenaga. Aturan umumnya: wedge itu polanya MELAWAN arah kemiringannya.' }); }
+    explain: 'Dua garis yang nyempit dan dua-duanya MENURUN itu falling wedge, dan maknanya BULLISH meskipun bentuknya turun. Ini sering bikin bingung. Logikanya: garis yang nyempit artinya tiap gelombang turun makin pendek jangkauannya — tekanan jualnya lagi melemah. Penjual kehabisan tenaga. Aturan umumnya: wedge itu polanya MELAWAN arah kemiringannya.' }); }
 
   seed(808); { const p = P.uptrendStructure();
   add({ id: 'rta-trend-chart-009', module: 'rta-trend', level: 'RTA', difficulty: 'mudah',
@@ -689,7 +689,7 @@ function build() {
     options: ['Falling wedge — bullish', 'Rising wedge — bearish',
               'Bull flag — penerusan bullish', 'Channel naik — netral'],
     answer: 1,
-    explain: 'Dua garis yang MENAIK dan MENYEMPIT, dengan volume terus menurun. Itu rising wedge, dan implikasinya BEARISH meskipun bentuknya naik. Logikanya: garis yang nyempit artinya tiap dorongan naik makin pendek jangkauannya — tenaganya lagi habis. Volume yang menyusut mempertegas. Aturan umumnya: wedge itu polanya melawan arah kemiringannya. Jangan ketuker sama channel naik yang garisnya sejajar.' }); }
+    explain: 'Dua garis yang MENAIK dan MENYEMPIT, dengan volume terus menurun. Itu rising wedge, dan maknanya BEARISH meskipun bentuknya naik. Logikanya: garis yang nyempit artinya tiap dorongan naik makin pendek jangkauannya — tenaganya lagi habis. Volume yang menyusut mempertegas. Aturan umumnya: wedge itu polanya melawan arah kemiringannya. Jangan ketuker sama channel naik yang garisnya sejajar.' }); }
 
   seed(4003); { const p = P.inverseHeadShoulders();
   add({ id: 'rta-trend-chart-013', module: 'rta-trend', level: 'RTA', difficulty: 'sedang',
@@ -975,7 +975,7 @@ function build() {
               'Netral, karena posisi terhadap garis nol tidak mempengaruhi maknanya',
               'Tidak sah, karena persilangan hanya berlaku bila terjadi di atas nol'],
     answer: 0,
-    explain: 'Garis MACD motong ke atas garis sinyal SEMENTARA keduanya masih di BAWAH nol. Kenapa ini dinilai bertenaga? Karena artinya pembalikan muncul setelah kondisi jenuh jual — harga udah jatuh jauh dan momentumnya baru mulai balik. Potensi ruang naiknya lebih lebar. Tapi ada sisi lainnya yang jujur: crossover di bawah nol itu taruhan melawan tren menengah yang masih negatif, jadi lebih sering gagal daripada yang di atas nol.' }); }
+    explain: 'Garis MACD motong ke atas garis sinyal SEMENTARA keduanya masih di BAWAH nol. Kenapa ini dinilai bertenaga? Karena artinya pembalikan muncul setelah kondisi oversold — harga udah jatuh jauh dan momentumnya baru mulai balik. Potensi ruang naiknya lebih lebar. Tapi ada sisi lainnya yang jujur: crossover di bawah nol itu taruhan melawan tren menengah yang masih negatif, jadi lebih sering gagal daripada yang di atas nol.' }); }
 
   seed(6009); { const p = P.rsiDivergence();
   add({ id: 'rta-ind-chart-010', module: 'rta-indikator', level: 'RTA', difficulty: 'sulit',

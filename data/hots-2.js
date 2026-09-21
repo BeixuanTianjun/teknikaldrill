@@ -120,7 +120,7 @@ TD.register([
  q:"Analisis teknikal dikritik karena sinyalnya terlambat, sebab dihitung dari harga yang sudah terjadi. Bagaimana kritik ini paling tepat ditanggapi?",
  options:["Kritik itu tidak relevan karena analisis teknikal tidak bertujuan memprediksi","Keterlambatan adalah harga dari konfirmasi, dan ditukar dengan berkurangnya sinyal palsu","Kritik itu keliru karena indikator leading mampu mendahului pergerakan harga","Keterlambatan dapat dihilangkan sepenuhnya dengan memakai timeframe lebih kecil"],
  answer:1,
- explain:"Kritiknya bener sih, sinyal teknikal emang terlambat karena diitung dari harga yang udah terjadi. Tapi keterlambatan itu HARGA yang dibayar buat konfirmasi. Trade-off-nya universal: makin cepet sinyalnya, makin banyak yang palsu. Nggak ada metode yang cepet sekaligus akurat, itu cuma ada di iklan. Yang bedain analis matang: dia milih titik trade-off itu sadar-sadar dan nerima konsekuensinya, bukan nyari indikator ajaib yang nggak pernah ada."},
+ explain:"Kritiknya bener sih, sinyal teknikal emang terlambat karena diitung dari harga yang udah terjadi. Tapi keterlambatan itu HARGA yang dibayar buat konfirmasi. Trade-off-nya universal: makin cepet sinyalnya, makin banyak yang palsu. Nggak ada metode yang cepet sekaligus akurat, itu cuma ada di iklan. Yang bedain analis matang: dia milih titik trade-off itu sadar-sadar dan nerima efeknya, bukan nyari indikator ajaib yang nggak pernah ada."},
 
 /* ===== rta-chart ===== */
 {id:"rta-chart-h01",module:"rta-chart",level:"RTA",difficulty:"sulit",

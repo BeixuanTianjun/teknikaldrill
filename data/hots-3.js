@@ -146,7 +146,7 @@ TD.register([
  q:"Portofolio turun 40 persen dari puncaknya. Berapa kenaikan yang dibutuhkan untuk kembali ke titik semula, dan apa implikasinya bagi pengaturan risiko?",
  options:["Sekitar 80 persen, sehingga portofolio praktis tidak mungkin pulih kembali","Sekitar 67 persen, sehingga mencegah drawdown dalam jauh lebih bernilai daripada mengejar imbal hasil","Sekitar 40 persen, sehingga pemulihannya sebanding dengan besarnya penurunan","Sekitar 50 persen, sehingga pemulihannya masih tergolong wajar bagi strategi aktif"],
  answer:1,
- explain:"Ini matematika yang harus lo hafal. Turun 40% dari 100 juta jadi 60 juta. Buat balik ke 100, 60 harus naik 40 juta, dan 40 dibagi 60 = 67%. Jadi rugi 40% butuh untung 67% cuma buat impas. Makin dalem, makin timpang: rugi 50% butuh untung 100%, rugi 70% butuh 233%. Implikasinya keras: NYEGAH drawdown dalam itu jauh lebih bernilai daripada ngejar return tinggi. Bertahan dulu, untung belakangan."},
+ explain:"Ini matematika yang harus lo hafal. Turun 40% dari 100 juta jadi 60 juta. Buat balik ke 100, 60 harus naik 40 juta, dan 40 dibagi 60 = 67%. Jadi rugi 40% butuh untung 67% cuma buat impas. Makin dalem, makin timpang: rugi 50% butuh untung 100%, rugi 70% butuh 233%. Pelajarannya keras: NYEGAH drawdown dalam itu jauh lebih bernilai daripada ngejar return tinggi. Bertahan dulu, untung belakangan."},
 
 {id:"rta-plan-h05",module:"rta-plan",level:"RTA",difficulty:"sulit",
  q:"Seorang trader memperlebar stop loss saat harga mendekatinya, dengan alasan level teknikalnya ternyata sedikit lebih jauh. Mengapa kebiasaan ini berbahaya meski kadang terbukti benar?",
