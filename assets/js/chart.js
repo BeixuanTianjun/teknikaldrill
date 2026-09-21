@@ -325,7 +325,14 @@ TD.renderChart = function (spec) {
     if (o.showPoc !== false) {
       const yy = PAD.t + H_PRICE - (poc + 0.5) * tinggi;
       svg.appendChild(el('line', { x1: PAD.l, y1: yy, x2: x0, y2: yy, class: 'tdc-poc' }));
-      svg.appendChild(el('text', { x: PAD.l + 4, y: yy - 4, class: 'tdc-label' }, o.label || 'POC'));
+      // Label diberi latar karena garis POC bisa jatuh tepat di atas candle,
+      // dan tanpa latar teksnya menyatu dengan badan candle.
+      const teks = o.label || 'POC';
+      svg.appendChild(el('rect', {
+        x: PAD.l + 1, y: yy - 14, width: teks.length * 7.2 + 8, height: 13,
+        rx: 3, class: 'tdc-label-bg'
+      }));
+      svg.appendChild(el('text', { x: PAD.l + 5, y: yy - 4, class: 'tdc-label' }, teks));
     }
   });
 

@@ -989,6 +989,84 @@ function build() {
     answer: 0,
     explain: 'Histogram MACD itu JARAK antara garis MACD sama garis sinyalnya. Harga cetak puncak lebih tinggi tapi histogramnya MEMENDEK artinya jaraknya nyempit — momentumnya masih positif, tapi laju penguatannya berkurang. Analoginya mobil: masih maju kenceng, tapi pedal gasnya mulai dilepas. Ini peringatan dini buat ngencengin trailing stop, BUKAN sinyal jual.' }); }
 
+  /* ===== batch 4: point and figure & volume profile ===== */
+
+  /* Deret panjang dengan beberapa ayunan jelas, supaya kolom P&F-nya banyak
+     dan pola double top breakout-nya benar-benar terbentuk pada datanya. */
+  const pfPath = () => legs(1000, [[1180, 10], [1080, 7], [1260, 11], [1140, 7], [1320, 10], [1210, 6]]);
+
+  seed(4010); { const d = fromPath(pfPath(), { vol: 1200 });
+    add({ id: 'rta-chart-chart-003', module: 'rta-chart', level: 'RTA', difficulty: 'sedang',
+      chart: { kind: 'pf', title: 'Saham ABCD · point and figure', data: d, box: 20, reversal: 3, height: 260,
+        alt: 'Grafik point and figure berisi selang-seling kolom X dan kolom O' },
+      q: 'Pada grafik point and figure ini, satu kolom baru berlawanan arah terbentuk apabila harga berbalik sebesar...',
+      options: ['20 poin, yaitu satu box', '60 poin, yaitu tiga box', '3 poin, sesuai angka reversal', '40 poin, yaitu dua box'],
+      answer: 1,
+      explain: 'Kolom baru butuh pembalikan sebesar BOX SIZE dikali REVERSAL: 20 x 3 = 60 poin. Ini inti cara kerja point and figure — gerakan di bawah 60 poin nggak ninggalin jejak sama sekali, jadi noise kecil kesaring otomatis. Enak banget buat ngelihat level, tapi konsekuensinya lo juga telat tau kalau ada pembalikan beneran.' }); }
+
+  seed(4020); { const d = fromPath(pfPath(), { vol: 1200 });
+    add({ id: 'rta-chart-chart-004', module: 'rta-chart', level: 'RTA', difficulty: 'sedang',
+      chart: { kind: 'pf', title: 'Saham ABCD · point and figure', data: d, box: 20, reversal: 3, height: 260,
+        alt: 'Grafik point and figure dengan kolom X dan O yang lebarnya tidak mewakili lamanya waktu' },
+      q: 'Analisis apa yang TIDAK dapat dilakukan di atas grafik point and figure seperti ini?',
+      options: ['Menentukan level support dan resistance horizontal', 'Menarik garis tren empat puluh lima derajat', 'Analisis siklus dan pola musiman', 'Mengenali pola double top dan double bottom'],
+      answer: 2,
+      explain: 'Point and figure ngebuang sumbu WAKTU — hari mendatar nggak ninggalin jejak, jadi lebar kolom nggak ngegambarin berapa lama. Akibatnya analisis siklus, pola musiman, dan apa pun yang butuh kalender NGGAK BISA dikerjain di sini. Yang tetep bisa: level horizontal (malah jadi super bersih), garis tren 45 derajat, dan pola-pola klasik.' }); }
+
+  seed(4030); { const d = fromPath(legs(1000, [[1200, 9], [1120, 6], [1240, 9], [1150, 6], [1300, 9]]), { vol: 1200 });
+    add({ id: 'rta-chart-chart-005', module: 'rta-chart', level: 'RTA', difficulty: 'sulit',
+      chart: { kind: 'pf', title: 'Saham ABCD · point and figure (box 20)', data: d, box: 20, reversal: 3, height: 270,
+        alt: 'Kolom X terakhir menembus satu kotak di atas puncak kolom X sebelumnya' },
+      q: 'Kolom X terakhir pada grafik menembus satu box di atas puncak kolom X sebelumnya. Formasi ini dikenal sebagai...',
+      options: ['Double top breakout, sinyal beli klasik point and figure', 'Triple bottom, sinyal jual', 'Bearish catapult, sinyal jual', 'Pole reversal, sinyal netral'],
+      answer: 0,
+      explain: 'Double top breakout: kolom X terbaru ngelewatin satu box di atas puncak kolom X sebelumnya. Yang bikin sistem ini menarik, sinyalnya OBJEKTIF banget — nggak ada subjektivitas narik garis, cuma ngitung kotak. Dua orang dengan setelan sama bakal dapet sinyal yang persis sama, dan itu keunggulan yang jarang ada di analisis teknikal.' }); }
+
+  /* Volume profile: dibuat bergerak lama di satu area lalu menembus keluar,
+     sehingga muncul satu level yang volumenya jauh lebih padat dari sekitarnya. */
+  const vpPath = () => legs(1000, [[1060, 5], [1010, 5], [1058, 6], [1012, 6], [1055, 6], [1015, 5], [1180, 9]]);
+
+  seed(4040); { const d = fromPath(vpPath(), { vol: 1300, volBy: i => i < 33 ? 1.25 : 0.75 });
+    add({ id: 'rta-chart-chart-006', module: 'rta-chart', level: 'RTA', difficulty: 'sedang',
+      chart: { title: 'Saham ABCD · harian + volume profile', data: d, panels: ['volume'], height: 250,
+        overlays: [{ type: 'vprofile', buckets: 22 }],
+        alt: 'Histogram mendatar di sisi kanan menunjukkan satu area harga yang volumenya jauh lebih padat' },
+      q: 'Histogram mendatar di sisi kanan grafik menampilkan volume per...',
+      options: ['Satuan waktu, sama seperti panel volume di bawah', 'Level harga, sehingga area tersibuk terlihat', 'Jumlah transaksi, bukan jumlah lembar', 'Hari bursa, dikelompokkan per pekan'],
+      answer: 1,
+      explain: 'Ini bedanya volume profile sama histogram volume biasa. Yang di bawah ngitung volume per WAKTU (per hari). Yang di kanan ngitung volume per HARGA — jadi lo bisa lihat di harga berapa paling banyak barang berpindah tangan. Informasi yang sama sekali nggak kelihatan di panel volume biasa.' }); }
+
+  seed(4050); { const d = fromPath(vpPath(), { vol: 1300, volBy: i => i < 33 ? 1.25 : 0.75 });
+    add({ id: 'rta-chart-chart-007', module: 'rta-chart', level: 'RTA', difficulty: 'sulit',
+      chart: { title: 'Saham ABCD · harian + volume profile', data: d, panels: ['volume'], height: 250,
+        overlays: [{ type: 'vprofile', buckets: 22 }],
+        alt: 'Garis putus-putus menandai level dengan volume terpadat pada profil' },
+      q: 'Garis putus-putus yang ditandai POC pada grafik menunjukkan level harga dengan...',
+      options: ['Volume transaksi terpadat sepanjang periode', 'Harga penutupan rata-rata periode itu', 'Titik tengah antara tertinggi dan terendah', 'Volume paling tipis sepanjang periode'],
+      answer: 0,
+      explain: 'POC alias point of control = level harga dengan volume TERPADAT. Kenapa penting? Karena di situ paling banyak orang punya harga beli. Efeknya dua: level itu jadi MAGNET (harga cenderung balik ke area yang dianggap wajar) sekaligus ZONA REAKSI (yang nyangkut mau impas, yang untung mau nambah). Dan POC bukan rata-rata — dia level tersibuk, bisa jauh dari titik tengah.' }); }
+
+  seed(4060); { const d = fromPath(vpPath(), { vol: 1300, volBy: i => i < 33 ? 1.25 : 0.75 });
+    add({ id: 'rta-level-chart-008', module: 'rta-level', level: 'RTA', difficulty: 'sulit',
+      chart: { title: 'Saham ABCD · harian + volume profile', data: d, panels: ['volume'], height: 250,
+        overlays: [{ type: 'vprofile', buckets: 22 }],
+        alt: 'Harga menembus keluar dari area padat volume menuju area yang profilnya tipis' },
+      q: 'Setelah menembus ke atas area padat volume, harga bergerak cepat melewati area yang profil volumenya sangat tipis. Penjelasan yang paling tepat adalah...',
+      options: ['Sedikit posisi terbentuk di area tipis sehingga hambatannya kecil', 'Area tipis selalu menjadi resistance yang kuat', 'Profil volume tidak berpengaruh pada kecepatan pergerakan harga', 'Area tipis menandakan data transaksinya tidak lengkap'],
+      answer: 0,
+      explain: 'Area dengan profil TIPIS artinya dulu hampir nggak ada transaksi di harga situ. Nggak ada yang punya harga beli di sana, jadi nggak ada yang mau jual buat impas dan nggak ada yang mau nambah. Hambatannya kecil, harga lewat cepat. Kebalikannya area padat: di situ rame, harga jadi lambat dan sering mantul. Makanya volume profile berguna buat nebak DI MANA harga bakal ngebut dan di mana bakal macet.' }); }
+
+  seed(4070); { const d = fromPath(legs(1200, [[1150, 6], [1210, 6], [1145, 6], [1205, 6], [1155, 6], [980, 10]]),
+      { vol: 1300, volBy: i => i < 30 ? 1.3 : 0.8 });
+    add({ id: 'rta-level-chart-009', module: 'rta-level', level: 'RTA', difficulty: 'sulit',
+      chart: { title: 'Saham ABCD · harian + volume profile', data: d, panels: ['volume'], height: 250,
+        overlays: [{ type: 'vprofile', buckets: 22 }],
+        alt: 'Harga jatuh meninggalkan area padat volume yang kini berada di atasnya' },
+      q: 'Harga kini berada jauh di bawah area padat volume pada profil. Bila suatu saat harga kembali naik ke area itu, apa yang paling mungkin terjadi?',
+      options: ['Tekanan jual meningkat karena banyak pemodal ingin keluar impas', 'Harga akan menembusnya dengan mudah karena sudah pernah dilewati', 'Area itu kehilangan maknanya setelah harga meninggalkannya', 'Volume akan mengering karena tidak ada lagi yang berminat'],
+      answer: 0,
+      explain: 'Ini role reversal yang dibaca lewat volume profile. Area padat di atas harga artinya BANYAK orang beli di situ dan sekarang nyangkut. Begitu harga balik ke sana, mereka ngelepas buat impas — dan pasokan mendadak itu yang bikin area padat jadi resistance keras. Makin padat profilnya, makin banyak yang nyangkut, makin berat nembusnya. Ini alasan kenapa profil volume sering lebih berguna daripada sekadar narik garis di puncak lama.' }); }
+
   return Q;
 }
 
