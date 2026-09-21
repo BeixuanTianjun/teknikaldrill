@@ -69,6 +69,12 @@
         <p>Baca konsep + pembahasan tanpa tekanan skor. Enak buat H-1.</p>
         <span class="mode-go">Mulai →</span>
       </button>
+      <button class="mode-card mode-i" data-mode="case" type="button">
+        <span class="mode-emoji">🧩</span>
+        <h3>Studi Kasus</h3>
+        <p>Skenario panjang dengan data lengkap, lalu beberapa soal turunan. Paling mirip ujian aslinya.</p>
+        <span class="mode-go">Mulai →</span>
+      </button>
       <button class="mode-card mode-h" data-mode="chart" type="button">
         <span class="mode-emoji">🕯️</span>
         <h3>Drill Baca Chart</h3>
@@ -137,7 +143,7 @@
     </div>
     <div class="setup-block">
       <h3>Opsi</h3>
-      <label class="switch-row"><input type="checkbox" id="optShuffle" checked> <span>Acak urutan soal &amp; opsi jawaban</span></label>
+      <label class="switch-row"><input type="checkbox" id="optShuffle" checked> <span>Acak urutan soal <small style="opacity:.6">(opsi jawaban selalu diacak)</small></span></label>
       <label class="switch-row"><input type="checkbox" id="optSkipSeen"> <span>Prioritaskan soal yang belum pernah keluar</span></label>
     </div>
 
@@ -169,6 +175,7 @@
         <span class="tag tag-diff" id="qDiff">Sedang</span>
         <span class="tag tag-id" id="qId"></span>
       </div>
+      <div class="q-case" id="qCase" hidden></div>
       <div class="q-chart" id="qChart" hidden></div>
       <h2 class="q-text" id="qText"></h2>
       <div class="options" id="options"></div>
@@ -337,6 +344,7 @@
 <script src="data/cta-aset.js"></script>
 <script src="data/cta-statistik.js"></script>
 <script src="data/chart-questions.js"></script>
+<script src="data/cases.js"></script>
 
 <!-- materi ringkas & mind map -->
 <script src="data/notes-rta-1.js"></script>

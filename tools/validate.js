@@ -118,6 +118,18 @@ console.log('  Poin kunci     :', totalPoin);
 console.log('  Node mind map  :', totalKw);
 console.log('  Catatan jebakan:', totalTrap);
 
+// --- mutu pengecoh: kunci yang jauh lebih panjang membocorkan jawaban ---
+let tell = 0;
+bank.forEach(q => {
+  const lens = q.options.map(o => o.length);
+  const benar = lens[q.answer];
+  const lainMax = Math.max.apply(null, lens.filter((_, i) => i !== q.answer));
+  if (benar > lainMax * 1.6 && benar - lainMax > 24) tell++;
+});
+console.log('\nMutu pengecoh:');
+console.log('  Kunci jauh lebih panjang dari semua pengecoh:', tell,
+            '(' + (tell / bank.length * 100).toFixed(1) + '%) — jalankan tools/audit-quality.js --list');
+
 if (warns.length) { console.log('\nPeringatan (' + warns.length + '):'); warns.forEach(w => console.log('  ! ' + w)); }
 if (errors.length) { console.log('\nERROR (' + errors.length + '):'); errors.forEach(e => console.log('  x ' + e)); process.exit(1); }
 console.log('\nSemua soal lolos validasi.');

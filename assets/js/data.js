@@ -65,6 +65,7 @@ TD.register = function (list) {
       answer: q.answer,
       explain: q.explain || 'Belum ada pembahasan untuk soal ini.',
       chart: q.chart || null,
+      caseId: q.caseId || null,
       source: q.source || 'bawaan'
     });
     added++;
@@ -88,6 +89,27 @@ TD.registerNotes = function (list) {
         return { h: sec.h || '', mm: sec.mm || [], points: sec.points || [] };
       }),
       jebakan: note.jebakan || []
+    };
+    n++;
+  });
+  return n;
+};
+
+TD.CASES = {};
+
+/* Studi kasus: satu skenario dipakai oleh beberapa soal sekaligus,
+   seperti format vignette pada ujian sertifikasi. */
+TD.registerCases = function (list) {
+  if (!Array.isArray(list)) return 0;
+  let n = 0;
+  list.forEach(function (c) {
+    if (!c || !c.id || !c.brief) return;
+    TD.CASES[c.id] = {
+      id: c.id,
+      title: c.title || 'Studi kasus',
+      brief: c.brief,
+      facts: c.facts || [],
+      chart: c.chart || null
     };
     n++;
   });

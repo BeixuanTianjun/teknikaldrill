@@ -128,7 +128,8 @@ const MODE_INFO = {
   rapid:    { title: 'Rapid Fire',       sub: '20 detik per soal. Makin cepat & makin panjang streak, makin gede poinnya.', counts: [10, 20, 30, 50] },
   weak:     { title: 'Drill Soal Salah', sub: 'Khusus soal yang pernah lo jawab salah atau lo tandai.', counts: [10, 20, 30, 0] },
   flash:    { title: 'Flashcard',        sub: 'Balik kartu buat lihat jawaban + pembahasan. Nggak ada skor.', counts: [10, 20, 30, 50] },
-  chart:    { title: 'Drill Baca Chart',  sub: 'Hanya soal yang menampilkan grafik. Latih mata baca pola, level, dan formasi candle.', counts: [10, 20, 0] }
+  chart:    { title: 'Drill Baca Chart',  sub: 'Hanya soal yang menampilkan grafik. Latih mata baca pola, level, dan formasi candle.', counts: [10, 20, 0] },
+  case:     { title: 'Studi Kasus',       sub: 'Skenario panjang dengan data lengkap, lalu soal turunannya. Semua soal di sini tingkat sulit.', counts: [8, 12, 0] }
 };
 
 function openSetup(mode, presetModules) {
@@ -196,6 +197,7 @@ function candidatePool() {
   let pool = allQuestions().filter(q =>
     setupState.levels.includes(q.level) && setupState.modules.includes(q.module));
   if (setupState.mode === 'chart') pool = pool.filter(q => q.chart);
+  if (setupState.mode === 'case') pool = pool.filter(q => q.caseId);
   if (setupState.mode === 'weak') {
     pool = pool.filter(q => {
       const r = S.seen[q.id];
@@ -230,11 +232,11 @@ function startSession() {
   }
 
   const n = setupState.count === 0 ? pool.length : Math.min(setupState.count, pool.length);
-  const picked = pool.slice(0, n).map(q => {
-    if (!$('#optShuffle').checked) return Object.assign({}, q, { order: q.options.map((_, i) => i) });
-    const order = shuffle(q.options.map((_, i) => i));
-    return Object.assign({}, q, { order });
-  });
+  // Urutan opsi selalu diacak, terlepas dari pilihan acak urutan soal:
+  // posisi kunci pada data tidak tersebar merata, dan membiarkannya tetap
+  // membuat jawaban bisa ditebak dari posisinya saja.
+  const picked = pool.slice(0, n).map(q =>
+    Object.assign({}, q, { order: shuffle(q.options.map((_, i) => i)) }));
 
   sess = {
     mode: setupState.mode,
@@ -296,6 +298,7 @@ function renderQuestion() {
   $('#qModule').textContent = modOf(q.module).emoji + ' ' + modOf(q.module).name;
   $('#qDiff').textContent = DIFF_LABEL[q.difficulty] || q.difficulty;
   $('#qId').textContent = q.id;
+  mountCase($('#qCase'), q.caseId);
   TD.mountChart($('#qChart'), q.chart);
   $('#qText').textContent = q.q;
   $('#explain').hidden = true;
@@ -460,6 +463,7 @@ function renderReview(filter) {
         ${sess.flags[i] ? '<span class="tag">🔖 ditandai</span>' : ''}
         <span class="tag tag-id">${esc(q.id)}</span>
       </div>
+      ${q.caseId ? `<div class="q-case" data-case="${i}"></div>` : ''}
       ${q.chart ? `<div class="q-chart" data-chart="${i}"></div>` : ''}
       <p class="rev-q">${i + 1}. ${esc(q.q)}</p>
       <p class="rev-line ${ok ? 'ok' : 'bad'}">Jawaban lo: <b>${pickTxt}</b></p>
@@ -467,6 +471,9 @@ function renderReview(filter) {
       <p class="rev-exp">${esc(q.explain)}</p>
     </div>`;
   }).join('');
+  $$('#reviewList [data-case]').forEach(box => {
+    mountCase(box, sess.qs[Number(box.dataset.case)].caseId);
+  });
   $$('#reviewList [data-chart]').forEach(box => {
     TD.mountChart(box, sess.qs[Number(box.dataset.chart)].chart);
   });
@@ -645,6 +652,24 @@ function drawConfetti() {
 }
 addEventListener('resize', sizeCanvas);
 
+
+/* ---------------- studi kasus ---------------- */
+function caseHTML(c) {
+  return `<div class="case-head"><span class="case-badge">Studi kasus</span><h3>${esc(c.title)}</h3></div>
+    <p class="case-brief">${esc(c.brief)}</p>
+    ${c.facts.length ? `<table class="case-facts"><tbody>${c.facts.map(f =>
+      `<tr><th>${esc(f[0])}</th><td>${esc(f[1])}</td></tr>`).join('')}</tbody></table>` : ''}
+    ${c.chart ? '<div class="q-chart case-chart"></div>' : ''}`;
+}
+
+function mountCase(box, caseId) {
+  const c = caseId && TD.CASES[caseId];
+  if (!c) { box.hidden = true; box.innerHTML = ''; return; }
+  box.hidden = false;
+  box.innerHTML = caseHTML(c);
+  const cc = $('.case-chart', box);
+  if (cc) TD.mountChart(cc, c.chart);
+}
 
 /* ---------------- materi ringkas & mind map ---------------- */
 let notesLevelFilter = 'ALL';

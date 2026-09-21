@@ -8,7 +8,7 @@ Statis sepenuhnya — tanpa build, tanpa server, tanpa dependency. Buka `index.h
 
 ## Isi bank soal
 
-**480 soal orisinal** yang disusun mengikuti unit kompetensi skema sertifikasi analis teknikal BNSP,
+**504 soal orisinal** yang disusun mengikuti unit kompetensi skema sertifikasi analis teknikal BNSP,
 **52 di antaranya soal baca chart** yang menampilkan grafik harga:
 
 | Level | Unit kompetensi | Soal |
@@ -42,6 +42,7 @@ milik pihak lain** dan bukan soal ujian resmi BNSP/LSP.
 | ⏱️ **Simulasi Ujian** | 50/75/100 soal, timer 120 menit, pembahasan baru dibuka di akhir, passing grade 70% |
 | ⚡ **Rapid Fire** | 20 detik per soal, poin bonus untuk kecepatan dan streak |
 | 🩹 **Drill Soal Salah** | Hanya soal yang pernah dijawab salah atau ditandai |
+| 🧩 **Studi Kasus** | Skenario panjang bertabel data, lalu beberapa soal turunan — format vignette |
 | 🕯️ **Drill Baca Chart** | Khusus soal bergrafik: kenali pola, level, dan formasi candle dari chart |
 | 🃏 **Flashcard** | Kartu bolak-balik soal ↔ jawaban + pembahasan, tanpa skor |
 | 📚 **Materi & Mind Map** | Ringkasan per unit, peta konsep interaktif, daftar jebakan ujian |
@@ -50,6 +51,28 @@ milik pihak lain** dan bukan soal ujian resmi BNSP/LSP.
 Fitur lain: poin & streak, tandai soal, review lengkap di akhir sesi (filter semua/salah/ditandai),
 tema mengikuti sistem dengan tombol ganti manual, pintasan keyboard (`1`–`4` untuk menjawab, `Enter` untuk lanjut,
 `←`/`→`/`Space` di flashcard), dan progress tersimpan otomatis di browser (localStorage).
+
+## Studi kasus
+
+Enam skenario bergaya vignette, masing-masing dengan empat soal turunan, total 24 soal tingkat
+sulit. Tiap kasus menyajikan narasi situasi plus tabel data, lalu soal-soalnya menuntut hitungan
+berlapis atau penimbangan bukti yang saling bertentangan — bukan sekadar mengenali istilah.
+
+Topiknya: penentuan ukuran posisi berlapis, sinyal yang bertentangan antar timeframe, risiko
+tersembunyi pada portofolio berkorelasi tinggi, membaca hasil backtest yang mencurigakan,
+pergeseran antar pasar, dan benturan kepentingan pada penerbitan riset.
+
+## Mutu pengecoh
+
+Bank soal ini diaudit dengan `tools/audit-quality.js`, yang mendeteksi tiga celah yang membuat
+kunci jawaban bocor tanpa perlu menguasai materi:
+
+1. Kunci jawaban jauh lebih panjang daripada seluruh pengecohnya
+2. Pengecoh berisi frasa buangan yang tidak pernah mungkin benar
+3. Kunci jawaban menumpuk di posisi tertentu
+
+Urutan opsi jawaban **selalu diacak** saat sesi dimulai, terlepas dari pilihan acak urutan soal,
+sehingga posisi kunci pada berkas data tidak pernah terbaca pengguna.
 
 ## Soal baca chart
 
