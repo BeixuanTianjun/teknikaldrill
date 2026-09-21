@@ -2,24 +2,24 @@
 TD.registerNotes([
 {module:"cta-siklus", tagline:"Dimensi waktu: periodisitas, seasonality, dan proyeksi titik balik.",
  sections:[
-  {h:"Anatomi siklus", mm:["Amplitudo","Periode","Fase","Harmonik"], points:[
+  {h:"Anatomi siklus", mm:["Amplitudo :: Seberapa tinggi ayunannya. Siklus panjang cenderung beramplitudo lebih besar.","Periode :: Berapa lama satu putaran. Tau periodenya doang nggak cukup kalau nggak tau fasenya.","Fase :: Lagi di bagian mana sekarang. Nentuin titik awal (phasing) itu yang paling sering disepelekan.","Harmonik :: Hubungan sama siklus lain. Yang periodenya kelipatan cenderung nyatu berkala."], points:[
    "Empat ciri siklus: AMPLITUDO (seberapa tinggi ayunannya), PERIODE (berapa lama satu putaran), FASE (lagi di bagian mana sekarang), HARMONIK (hubungan sama siklus lain). Kayak ombak.",
    "Phasing: nentuin TITIK AWAL siklus. Sering disepelekan padahal menentukan — tau periodenya 40 hari nggak ada gunanya kalau lo nggak tau hari ini lagi di hari ke berapa."]},
-  {h:"Prinsip siklus", mm:["Summation","Harmonicity","Proportionality","Nominality","Translation"], points:[
+  {h:"Prinsip siklus", mm:["Summation :: Gerak harga = PENJUMLAHAN beberapa siklus. Makanya chart keliatan berantakan.","Harmonicity :: Siklus berdekatan berhubungan kelipatan bilangan bulat kecil, paling sering dua kali lipat.","Proportionality :: Periode lebih panjang cenderung beramplitudo lebih besar. Jangan samain ekspektasinya.","Nominality :: Ada panjang siklus BAKU yang berulang lintas pasar: 20 hari, 40 hari, 20 minggu, 40 bulan.","Translation :: Puncak di paruh akhir = tren kuat. Geser ke depan = peringatan dini, sering sebelum harga berubah."], points:[
    "Summation: pergerakan harga = PENJUMLAHAN beberapa siklus yang panjangnya beda. Makanya chart keliatan berantakan. Kalau beberapa lembah kebetulan barengan, tekanan turunnya jauh lebih besar.",
    "Harmonicity: siklus berdekatan berhubungan kelipatan bilangan bulat kecil, paling sering DUA KALI lipat. Jadi kalau lo nemu siklus 20 hari, wajar ada juga yang 40 dan 10.",
    "Proportionality: siklus berperiode lebih panjang cenderung beramplitudo lebih besar. Gunanya buat ngukur ekspektasi — jangan berharap siklus pendek ngasih gerakan sebesar siklus panjang.",
    "Nominality: ada sekumpulan panjang siklus BAKU yang berulang di banyak pasar (sekitar 20 hari, 40 hari, 20 minggu, 40 bulan). Mulai nyari dari angka-angka ini, jangan dari nol.",
    "Translation: right translation (puncak di paruh AKHIR) = tren besarnya kuat. Left translation (puncak di paruh AWAL) = lemah. Pergeserannya sering muncul MENDAHULUI perubahan tren."]},
-  {h:"Siklus ekonomi", mm:["Kitchin 40 bln","Juglar 7-11 th","Kondratieff 50-60 th","Presidential"], points:[
+  {h:"Siklus ekonomi", mm:["Kitchin 40 bln :: Siklus persediaan — numpuk stok pas optimis, ngurangin pas pesimis. Paling sering ketemu di saham.","Juglar 7-11 th :: Siklus investasi, lebih panjang dari Kitchin.","Kondratieff 50-60 th :: Gelombang panjang teknologi. Skalanya lebih besar dari karier satu orang.","Presidential :: Tahun ketiga historis paling kuat. Sampelnya cuma belasan siklus, jadi konteks bukan hukum."], points:[
    "Kitchin sekitar 40 bulan (3–4 tahun), dasarnya siklus persediaan: perusahaan numpuk stok pas optimis, ngurangin pas pesimis. Paling sering ketemu di data saham.",
    "Juglar sekitar 7–11 tahun (siklus investasi). Kondratieff sekitar 50–60 tahun (gelombang teknologi). Urutan dari pendek ke panjang: Kitchin, Juglar, Kondratieff.",
    "Presidential cycle AS: tahun KETIGA historis paling kuat (pemerintah ndorong ekonomi menjelang pemilu). Tapi sampelnya cuma belasan siklus, jadi perlakuin sebagai konteks, bukan hukum."]},
-  {h:"Seasonality", mm:["January effect","Sell in May","Komoditas"], points:[
+  {h:"Seasonality", mm:["January effect :: Saham kecil unggul awal tahun. Sejak terkenal dan dipublikasi luas, efeknya banyak kekikis.","Sell in May :: November-April historis lebih tinggi. Datanya konsisten, tapi penjelasan fundamentalnya lemah.","Komoditas :: Pola musiman paling kokoh karena penyebabnya FISIK: pola tanam dan panen."], points:[
    "January effect: saham kecil cenderung unggul di awal tahun (penjualan buat pajak akhir tahun + penataan portofolio). Catatan penting: sejak anomali ini terkenal, efeknya banyak kekikis.",
    "Sell in May: November–April historis lebih tinggi dari Mei–Oktober. Datanya lumayan konsisten lintas pasar, TAPI penjelasan fundamentalnya lemah — kenapa harus Mei?",
    "Seasonality komoditas pertanian paling kokoh karena penyebabnya FISIK dan nyata: pola tanam dan panen. Beda kelas dari anomali musiman saham yang sering cuma kebetulan statistik."]},
-  {h:"Teknik & keterbatasan", mm:["Detrending","Analisis spektral","Toleransi waktu"], points:[
+  {h:"Teknik & keterbatasan", mm:["Detrending :: Buang komponen tren biar siklus keliatan. Tapi penghalusan sendiri bisa MENCIPTAKAN gelombang semu.","Analisis spektral :: Fourier ngurai deret jadi komponen frekuensi. Kendalanya data pasar nggak stasioner.","Toleransi waktu :: Sekitar 10-15 persen panjang siklus. Titik balik itu JENDELA, bukan tanggal pasti."], points:[
    "Detrending (misal harga dikurangi MA-nya) misahin komponen tren biar siklusnya keliatan. TAPI hati-hati: penghalusan sendiri bisa MENCIPTAKAN gelombang semu (efek Slutzky-Yule).",
    "Analisis spektral/Fourier ngurai deret jadi komponen frekuensi, kayak ngurai suara jadi nada penyusunnya. Kendalanya: data pasar itu NGGAK stasioner, jadi siklusnya bisa ilang di periode lain.",
    "Risiko terbesar: panjang siklus bisa BERGESER, karena dia lahir dari kelakuan kolektif yang berubah. Toleransi waktunya sekitar 10–15 persen panjang siklus, plus wajib konfirmasi harga.",
@@ -30,25 +30,25 @@ TD.registerNotes([
 
 {module:"cta-breadth", tagline:"Kesehatan internal pasar, sentimen, dan hubungan antar pasar.",
  sections:[
-  {h:"Market breadth", mm:["AD Line","% di atas MA200","New high-low","McClellan","TRIN"], points:[
+  {h:"Market breadth", mm:["AD Line :: Selisih KUMULATIF saham naik dan turun. Ngitung tiap saham setara, jadi mbongkar apa yang indeks sembunyiin.","% di atas MA200 :: Ngukur seberapa LUAS tren naiknya. Di atas 60-70 sehat, di bawah 30 tren panjang banyak saham patah.","New high-low :: Makin banyak titik terendah baru sementara indeks naik = kerusakan di dalam, permukaannya tenang.","McClellan :: Selisih dua EMA dari data advance-decline. Semacam MACD-nya breadth.","TRIN :: Rasio jumlah saham dibanding rasio volumenya. Angkanya KEBALIK dari intuisi — di bawah 1 itu bullish."], points:[
    "AD Line: selisih KUMULATIF jumlah saham naik dan turun. Ngitung tiap saham SETARA, nggak peduli kapitalisasinya — jadi dia mbongkar apa yang disembunyiin indeks.",
    "Divergensi bearish: indeks cetak puncak baru tapi AD Line nggak ikut = kenaikannya ditopang makin sedikit saham. Pondasinya keropos. Tapi jedanya bisa berbulan-bulan.",
    "Persentase saham di atas MA200: ngukur seberapa LUAS tren naiknya. Di atas 60–70 persen = sehat merata. Di bawah 30 persen = tren panjang banyak saham beneran patah.",
    "New high–new low index: makin banyak saham cetak titik terendah BARU sementara indeks masih naik = kerusakan di dalam sementara permukaannya tenang. Jarang berakhir tanpa penyesuaian harga.",
    "McClellan Oscillator: selisih dua EMA dari data advance-decline — semacam MACD-nya breadth. TRIN/Arms: rasio jumlah saham dibanding rasio volumenya. Catatan TRIN: angkanya KEBALIK dari intuisi, di bawah 1 itu bullish.",
    "Hindenburg Omen: banyak saham di KEDUA ekstrem barengan = pasar terbelah, sebagian terbang sebagian hancur. Jujur aja, sinyal ini sering salah — jangan dijadiin alasan tunggal."]},
-  {h:"Sentimen", mm:["Put/call ratio","VIX","Survei bull-bear","Contrarian"], points:[
+  {h:"Sentimen", mm:["Put/call ratio :: Sangat tinggi = ketakutan ekstrem, contrarian sering deket dasar. Tapi ekstrem bisa makin ekstrem.","VIX :: Ekspektasi volatilitas dari harga opsi indeks. Ngukur BESARNYA gerakan yang diharapkan, bukan arahnya.","Survei bull-bear :: Cuma informatif di posisi EKSTREM. Level moderat nyaris nggak ada gunanya.","Contrarian :: Kalau semua udah beli, duit mereka udah di pasar. Siapa lagi yang mau ndorong naik?"], points:[
    "Put/call ratio sangat tinggi = ketakutan ekstrem, dan secara contrarian sering muncul deket dasar. TAPI ekstrem bisa makin ekstrem berminggu-minggu — ini indikator KONDISI, bukan pemicu.",
    "VIX: ekspektasi volatilitas yang TERSIRAT dari harga opsi indeks (sekitar 30 hari). Melonjak pas pasar jatuh karena orang rebutan proteksi. Dia ngukur BESARNYA gerakan, bukan ARAHNYA.",
    "Logika contrarian itu mekanis, bukan gaya-gayaan ngelawan kerumunan: kalau semua udah beli, duit mereka UDAH di pasar. Siapa lagi yang mau ndorong naik? Dan kalau ada berita buruk dikit, banyak yang harus jual.",
    "Indikator sentimen cuma informatif di posisi EKSTREM. Di level moderat nyaris nggak ada gunanya. Alat ini cuma ngomong beberapa kali setahun, sisanya diem — jangan dipelototin tiap hari."]},
-  {h:"Intermarket (Murphy)", mm:["Saham","Obligasi","Komoditas","Valas"], points:[
+  {h:"Intermarket (Murphy)", mm:["Saham :: Valuasinya kejepit pas yield naik, terutama saham pertumbuhan yang arus kasnya jauh di depan.","Obligasi :: Harga dan yield BERLAWANAN. Pastiin jelas yang digrafikkan harga atau yield.","Komoditas :: Naik ndorong ekspektasi inflasi, terus yield naik, terus harga obligasi turun. Awal rantainya.","Valas :: Dolar nguat nekan komoditas global karena barang jadi lebih mahal buat pembeli non-dolar."], points:[
    "Empat kelas aset (saham, obligasi, komoditas, valas) saling ngaruh lewat inflasi, suku bunga, dan siklus ekonomi. Sinyal dari satu pasar sering muncul DULUAN sebelum keliatan di pasar yang lo pantau.",
    "Rantai lingkungan inflasioner: komoditas naik → ekspektasi inflasi naik → yield naik → harga obligasi turun → valuasi saham kejepit, terutama saham pertumbuhan.",
    "Hubungan ini bisa BERUBAH di rezim deflasi atau krisis (obligasi jadi tempat ngungsi). Wajib diuji ulang berkala, jangan dianggap hukum permanen.",
    "Emas nguat barengan saham melemah = risk off, dana pindah ke aset aman. Berguna sebagai konfirmasi: kalau saham turun TAPI emas juga turun, itu cuma likuidasi biasa.",
    "Yield curve terbalik = salah satu penanda resesi paling terkenal, rekornya bagus. TAPI jedanya 6–24 bulan, dan selama jeda itu saham sering masih naik kenceng. Bener tapi telat itu tetep rugi."]},
-  {h:"Rotasi & kekuatan relatif", mm:["Siklikal vs defensif","RRG","Small vs large cap"], points:[
+  {h:"Rotasi & kekuatan relatif", mm:["Siklikal vs defensif :: Siklikal mimpin awal pemulihan, defensif pas pelemahan. Pasar ngeharga ekspektasi, bukan data sekarang.","RRG :: Kekuatan relatif di sumbu datar, momentumnya di sumbu tegak. Muter searah jarum jam lewat empat kuadran.","Small vs large cap :: Small cap unggul = selera risiko tinggi. Ukuran selera risiko yang cukup jujur."], points:[
    "Awal pemulihan: sektor siklikal (industri, material) mimpin, karena pasar ngeharga EKSPEKTASI bukan data sekarang. Akhir ekspansi: pindah ke defensif (konsumsi primer, kesehatan).",
    "Relative Rotation Graph: metain kekuatan relatif (sumbu datar) plus MOMENTUM-nya (sumbu tegak). Muter searah jarum jam lewat empat kuadran, jadi rotasi keliatan sebagai gerakan bukan cuma daftar peringkat.",
    "Small cap unggul = selera risiko lagi tinggi. Kepemimpinan pindah ke large cap defensif = orang mulai hati-hati. Ini ukuran selera risiko yang cukup jujur, dan sering bergeser sebelum indeksnya sendiri berubah.",
@@ -59,27 +59,27 @@ TD.registerNotes([
 
 {module:"cta-sistem", tagline:"Merancang, menguji, dan menjaga sistem tetap jujur.",
  sections:[
-  {h:"Komponen sistem", mm:["Entry","Exit","Sizing","Semesta instrumen"], points:[
+  {h:"Komponen sistem", mm:["Entry :: Aturan masuk yang bisa dijalanin tanpa penilaian subjektif.","Exit :: Keluar untung DAN keluar rugi. Dua-duanya harus ditulis, bukan cuma yang entry.","Sizing :: Berapa banyak. Sistem entry sebagus apa pun bakal bangkrut kalau ukurannya ngawur.","Semesta instrumen :: Main di apa aja. Sering dilupain, padahal hasil backtest nggak berarti tanpa ini."], points:[
    "Sistem mekanis harus bisa dijalanin tanpa penilaian subjektif: aturan entry, exit, ukuran posisi, dan semesta instrumen. Yang paling sering dilupain dua yang terakhir.",
    "Sistem diskresioner ngasih keleluasaan baca konteks, tapi susah diuji dan gantung ke disiplin. Bukan berarti lebih jelek — banyak trader hebat itu diskresioner. Tapi jurnal yang rapi jadi pengganti backtest."]},
-  {h:"Bias dalam backtest", mm:["Look ahead","Survivorship","Curve fitting","Data snooping"], points:[
+  {h:"Bias dalam backtest", mm:["Look ahead :: Pakai informasi yang belum ada saat keputusan. Salah satu bar aja udah cukup bikin sistem rugi keliatan jenius.","Survivorship :: Ngabaikan emiten yang delisting. Lo cuma nguji saham yang kebetulan selamat.","Curve fitting :: Parameter disesuaiin terlalu rinci sampai ngapalin sejarah. Tandanya: ambruk begitu digeser sedikit.","Data snooping :: Kebanyakan strategi diuji di data sama. Uji 400 kombinasi, pasti ada yang keliatan dewa."], points:[
    "Look ahead bias: pakai informasi yang BELUM ADA pas keputusan diambil. Contoh klasik: close hari itu jadi sinyal SEKALIGUS harga eksekusi — di dunia nyata lo butuh mesin waktu.",
    "Survivorship bias: ngabaikan emiten yang delisting, jadi lo cuma nguji saham yang kebetulan SELAMAT. Hasilnya bagus otomatis padahal strategi lo nggak ngapa-ngapain.",
    "Curve fitting: parameter disesuaiin terlalu rinci ke data historis sampai sistemnya ngapalin sejarah. Tandanya: parameter banyak, kinerja luar biasa, dan ambruk begitu digeser sedikit.",
    "Kualitas data (adjusted split dan dividen) itu PRASYARAT, dan sering disepelekan karena ngebosenin. Data keliru bikin sistem lo ngasih sinyal berdasarkan kejadian yang nggak pernah ada."]},
-  {h:"Validasi", mm:["Out of sample","Walk forward","Monte Carlo","Sampel memadai"], points:[
+  {h:"Validasi", mm:["Out of sample :: Data yang NGGAK dipakai saat pengembangan, dan harus disisihkan SEJAK AWAL.","Walk forward :: Optimasi di satu periode, uji di periode berikutnya, digulirin. Niru cara lo beneran kerja.","Monte Carlo :: Ngacak urutan transaksi ribuan kali. Sering ketahuan drawdown lo cuma hasil urutan yang kebetulan enak.","Sampel memadai :: Di bawah 100 transaksi, angka lo masih dongeng. Di atas 300 baru mulai bisa dipercaya."], points:[
    "Out of sample: uji di data yang NGGAK dipakai pas pengembangan. Kuncinya data itu harus disisihkan SEJAK AWAL — kalau disisihin belakangan setelah ngintip, udah nggak murni.",
    "Walk forward: optimasi di satu periode, uji di periode BERIKUTNYA, jendelanya digulirin maju. Lebih jujur karena niru cara lo beneran kerja — lo cuma punya data masa lalu pas nyetel parameter.",
    "Monte Carlo: ngacak ULANG urutan transaksi ribuan kali. Transaksinya sama, urutannya diubah. Sering bikin bangun — drawdown yang lo alami ternyata cuma hasil urutan yang kebetulan enak.",
    "Butuh ratusan transaksi lintas kondisi pasar biar kesimpulannya bermakna. Di bawah 100, angka lo masih dongeng.",
    "Parameter robust = kinerjanya tetep bagus di RENTANG nilai sekitarnya. Yang dicari DATARAN, bukan puncak sendirian di tengah lembah — puncak sendirian itu hampir selalu fatamorgana.",
    "Uji lintas instrumen dan pasar: logika yang sungguh berlaku mestinya jalan di mana-mana, meski mutunya beda. Kalau cuma bersinar di satu saham, kemungkinan besar dia ngapalin sejarah saham itu."]},
-  {h:"Metrik kinerja", mm:["Profit factor","Sharpe","Sortino","Calmar","Max drawdown"], points:[
+  {h:"Metrik kinerja", mm:["Profit factor :: Laba kotor dibagi rugi kotor. 1,5-2 bagus, di atas 3 curigai ada kesalahan uji.","Sharpe :: Return berlebih per unit volatilitas TOTAL. Masalahnya dia ngehukum lonjakan UNTUNG juga.","Sortino :: Cuma ngehukum volatilitas sisi bawah. Lebih adil buat sistem trend following.","Calmar :: Return tahunan dibagi max drawdown. Jawab: buat tiap satu persen sakit, gue dapet berapa?","Max drawdown :: Nguji apakah strategi sanggup DIJALANI, bukan cuma apakah dia untung."], points:[
    "Profit factor = laba kotor dibagi rugi kotor. Di atas 1 untung, 1,5–2 bagus. Di atas 3? Curigai ada kesalahan uji. Kelebihannya dibanding win rate: dia ngitung BESARAN, bukan cuma jumlah.",
    "Sharpe: return berlebih per unit volatilitas TOTAL — masalahnya dia ngehukum lonjakan UNTUNG juga. Sortino cuma ngehukum sisi bawah, jadi lebih adil buat sistem trend following.",
    "Calmar: return tahunan dibagi maximum drawdown. Jawab pertanyaan paling praktis: buat tiap satu persen sakit, gue dapet berapa? Sering lebih berguna daripada Sharpe buat ritel.",
    "Max drawdown nguji apakah strategi sanggup DIJALANI, bukan cuma apakah dia untung. Perhatiin juga LAMA pemulihannya — drawdown 20 persen selama tiga tahun itu lebih nyiksa daripada 30 persen selama tiga bulan."]},
-  {h:"Dari uji ke nyata", mm:["Slippage & komisi","Paper trading","Kill switch","Diversifikasi sistem"], points:[
+  {h:"Dari uji ke nyata", mm:["Slippage & komisi :: Wajib dimasukin sejak baris pertama. Sistem frekuensi tinggi paling rentan kemakan ongkos.","Paper trading :: Nguji aspek operasional tanpa risiko modal. Tapi tekanan psikologisnya nol, jadi disiplin belum teruji.","Kill switch :: Batas drawdown ditetapin SEBELUM sistem jalan. Pas kejadian, lo bakal nawar sama diri sendiri.","Diversifikasi sistem :: Gabungin SUMBER keunggulan beda, bukan beda parameter. Cek korelasi kurva ekuitasnya."], points:[
    "Slippage dan komisi WAJIB dimasukin sejak baris pertama. Sistem frekuensi tinggi paling rentan — 800 transaksi setahun bisa berubah dari untung 34 persen jadi rugi 6 persen.",
    "Paper trading nguji aspek OPERASIONAL tanpa risiko modal: data feed telat, order ketolak, sinyal muncul pas lo rapat. Kelemahannya jujur: tanpa uang nyata, tekanan psikologisnya nol.",
    "Kill switch (batas drawdown atau kerugian beruntun) ditetapin SEBELUM sistem jalan. Kenapa sebelum? Karena pas drawdown-nya kejadian, lo bakal nawar sama diri sendiri.",
@@ -92,28 +92,28 @@ TD.registerNotes([
 
 {module:"cta-portfolio", tagline:"Mengelola risiko di level portofolio, bukan cuma per transaksi.",
  sections:[
-  {h:"Metode sizing", mm:["Fixed fractional","Kelly","Volatility based","Heat"], points:[
+  {h:"Metode sizing", mm:["Fixed fractional :: Persentase TETAP dari ekuitas. Otomatis ngecil pas ekuitas turun — ada rem alaminya.","Kelly :: Proporsi optimal dari peluang dan rasio bayaran. Praktiknya dipakai setengah Kelly atau kurang.","Volatility based :: Instrumen bergejolak dapet porsi lebih kecil, biar sumbangan risikonya setara.","Heat :: Total risiko semua posisi kalau kena stop barengan. Umumnya dibatasi 6-10 persen ekuitas."], points:[
    "Fixed fractional: persentase TETAP dari ekuitas tiap transaksi. Efeknya otomatis dan elegan — pas ekuitas nyusut, posisi ikut ngecil sendiri. Ada rem alami buat rentetan rugi.",
    "Kelly criterion: proporsi optimal dari peluang menang dan rasio bayarannya. Tapi praktiknya orang pakai SETENGAH Kelly atau kurang — estimasi lo nggak pernah pasti, dan goyangan Kelly penuh itu ekstrem.",
    "Volatility based (pakai ATR): instrumen yang bergejolak dapet porsi lebih KECIL, biar sumbangan risikonya setara. Tanpa ini, satu posisi paling liar bakal nentuin hasil akhir seluruh portofolio.",
    "Total heat = jumlah risiko SEMUA posisi terbuka kalau kena stop barengan. Umumnya dibatasi 6–10 persen ekuitas. Banyak orang disiplin per transaksi tapi lupa ngitung totalnya."]},
-  {h:"Ukuran risiko", mm:["VaR","Expected shortfall","Max drawdown","Stress test"], points:[
+  {h:"Ukuran risiko", mm:["VaR :: Rugi nggak lebih dari sekian di 95 persen kasus. Perhatiin yang DIA NGGAK BILANG: 5 persen sisanya.","Expected shortfall :: Ngitung rata-rata rugi DI DALAM ekor terburuk. Nutupin kelemahan VaR.","Max drawdown :: Ukuran yang paling nentuin apakah strategi bisa dijalani sampai selesai.","Stress test :: Kalau krisis 2008 terulang hari ini, portofolio gue jadi berapa? Pakai skenario yang beneran pernah kejadian."], points:[
    "VaR 95%: rugi diperkirakan nggak lebih dari sekian di 95 persen kasus. Perhatiin yang DIA NGGAK BILANG: gimana di 5 persen sisanya? Bisa 10 persen, bisa 60 persen — dan di situ modal orang abis.",
    "Conditional VaR atau expected shortfall nutupin kelemahan itu — dia ngitung rata-rata rugi DI DALAM ekor terburuknya.",
    "Stress testing: kalau krisis 2008 atau guncangan pandemi terulang persis hari ini, portofolio gue jadi berapa? Bukan nebak masa depan, tapi ngukur ketahanan pakai skenario yang BENERAN pernah kejadian.",
    "Drawdown control: kurangi eksposur BERTAHAP pas drawdown nyentuh ambang tertentu. Kelemahannya jujur: kalau pasar berbalik cepat, pemulihan lo jadi lebih lambat karena posisi lagi kecil."]},
-  {h:"Diversifikasi", mm:["Korelasi","Risk parity","Sektor","Jumlah posisi","Time diversification"], points:[
+  {h:"Diversifikasi", mm:["Korelasi :: Cenderung NAIK mendekati satu pas krisis. Diversifikasi ilang tepat pas lo paling butuh.","Risk parity :: Setarain KONTRIBUSI RISIKO, bukan nilai nominal. Portofolio 50:50 itu 90 persen risikonya dari saham.","Sektor :: 10 saham satu sektor = satu taruhan besar yang dipecah sepuluh biar keliatan tersebar.","Jumlah posisi :: Manfaatnya nurun tajam setelah belasan posisi yang bener-bener beda karakter.","Time diversification :: Jalanin strategi di beberapa horizon, biar nggak gantung ke satu rezim pasar."], points:[
    "Korelasi cenderung NAIK mendekati satu pas krisis, jadi diversifikasi ilang tepat pas lo paling butuh. Penyebab mekanisnya jualan paksa dan margin call — orang jual apa aja yang bisa dijual.",
    "Risk parity: setarain KONTRIBUSI RISIKO, bukan nilai nominal. Portofolio 50:50 saham-obligasi itu sebenernya 90 persen risikonya dari saham — obligasinya cuma numpang nama.",
    "Concentration risk: 10 saham satu sektor = SATU taruhan besar yang dipecah sepuluh biar keliatan tersebar. Jebakan yang halus, karena di layar lo keliatan punya sepuluh nama beda.",
    "Manfaat diversifikasi nurun tajam setelah belasan posisi yang bener-bener beda karakter. Posisi ke-30 hampir nggak nambah perlindungan, tapi ongkosnya nyata: keunggulan lo jadi encer dan nggak kepantau.",
    "Time diversification: jalanin strategi di beberapa horizon biar nggak gantung ke satu rezim. Yang pendek panen pas pasar nyamping, yang menengah panen pas tren panjang."]},
-  {h:"Pengelolaan posisi & eksposur", mm:["Pyramiding","Rebalancing","Beta","Hedging"], points:[
+  {h:"Pengelolaan posisi & eksposur", mm:["Pyramiding :: Nambah pas tren UDAH untung, ukuran tambahan mengecil, stop dinaikin. Bukan nambah pas rugi.","Rebalancing :: Ngembaliin bobot ke target. Tapi di pasar bertren kuat, dia motong pemenang terus.","Beta :: Seberapa peka ke gerakan pasar. Bisa dikelola AKTIF, jadi ada gradasi antara all-in dan cash.","Hedging :: Ngeredam koreksi TANPA jual posisi utama. Ongkosnya premi, dan potensi naik ikut kepotong."], points:[
    "Pyramiding yang BENER: nambah posisi pas tren udah terbukti untung, ukuran tambahan MENGECIL tiap lapis, stop terus dinaikin. Yang SALAH: nambah pas lagi rugi, itu namanya averaging down.",
    "Rebalancing berkala ngembaliin bobot ke target biar profil risikonya terkendali. Catatan: di pasar yang lagi bertren kuat, rebalancing berkala justru motong pemenang terus — alternatifnya berbasis ambang.",
    "Beta portofolio = seberapa peka lo ke gerakan pasar. Yang menarik: beta bisa dikelola AKTIF pakai sinyal teknikal. Jadi lo nggak harus milih antara all-in atau cash, ada gradasi di tengah.",
    "Hedging (jual futures indeks atau beli put) ngeredam koreksi TANPA jual posisi utama. Kenapa nggak jual aja? Pajak, biaya transaksi, dan posisi yang susah dibangun ulang. Tapi ada ongkos premi."]},
-  {h:"Prinsip bertahan", mm:["Ergodicity","Asimetri","Likuiditas","Dokumentasi"], points:[
+  {h:"Prinsip bertahan", mm:["Ergodicity :: Rata-rata seratus orang TIDAK SAMA dengan hasil satu orang sepanjang waktu. Yang habis nggak ikut nikmatin.","Asimetri :: Potensi untung jauh ngelewatin risiko per ide. Lebih nentuin daripada win rate.","Likuiditas :: Posisi kegedean bikin stop loss kehilangan makna. Batasannya 1-5 persen volume harian.","Dokumentasi :: Aturan tertulis jadi pengikat disiplin. Pas panik, otak lo nggak bisa dipercaya."], points:[
    "Ergodicity: rata-rata seratus orang main TIDAK SAMA dengan hasil satu orang sepanjang waktu. Kalau LO yang habis, permainan lo BERAKHIR — lo nggak ikut nikmatin rata-ratanya. Bertahan dulu, baru optimal.",
    "Leverage berlebihan NURUNIN pertumbuhan majemuk, meski rata-rata return-nya naik. Sebabnya volatilitas ngegerus rata-rata geometris. Ada titik di mana lebih banyak leverage = lebih sedikit duit.",
    "Profil asimetris: potensi untung jauh ngelewatin risiko per ide. Ini lebih nentuin daripada win rate — sistem tetep untung meski lebih sering salah, asal yang bener untungnya gede banget.",
@@ -125,17 +125,17 @@ TD.registerNotes([
 
 {module:"cta-aset", tagline:"Menyesuaikan metode teknikal ke karakter tiap kelas aset.",
  sections:[
-  {h:"Obligasi & suku bunga", mm:["Harga vs yield","Kurva imbal hasil","Seri benchmark"], points:[
+  {h:"Obligasi & suku bunga", mm:["Harga vs yield :: BERLAWANAN, kayak jungkat-jungkit. Salah baca ini bikin bullish jadi bearish.","Kurva imbal hasil :: Yang dianalisis SELISIH antar tenor. Nyempit sampai minus = penanda resesi paling terkenal.","Seri benchmark :: Di Indonesia biasanya yield tenor 10 tahun, karena likuid dan nyambung terus."], points:[
    "Harga obligasi dan yield BERBANDING TERBALIK, kayak jungkat-jungkit. Wajib jelas yang digrafikkan harga atau yield — dua-duanya ngasih chart yang persis kebalik, dan salah baca bikin bullish jadi bearish.",
    "Analisis kurva: grafikkan SELISIH antar tenor (misal 10 tahun dikurangi 2 tahun) sebagai deret sendiri. Selisih ini punya tren, support resistance, dan pola — dan dia yang bawa informasi soal ekspektasi pertumbuhan.",
    "Di Indonesia, yang umum dianalisis itu YIELD seri acuan yang likuid, misalnya tenor 10 tahun. Support resistance di yield sering jadi rujukan penting, termasuk buat pelaku pasar saham.",
    "Kurva CURAM bagus buat bank: mereka minjem pendek (tabungan) dan minjemin panjang (KPR), jadi marginnya melebar. Kurva datar atau terbalik bikin margin kejepit."]},
-  {h:"Valuta asing", mm:["Base/quote","24 jam","Tick volume","Carry trade"], points:[
+  {h:"Valuta asing", mm:["Base/quote :: EURUSD naik = EURO yang nguat. Angka naik berarti mata uang di DEPAN yang menguat.","24 jam :: Terdesentralisasi, jadi gap antarsesi jarang. Sistem yang ngandelin gap pembukaan kehilangan sinyalnya.","Tick volume :: Nggak ada volume terpusat, jadi yang dipakai jumlah perubahan harga — bukan lot yang ditransaksiin.","Carry trade :: Pinjem bunga rendah taruh di bunga tinggi. Untung receh rutin sampai semua nutup posisi barengan."], points:[
    "EURUSD naik = EURO yang nguat. Aturan cepetnya: angka naik berarti mata uang yang di DEPAN (base) yang menguat. Sering ketuker, dan salahnya fatal karena lo buka posisi kebalik.",
    "Valas 24 jam dan terdesentralisasi, jadi gap antar sesi JARANG. Konsekuensi lain yang sering dilupain: nggak ada volume terpusat, jadi analis pakai tick volume — yang sebenernya ngitung jumlah perubahan harga, bukan lot.",
    "Carry trade: pinjem mata uang bunga rendah, taruh di bunga tinggi. Untung kecil tapi rutin — sampai suatu hari semua orang nutup posisi BARENGAN dan kurs gerak super cepat ngelawan lo. Istilahnya ngutip receh di depan mesin giling.",
    "Buat investor asing di saham rupiah: kurs ngaruh ke hasil dalam mata uang asal mereka. IHSG naik 12 persen tapi rupiah anjlok 20 persen = mereka RUGI. Dan arus dana asing ngikutin chart dolar, bukan chart lokal."]},
-  {h:"Komoditas & berjangka", mm:["Contango","Backwardation","Open interest","Continuous contract"], points:[
+  {h:"Komoditas & berjangka", mm:["Contango :: Berjangka lebih mahal dari spot. Tiap rollover lo jual murah beli mahal — rugi kecil yang berulang.","Backwardation :: Spot lebih mahal, tanda kelangkaan pasokan. Rollover-nya malah ngasih untung.","Open interest :: Kontrak yang masih dipegang, beda dari volume yang ngitung aktivitas. OI naik = duit baru masuk.","Continuous contract :: Metode penyambungannya ngaruh ke level historis. Support lama bisa angka hasil hitungan."], points:[
    "Contango: harga berjangka LEBIH MAHAL dari spot (ongkos gudang, asuransi, bunga). Efeknya buat posisi beli: tiap rollover lo jual murah beli mahal. Ini alesan banyak ETF komoditas kinerjanya kalah jauh dari komoditasnya.",
    "Backwardation: spot LEBIH MAHAL dari berjangka, artinya orang rebutan barang fisik sekarang juga. Buat posisi beli, tiap rollover malah untung — kebalikan dari contango.",
    "Open interest = kontrak yang masih dipegang orang (beda dari volume yang ngitung aktivitas harian). Harga naik + volume naik + OI naik = paket lengkap, tren kuat yang ditopang duit BARU.",
@@ -144,11 +144,11 @@ TD.registerNotes([
    "Likuiditas ngumpul di kontrak bulan TERDEKAT yang aktif. Analisis di kontrak sepi ngasih chart penuh celah dengan level yang nggak mewakili kesepakatan siapa pun.",
    "COT report: commercial (produsen dan pengguna barang fisik, mereka hedging) versus large speculator. Posisi spekulan yang EKSTREM = indikasi contrarian. Tapi datanya telat seminggu, jadi buat kerangka bukan pemicu.",
    "Spread trading: grafikkan SELISIH dua kontrak sebagai instrumen sendiri. Volatilitasnya jauh lebih rendah karena risiko arah pasar di dua kaki saling meniadakan."]},
-  {h:"Derivatif & opsi", mm:["Time decay","Implied volatility","Horizon pendek"], points:[
+  {h:"Derivatif & opsi", mm:["Time decay :: Opsi punya tanggal mati, nilainya kegerus tiap hari meski harga diem.","Implied volatility :: Tinggi menjelang peristiwa = premi mahal. Habis peristiwa IV anjlok, namanya volatility crush.","Horizon pendek :: Ketepatan WAKTU jadi sama pentingnya sama ketepatan arah. Justru di situ teknikal makin relevan."], points:[
    "Nilai opsi dipengaruhi WAKTU (theta) dan VOLATILITAS TERSIRAT (vega), bukan cuma arah. Makanya di opsi, bener arah doang nggak cukup — lo harus bener arah, bener BESARNYA, dan bener WAKTUNYA.",
    "IV sangat tinggi menjelang peristiwa = premi MAHAL, jadi lo butuh gerakan lebih besar dari ekspektasi buat untung. Habis peristiwanya lewat, IV anjlok dan nilai opsi kegerus meski arahnya bener. Namanya volatility crush.",
    "Horizon derivatif terbatas (ada tanggal mati), jadi ketepatan WAKTU sangat menentukan. Justru di situ teknikal makin relevan, bukan makin nggak berguna."]},
-  {h:"Emas, kripto & reksa dana", mm:["Emas vs USD","Kripto 24/7","ETF vs reksa dana"], points:[
+  {h:"Emas, kripto & reksa dana", mm:["Emas vs USD :: Berlawanan arah sama dolar dan suku bunga riil. Emas nggak ngasih bunga, jadi ada biaya kesempatan.","Kripto 24/7 :: Termasuk akhir pekan, jadi konsep gap hampir nggak berlaku. Volatilitas tinggi = stop lebih lebar.","ETF vs reksa dana :: ETF punya OHLC dan volume lengkap. Reksa dana cuma NAB harian — setengah kotak peralatan nggak kepakai."], points:[
    "Emas berlawanan arah sama dolar dan suku bunga riil. Logikanya: emas nggak ngasih bunga, jadi kalau obligasi ngasih 5 persen riil, buat apa nyimpen batu kuning? Tapi hubungan ini bisa putus pas krisis geopolitik.",
    "Kripto jalan 24/7 termasuk akhir pekan, jadi konsep gap hampir nggak berlaku dan batas hari itu relatif. Volatilitas tinggi = stop harus lebih LEBAR, dan supaya rugi rupiahnya sama, ukuran posisi dikecilin.",
    "Volume kripto nyebar lintas bursa dan sebagian pernah ketahuan DIGELEMBUNGIN. Volume palsu itu lebih bahaya daripada nggak ada volume sama sekali — indikator lo ngasih sinyal dari data karangan.",
@@ -159,27 +159,27 @@ TD.registerNotes([
 
 {module:"cta-statistik", tagline:"Mengukur dan menguji, bukan sekadar merasa.",
  sections:[
-  {h:"Volatilitas", mm:["Standar deviasi","Akar waktu","Clustering"], points:[
+  {h:"Volatilitas", mm:["Standar deviasi :: Diitung dari RETURN, bukan harga. Persen bikin saham gocapan dan jutaan bisa dibandingin.","Akar waktu :: Volatilitas harian dikali akar 252. Pakai akar karena risiko nggak numpuk rapi — naik turun saling makan.","Clustering :: Periode bergejolak diikuti bergejolak lagi, kayak cuaca. Dasar model ARCH dan GARCH."], points:[
    "Volatilitas historis = standar deviasi RETURN (biasanya log return) yang disetahunkan. Kenapa pakai return bukan harga? Karena goyang 100 perak di saham 500 itu gila, di saham 50.000 nggak kerasa.",
    "Penyetahunan pakai AKAR waktu: volatilitas harian dikali akar 252. Volatilitas harian 1 persen jadi sekitar 15,9 persen setahun. Kenapa akar? Karena risiko nggak numpuk rapi — naik turun saling makan.",
    "Volatility clustering: periode bergejolak cenderung diikuti bergejolak lagi, kayak cuaca. Dasar model ARCH/GARCH. Manfaat praktisnya: pas volatilitas naik, kecilin posisi dan lebarin stop."]},
-  {h:"Bentuk distribusi", mm:["Skewness","Kurtosis","Fat tails"], points:[
+  {h:"Bentuk distribusi", mm:["Skewness :: Negatif artinya ekor KIRI lebih panjang, rugi ekstrem lebih sering. Ciri khas pasar saham.","Kurtosis :: Tinggi artinya kejadian ekstrem lebih sering daripada tebakan normal.","Fat tails :: Yang katanya mustahil itu di pasar terjadi tiap beberapa tahun. Ini yang bikin LTCM kolaps."], points:[
    "Skewness negatif: ekor KIRI lebih panjang, rugi ekstrem lebih sering. Ciri khas pasar saham — naiknya nyicil, turunnya ngebut.",
    "Kurtosis tinggi (leptokurtosis) alias fat tails: kejadian ekstrem jauh lebih sering daripada tebakan kurva normal. Yang katanya mustahil itu di pasar terjadi tiap beberapa tahun.",
    "Efeknya: model risiko berbasis asumsi normal MEREMEHKAN potensi kerugian besar, dan salahnya persis di bagian yang paling nentuin kelangsungan portofolio. Ini yang bikin LTCM kolaps."]},
-  {h:"Hubungan antar deret", mm:["Korelasi","Beta","Spurious","Autokorelasi"], points:[
+  {h:"Hubungan antar deret", mm:["Korelasi :: Rentang -1 sampai +1. Cuma nangkep hubungan LURUS, dan BUKAN sebab akibat.","Beta :: KEMIRINGAN regresi, bukan korelasinya. Pasar gerak 1 persen, saham ini gerak berapa?","Spurious :: Dua deret bertren keliatan nyambung padahal nggak. Obatnya: analisis di return, bukan level harga.","Autokorelasi :: Positif = momentum, negatif = mean reversion. Cek dulu instrumennya masuk kubu mana."], points:[
    "Korelasi rentangnya -1 sampai +1. Dua catatan: dia cuma nangkep hubungan LURUS (buta sama yang melengkung), dan dia BUKAN sebab akibat.",
    "Beta = KEMIRINGAN regresi return aset terhadap return pasar (bukan korelasinya). Jawab: kalau pasar gerak 1 persen, saham ini biasanya gerak berapa? Dan beta itu berubah-ubah, jangan pakai angka tiga tahun lalu.",
    "Spurious correlation: dua deret yang sama-sama bertren bakal keliatan berkorelasi padahal nggak nyambung. Obatnya: analisis di RETURN, bukan level harga. Trennya hilang, korelasi bodongnya ikut hilang.",
    "Autokorelasi POSITIF = efek momentum (hari ini naik, besok condong naik) — bukti statistik buat premis tren. NEGATIF = mean reversion. Cek dulu instrumennya masuk kubu mana, baru pilih strateginya."]},
-  {h:"Alat analisis", mm:["Regresi & R²","Z score","Rolling window","Hurst"], points:[
+  {h:"Alat analisis", mm:["Regresi & R² :: Garis tren kuadrat terkecil, hasilnya sama siapa pun yang ngitung. R kuadrat = nilai rapornya.","Z score :: Berapa standar deviasi menyimpang dari rata-rata. Bollinger Bands itu versi visualnya.","Rolling window :: Jendela yang geser terus. Korelasi sekali buat sepuluh tahun itu angkanya bener tapi nggak menggambarkan.","Hurst :: Di atas 0,5 trending, tepat 0,5 acak, di bawah 0,5 mean reverting. Tes kepribadian instrumen."], points:[
    "Regresi linear = garis tren berbasis kuadrat terkecil. Ngilangin debat soal narik garis — hasilnya pasti sama siapa pun yang ngitung. Dasar dari linear regression channel.",
    "R kuadrat = nilai rapor buat garis tren lo, rentang 0 sampai 1. Mendekati 1 artinya harga nurut banget. Gunanya praktis: kalau R kuadrat rendah, jangan pakai strategi ngikut tren di situ.",
    "Z score: berapa standar deviasi sebuah nilai menyimpang dari rata-rata. Bikin hal yang beda skala jadi bisa dibandingin. Dan ini rahasia Bollinger Bands — pita atas bawahnya sebenernya cuma Z score plus minus 2.",
    "Rolling window: itung statistik di jendela yang geser terus. Ngitung korelasi sekali buat sepuluh tahun itu kayak ngitung rata-rata suhu Jakarta sama Puncak — angkanya bener tapi nggak ngegambarin apa pun.",
    "Hurst exponent: di atas 0,5 trending (keras kepala), tepat 0,5 acak, di bawah 0,5 mean reverting (plin-plan). Semacam tes kepribadian instrumen — tes dulu sebelum milih senjata.",
    "Stasioner artinya aturan mainnya nggak berubah. Harga jelas NGGAK stasioner (rata-rata 2010 dan 2025 beda jauh), tapi RETURN-nya jauh lebih stasioner. Makanya analisis kuantitatif dikerjain di return."]},
-  {h:"Pengujian yang jujur", mm:["Signifikansi","Benchmark","Geometris vs aritmatik","Median"], points:[
+  {h:"Pengujian yang jujur", mm:["Signifikansi :: Wajib dikoreksi sesuai JUMLAH strategi yang diuji. Uji 400, pasti ada yang keliatan dewa.","Benchmark :: Indikator ngasih 22 persen itu bagus nggak? Nggak ada yang tau sampai lo tau IHSG ngasih berapa.","Geometris vs aritmatik :: Plus 50 lalu minus 50 persen itu rata-rata aritmatiknya nol, padahal lo rugi 25 persen.","Median :: Lebih tahan outlier. Sembilan rugi satu jackpot, rata-ratanya untung padahal 90 persen buntung."], points:[
    "Uji signifikansi nilai apakah hasilnya mungkin muncul karena kebetulan. WAJIB dikoreksi sesuai jumlah strategi yang diuji — uji 400 kombinasi, pasti ada yang keliatan dewa.",
    "SELALU bandingin sama tolok ukur sederhana (beli lalu tahan, atau sinyal acak). Indikator lo ngasih 22 persen — bagus nggak? Nggak ada yang tau sampai lo tau IHSG tahun itu ngasih berapa.",
    "Rata-rata GEOMETRIS buat return majemuk. Aritmatik SELALU ngelebih-lebihin pas ada fluktuasi: +50 persen terus -50 persen itu rata-rata aritmatiknya 0, padahal lo rugi 25 persen.",
