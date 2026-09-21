@@ -3,30 +3,30 @@ TD.registerNotes([
 {module:"cta-siklus", tagline:"Dimensi waktu: periodisitas, seasonality, dan proyeksi titik balik.",
  sections:[
   {h:"Anatomi siklus", mm:["Amplitudo","Periode","Fase","Harmonik"], points:[
-   "Empat karakteristik: amplitudo (besar ayunan), periode (panjang siklus), fase (posisi waktu puncak/lembah), harmonik (hubungan antar siklus).",
-   "Phasing: menentukan titik awal siklus; tanpa fase yang tepat, panjang siklus yang benar pun menghasilkan proyeksi meleset."]},
+   "Empat ciri siklus: AMPLITUDO (seberapa tinggi ayunannya), PERIODE (berapa lama satu putaran), FASE (lagi di bagian mana sekarang), HARMONIK (hubungan sama siklus lain). Kayak ombak.",
+   "Phasing: nentuin TITIK AWAL siklus. Sering disepelekan padahal menentukan — tau periodenya 40 hari nggak ada gunanya kalau lo nggak tau hari ini lagi di hari ke berapa."]},
   {h:"Prinsip siklus", mm:["Summation","Harmonicity","Proportionality","Nominality","Translation"], points:[
-   "Summation: pergerakan harga = penjumlahan beberapa siklus berbeda panjang. Lembah yang bertepatan = tekanan turun jauh lebih besar.",
-   "Harmonicity: siklus berdekatan berhubungan kelipatan bilangan bulat kecil, biasanya dua kali lipat.",
-   "Proportionality: siklus berperiode lebih panjang cenderung beramplitudo lebih besar.",
-   "Nominality: ada sekumpulan panjang siklus baku yang jadi kerangka acuan lintas pasar.",
-   "Translation: right translation (puncak setelah titik tengah) = tren kuat; left translation = lemah."]},
+   "Summation: pergerakan harga = PENJUMLAHAN beberapa siklus yang panjangnya beda. Makanya chart keliatan berantakan. Kalau beberapa lembah kebetulan barengan, tekanan turunnya jauh lebih besar.",
+   "Harmonicity: siklus berdekatan berhubungan kelipatan bilangan bulat kecil, paling sering DUA KALI lipat. Jadi kalau lo nemu siklus 20 hari, wajar ada juga yang 40 dan 10.",
+   "Proportionality: siklus berperiode lebih panjang cenderung beramplitudo lebih besar. Gunanya buat ngukur ekspektasi — jangan berharap siklus pendek ngasih gerakan sebesar siklus panjang.",
+   "Nominality: ada sekumpulan panjang siklus BAKU yang berulang di banyak pasar (sekitar 20 hari, 40 hari, 20 minggu, 40 bulan). Mulai nyari dari angka-angka ini, jangan dari nol.",
+   "Translation: right translation (puncak di paruh AKHIR) = tren besarnya kuat. Left translation (puncak di paruh AWAL) = lemah. Pergeserannya sering muncul MENDAHULUI perubahan tren."]},
   {h:"Siklus ekonomi", mm:["Kitchin 40 bln","Juglar 7-11 th","Kondratieff 50-60 th","Presidential"], points:[
-   "Kitchin ≈ 40 bulan (siklus persediaan), sering ditemukan pada data saham.",
-   "Juglar ≈ 7–11 tahun (investasi), Kondratieff ≈ 50–60 tahun (gelombang panjang).",
-   "Presidential cycle AS: tahun ketiga secara historis paling kuat; sampelnya terbatas, jadi konteks saja."]},
+   "Kitchin sekitar 40 bulan (3–4 tahun), dasarnya siklus persediaan: perusahaan numpuk stok pas optimis, ngurangin pas pesimis. Paling sering ketemu di data saham.",
+   "Juglar sekitar 7–11 tahun (siklus investasi). Kondratieff sekitar 50–60 tahun (gelombang teknologi). Urutan dari pendek ke panjang: Kitchin, Juglar, Kondratieff.",
+   "Presidential cycle AS: tahun KETIGA historis paling kuat (pemerintah ndorong ekonomi menjelang pemilu). Tapi sampelnya cuma belasan siklus, jadi perlakuin sebagai konteks, bukan hukum."]},
   {h:"Seasonality", mm:["January effect","Sell in May","Komoditas"], points:[
-   "January effect: saham kapitalisasi kecil cenderung unggul di awal tahun (penjualan pajak akhir tahun + penataan portofolio).",
-   "Sell in May: November–April historis lebih tinggi dari Mei–Oktober; tidak konsisten tiap tahun.",
-   "Seasonality komoditas pertanian paling kokoh karena punya dasar fundamental nyata: pola tanam dan panen."]},
+   "January effect: saham kecil cenderung unggul di awal tahun (penjualan buat pajak akhir tahun + penataan portofolio). Catatan penting: sejak anomali ini terkenal, efeknya banyak kekikis.",
+   "Sell in May: November–April historis lebih tinggi dari Mei–Oktober. Datanya lumayan konsisten lintas pasar, TAPI penjelasan fundamentalnya lemah — kenapa harus Mei?",
+   "Seasonality komoditas pertanian paling kokoh karena penyebabnya FISIK dan nyata: pola tanam dan panen. Beda kelas dari anomali musiman saham yang sering cuma kebetulan statistik."]},
   {h:"Teknik & keterbatasan", mm:["Detrending","Analisis spektral","Toleransi waktu"], points:[
-   "Detrending (mis. harga dikurangi MA-nya) memisahkan komponen tren agar siklus terlihat.",
-   "Analisis spektral/Fourier mengurai deret jadi komponen frekuensi; terkendala data pasar yang tidak stasioner.",
-   "Risiko terbesar: panjang siklus bisa BERGESER. Wajib pakai toleransi waktu + konfirmasi harga.",
-   "Cara pakai yang sehat: siklus memberi ZONA WAKTU rawan berbalik, eksekusi tetap menunggu konfirmasi aksi harga."]}],
+   "Detrending (misal harga dikurangi MA-nya) misahin komponen tren biar siklusnya keliatan. TAPI hati-hati: penghalusan sendiri bisa MENCIPTAKAN gelombang semu (efek Slutzky-Yule).",
+   "Analisis spektral/Fourier ngurai deret jadi komponen frekuensi, kayak ngurai suara jadi nada penyusunnya. Kendalanya: data pasar itu NGGAK stasioner, jadi siklusnya bisa ilang di periode lain.",
+   "Risiko terbesar: panjang siklus bisa BERGESER, karena dia lahir dari kelakuan kolektif yang berubah. Toleransi waktunya sekitar 10–15 persen panjang siklus, plus wajib konfirmasi harga.",
+   "Cara pakai yang sehat: siklus ngasih ZONA WAKTU rawan berbalik, eksekusi TETAP nunggu konfirmasi aksi harga. Siklus jawab kapan harus merhatiin, harga jawab kapan harus masuk."]}],
  jebakan:[
-  "Seasonality rawan data mining — harus punya penjelasan ekonomi dan bertahan di luar sampel.",
-  "Siklus menekankan dimensi WAKTU, Elliott menekankan STRUKTUR BENTUK; keduanya saling melengkapi."]},
+  "JEBAKAN: seasonality rawan banget data mining. Uji 12 bulan x ratusan saham, pasti ada yang keliatan signifikan. Syarat layak pakai: ada penjelasan ekonominya DAN bertahan di luar sampel.",
+  "Siklus nekanin dimensi WAKTU, Elliott nekanin STRUKTUR BENTUK. Saling nutup kelemahan: Elliott lemah soal waktu, siklus lemah soal arah dan besaran."]},
 
 {module:"cta-breadth", tagline:"Kesehatan internal pasar, sentimen, dan hubungan antar pasar.",
  sections:[
