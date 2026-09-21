@@ -51,6 +51,12 @@
         <p>100 soal acak, waktu 120 menit, pembahasan keluar di akhir. Passing 70%.</p>
         <span class="mode-go">Mulai →</span>
       </button>
+      <button class="mode-card mode-h" data-mode="blueprint" type="button">
+        <span class="mode-emoji">🎓</span>
+        <h3>Simulasi Sertifikasi</h3>
+        <p>Pilih RTA atau CTA. Soal dibagi rata ke SEMUA unit kompetensi skema itu, lalu ditimer.</p>
+        <span class="mode-go">Mulai →</span>
+      </button>
       <button class="mode-card mode-c" data-mode="rapid" type="button">
         <span class="mode-emoji">⚡</span>
         <h3>Rapid Fire</h3>
@@ -142,7 +148,7 @@
       <h3>Jumlah soal</h3>
       <div class="chip-row" id="setupCounts"></div>
     </div>
-    <div class="setup-block">
+    <div class="setup-block" id="setupOptBlock">
       <h3>Opsi</h3>
       <label class="switch-row"><input type="checkbox" id="optShuffle" checked> <span>Acak urutan soal <small style="opacity:.6">(opsi jawaban selalu diacak)</small></span></label>
       <label class="switch-row"><input type="checkbox" id="optSkipSeen"> <span>Prioritaskan soal yang belum pernah keluar</span></label>

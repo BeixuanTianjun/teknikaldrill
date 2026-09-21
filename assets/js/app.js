@@ -129,8 +129,43 @@ const MODE_INFO = {
   weak:     { title: 'Drill Soal Salah', sub: 'Khusus soal yang pernah lo jawab salah atau lo tandai.', counts: [10, 20, 30, 0] },
   flash:    { title: 'Flashcard',        sub: 'Balik kartu buat lihat jawaban + pembahasan. Nggak ada skor.', counts: [10, 20, 30, 50] },
   chart:    { title: 'Drill Baca Chart',  sub: 'Hanya soal yang menampilkan grafik. Latih mata baca pola, level, dan formasi candle.', counts: [10, 20, 0] },
-  case:     { title: 'Studi Kasus',       sub: 'Skenario panjang dengan data lengkap, lalu soal turunannya. Semua soal di sini tingkat sulit.', counts: [8, 12, 0] }
+  case:     { title: 'Studi Kasus',       sub: 'Skenario panjang dengan data lengkap, lalu soal turunannya. Semua soal di sini tingkat sulit.', counts: [8, 12, 0] },
+  blueprint:{ title: 'Simulasi Sertifikasi', sub: 'Soal dibagi rata ke SEMUA unit kompetensi satu skema, lalu ditimer 1,2 menit per soal.', counts: [35, 70, 105] }
 };
+
+/* Menyusun paket soal untuk simulasi sertifikasi.
+
+   RTA dan CTA adalah dua skema terpisah, jadi satu sesi hanya mengambil unit
+   dari satu skema. Pembagiannya rata antar unit kompetensi, bukan acak dari
+   seluruh bank: skema BNSP menilai kompetensi PER UNIT, sehingga tiap unit
+   harus terwakili. Pengambilan acak biasa bisa meninggalkan satu unit tanpa
+   soal sama sekali, dan itu tidak menguji apa yang seharusnya diuji.
+
+   Catatan jujur: ini pembagian rata, BUKAN salinan bobot resmi ujian. Bobot
+   resmi per unit tidak dipublikasikan, jadi tidak ada yang bisa diklaim. */
+function paketSertifikasi(level, jumlah) {
+  const unit = TD.MODULES.filter(m => m.level === level).map(m => m.id);
+  const bank = allQuestions();
+  const per = {};
+  unit.forEach(id => { per[id] = shuffle(bank.filter(q => q.module === id)); });
+
+  const jatah = {};
+  unit.forEach(id => { jatah[id] = Math.floor(jumlah / unit.length); });
+  // sisa pembagian diberikan ke unit yang banknya paling tebal, supaya
+  // jatahnya pasti terpenuhi dan tidak ada unit yang kekurangan
+  let sisa = jumlah - unit.length * Math.floor(jumlah / unit.length);
+  unit.slice().sort((a, b) => per[b].length - per[a].length)
+      .forEach(id => { if (sisa > 0) { jatah[id]++; sisa--; } });
+
+  const out = [];
+  const kurang = [];
+  unit.forEach(id => {
+    const ambil = per[id].slice(0, jatah[id]);
+    if (ambil.length < jatah[id]) kurang.push(id);
+    out.push.apply(out, ambil);
+  });
+  return { soal: shuffle(out), jatah: jatah, unit: unit, kurang: kurang };
+}
 
 function openSetup(mode, presetModules) {
   setupState.mode = mode;
@@ -139,11 +174,17 @@ function openSetup(mode, presetModules) {
     ? Array.from(new Set(presetModules.map(id => modOf(id).level)))
     : ['RTA', 'CTA'];
   const info = MODE_INFO[mode];
-  setupState.count = mode === 'exam' ? 100 : 20;
+  setupState.count = mode === 'exam' ? 100 : mode === 'blueprint' ? 70 : 20;
+  if (mode === 'blueprint') setupState.levels = ['RTA'];   // satu skema per sesi
 
   $('#setupTitle').textContent = info.title;
   $('#setupSub').textContent = info.sub;
-  $('#setupModuleBlock').hidden = false;
+  // Pada simulasi sertifikasi, unit tidak dipilih sendiri: seluruh unit skema
+  // itu wajib terwakili, jadi pemilihnya disembunyikan.
+  $('#setupModuleBlock').hidden = mode === 'blueprint';
+  // Mode ini menyusun paketnya sendiri dan mengabaikan kedua opsi itu, jadi
+  // menampilkannya cuma bikin orang mengira pilihannya berpengaruh.
+  $('#setupOptBlock').hidden = mode === 'blueprint';
   $('#optShuffle').checked = true;
 
   $('#setupLevels').innerHTML = ['RTA', 'CTA'].map(l =>
@@ -178,9 +219,15 @@ function renderSetupModules() {
 function bindSetup() {
   $$('#setupLevels .chip').forEach(c => c.addEventListener('click', () => {
     const l = c.dataset.level;
-    const i = setupState.levels.indexOf(l);
-    if (i >= 0 && setupState.levels.length > 1) setupState.levels.splice(i, 1);
-    else if (i < 0) setupState.levels.push(l);
+    if (setupState.mode === 'blueprint') {
+      // RTA dan CTA adalah dua skema terpisah, jadi satu sesi hanya satu skema.
+      // Di sini pilihannya mengganti, bukan menambah seperti mode lain.
+      setupState.levels = [l];
+    } else {
+      const i = setupState.levels.indexOf(l);
+      if (i >= 0 && setupState.levels.length > 1) setupState.levels.splice(i, 1);
+      else if (i < 0) setupState.levels.push(l);
+    }
     $$('#setupLevels .chip').forEach(x => x.classList.toggle('is-on', setupState.levels.includes(x.dataset.level)));
     setupState.modules = TD.MODULES.filter(m => setupState.levels.includes(m.level)).map(m => m.id);
     renderSetupModules();
@@ -208,11 +255,33 @@ function candidatePool() {
 }
 
 function updateSetupSummary() {
+  if (setupState.mode === 'blueprint') return ringkasSertifikasi();
   const pool = candidatePool();
   const n = setupState.count === 0 ? pool.length : Math.min(setupState.count, pool.length);
   $('#setupSummary').innerHTML = `Tersedia <b>${pool.length}</b> soal cocok · sesi ini <b>${n}</b> soal`;
   $('#startBtn').disabled = pool.length === 0;
   $('#startBtn').style.opacity = pool.length === 0 ? .5 : 1;
+}
+
+/* Memperlihatkan komposisi paket sebelum sesi dimulai, supaya jelas berapa
+   soal yang diambil dari tiap unit dan dari skema mana. */
+function ringkasSertifikasi() {
+  const level = setupState.levels[0] || 'RTA';
+  const paket = paketSertifikasi(level, setupState.count);
+  const menit = Math.round(setupState.count * 1.2);
+  const rincian = paket.unit.map(id =>
+    `<span class="bp-unit">${esc(modOf(id).name)} <b>${paket.jatah[id]}</b></span>`).join('');
+
+  $('#setupSummary').innerHTML =
+    `Skema <b>${esc(level)}</b> · <b>${paket.soal.length}</b> soal dari <b>${paket.unit.length}</b> unit kompetensi · waktu <b>${menit} menit</b>` +
+    `<div class="bp-grid">${rincian}</div>` +
+    (paket.kurang.length
+      ? `<div class="bp-warn">Bank soal belum cukup untuk memenuhi jatah penuh di: ${paket.kurang.map(id => esc(modOf(id).name)).join(', ')}.</div>`
+      : '') +
+    `<div class="bp-note">Pembagiannya RATA antar unit, bukan salinan bobot resmi ujian. Bobot resmi per unit tidak dipublikasikan, jadi yang dijamin di sini cuma satu: semua unit kompetensi kebagian soal.</div>`;
+
+  $('#startBtn').disabled = paket.soal.length === 0;
+  $('#startBtn').style.opacity = paket.soal.length === 0 ? .5 : 1;
 }
 
 /* Merapatkan soal berantai.
@@ -249,10 +318,17 @@ let sess = null;
 let tickHandle = null;
 
 function startSession() {
-  let pool = candidatePool();
+  let pool;
+  if (setupState.mode === 'blueprint') {
+    pool = paketSertifikasi(setupState.levels[0] || 'RTA', setupState.count).soal;
+  } else {
+    pool = candidatePool();
+  }
   if (!pool.length) { toast('Nggak ada soal yang cocok sama filter ini.', 'bad'); return; }
 
-  if ($('#optSkipSeen').checked) {
+  if (setupState.mode === 'blueprint') {
+    // paketnya sudah diacak dan komposisinya sengaja dijaga; jangan disaring ulang
+  } else if ($('#optSkipSeen').checked) {
     const fresh = pool.filter(q => !S.seen[q.id]);
     const rest  = pool.filter(q => S.seen[q.id]);
     pool = shuffle(fresh).concat(shuffle(rest));
@@ -280,7 +356,8 @@ function startSession() {
     bestStreak: 0,
     startTs: Date.now(),
     perQ: setupState.mode === 'rapid' ? 20 : 0,
-    totalLimit: setupState.mode === 'exam' ? 120 * 60 : 0,
+    totalLimit: setupState.mode === 'exam' ? 120 * 60
+              : setupState.mode === 'blueprint' ? Math.round(picked.length * 1.2) * 60 : 0,
     qStartTs: Date.now(),
     locked: false
   };
@@ -385,7 +462,7 @@ function answer(origIdx) {
     else b.classList.add('is-dim');
   });
 
-  if (sess.mode === 'exam') { setTimeout(next, 220); return; }
+  if (sess.mode === 'exam' || sess.mode === 'blueprint') { setTimeout(next, 220); return; }
 
   $('#qFoot').hidden = true;
   const badge = $('#explainBadge');
