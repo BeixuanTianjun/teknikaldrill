@@ -29,7 +29,7 @@ TD.register([
  q:"Pola koreksi zigzag memiliki struktur internal...",
  options:["5-5-3","5-3-5","3-3-5","3-3-3"],
  answer:1,
- explain:"Zigzag berlabel A-B-C dengan gelombang A terdiri lima sub gelombang, B tiga, dan C lima. Struktur ini menghasilkan koreksi yang tajam dan dalam."},
+ explain:"Zigzag berlabel A-B-C dengan gelombang A terdiri lima sub gelombang, B tiga, dan C lima. Struktur 5-3-5 inilah yang membedakannya dari flat yang berpola 3-3-5. Karena A sudah berupa impuls, zigzag menghasilkan koreksi yang tajam dan dalam, dan lazim muncul sebagai gelombang 2 yang membuat banyak pelaku mengira tren baru saja berakhir."},
 {id:"cta-ew-007",module:"cta-elliott",level:"CTA",difficulty:"sulit",
  q:"Pola flat correction memiliki struktur internal...",
  options:["5-5-3","3-5-3","3-3-5","5-3-5"],

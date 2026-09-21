@@ -104,7 +104,7 @@ TD.register([
  q:"Time diversification pada strategi teknikal berarti...",
  options:["Menyesuaikan ukuran posisi mengikuti perubahan volatilitas pasar","Menjalankan strategi pada beberapa horizon waktu yang berbeda","Membagi modal secara bertahap sepanjang beberapa periode masuk","Menahan posisi lebih lama agar biaya transaksinya menurun"],
  answer:1,
- explain:"Strategi jangka pendek dan jangka menengah unggul pada kondisi pasar yang berbeda. Menggabungkan beberapa horizon membuat kurva ekuitas gabungan lebih stabil."},
+ explain:"Strategi jangka pendek dan jangka menengah unggul pada kondisi pasar yang berbeda: yang pendek panen saat pasar bergerak mendatar, yang menengah panen saat tren berjalan panjang. Karena keduanya jarang merugi bersamaan, penurunan modal gabungannya lebih dangkal daripada masing-masing, dan kurva ekuitasnya jauh lebih rata."},
 {id:"cta-pf-022",module:"cta-portfolio",level:"CTA",difficulty:"sedang",
  q:"Dokumentasi kebijakan risiko tertulis penting bagi analis profesional karena...",
  options:["Mempermudah penghitungan kinerja portofolio pada akhir periode","Menjadi dasar penentuan imbalan bagi pengelola portofolio","Menjadi acuan objektif saat tekanan pasar tinggi dan mendukung akuntabilitas","Memenuhi persyaratan administratif yang ditetapkan otoritas pasar modal"],
