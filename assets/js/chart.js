@@ -125,8 +125,113 @@ function fmtPrice(v) {
   return v.toFixed(2);
 }
 
+/* Menyusun kolom point and figure dari deret penutupan.
+
+   Aturannya: selama harga bergerak searah kolom berjalan sebesar minimal satu
+   box, kotak baru ditambahkan pada kolom itu. Kolom baru berlawanan arah hanya
+   dibuka bila harga berbalik sejauh reversal kali box. Karena syarat itulah
+   pergerakan kecil tidak meninggalkan jejak sama sekali, dan sumbu waktu
+   menjadi tidak seragam. */
+function pfColumns(closes, box, reversal) {
+  const kotak = p => Math.floor(p / box);           // indeks kotak untuk sebuah harga
+  const kolom = [];
+  let arah = 0, atas = 0, bawah = 0;
+
+  closes.forEach(p => {
+    const k = kotak(p);
+    if (arah === 0) {                                // kolom pertama belum berarah
+      if (!kolom.length) { kolom.push({ dir: 1, from: k, to: k }); atas = bawah = k; return; }
+      if (k >= atas + 1) { arah = 1; atas = k; kolom[0] = { dir: 1, from: bawah, to: atas }; }
+      else if (k <= bawah - 1) { arah = -1; bawah = k; kolom[0] = { dir: -1, from: atas, to: bawah }; }
+      return;
+    }
+    const kini = kolom[kolom.length - 1];
+    if (arah === 1) {
+      if (k > atas) { atas = k; kini.to = k; }
+      else if (k <= atas - reversal) {               // pembalikan cukup jauh: buka kolom O
+        bawah = k; arah = -1;
+        kolom.push({ dir: -1, from: atas - 1, to: k });
+      }
+    } else {
+      if (k < bawah) { bawah = k; kini.to = k; }
+      else if (k >= bawah + reversal) {              // pembalikan cukup jauh: buka kolom X
+        atas = k; arah = 1;
+        kolom.push({ dir: 1, from: bawah + 1, to: k });
+      }
+    }
+  });
+  return kolom;
+}
+
+/* ---- penggambar point and figure ---- */
+function renderPF(spec) {
+  const closes = (spec.data || []).map(d => Array.isArray(d) ? d[3] : d);
+  if (!closes.length) return null;
+  const box = spec.box || 10;
+  const reversal = spec.reversal || 3;
+  const kolom = pfColumns(closes, box, reversal);
+  if (!kolom.length) return null;
+
+  let kMin = Infinity, kMax = -Infinity;
+  kolom.forEach(c => {
+    kMin = Math.min(kMin, c.from, c.to);
+    kMax = Math.max(kMax, c.from, c.to);
+  });
+  kMin -= 1; kMax += 1;
+
+  const nBaris = kMax - kMin + 1;
+  const nKolom = kolom.length;
+  const cell = Math.max(9, Math.min(34, (W - PAD.l - PAD.r) / Math.max(nKolom, 4)));
+  const H_PRICE = spec.height || Math.min(300, Math.max(150, nBaris * cell));
+  const sel = H_PRICE / nBaris;                      // tinggi satu kotak harga
+  const H = PAD.t + H_PRICE + PAD.b + 16;      // ruang tambahan untuk keterangan box
+
+  const cx = i => PAD.l + cell * (i + 0.5);
+  const cy = k => PAD.t + H_PRICE - (k - kMin + 0.5) * sel;
+
+  const svg = el('svg', {
+    viewBox: '0 0 ' + W + ' ' + H, class: 'tdc tdc-pf', role: 'img',
+    preserveAspectRatio: 'xMidYMid meet',
+    'aria-label': spec.alt || 'Grafik point and figure berisi kolom X dan O'
+  });
+
+  // kisi harga: satu garis per beberapa kotak supaya tidak terlalu padat
+  const lompat = Math.max(1, Math.round(nBaris / 6));
+  for (let k = kMin; k <= kMax; k++) {
+    if ((k - kMin) % lompat) continue;
+    const yy = cy(k) + sel / 2;
+    svg.appendChild(el('line', { x1: PAD.l, y1: yy, x2: PAD.l + cell * nKolom, y2: yy, class: 'tdc-grid' }));
+    svg.appendChild(el('text', { x: PAD.l + cell * nKolom + 7, y: yy + 3.5, class: 'tdc-axis' }, fmtPrice(k * box)));
+  }
+
+  kolom.forEach((c, i) => {
+    const naik = c.dir === 1;
+    const a = Math.min(c.from, c.to), b = Math.max(c.from, c.to);
+    for (let k = a; k <= b; k++) {
+      const X = cx(i), Y = cy(k), r = Math.min(cell, sel) * 0.34;
+      if (naik) {
+        svg.appendChild(el('line', { x1: X - r, y1: Y - r, x2: X + r, y2: Y + r, class: 'tdc-pf-x' }));
+        svg.appendChild(el('line', { x1: X - r, y1: Y + r, x2: X + r, y2: Y - r, class: 'tdc-pf-x' }));
+      } else {
+        svg.appendChild(el('circle', { cx: X, cy: Y, r: r, class: 'tdc-pf-o' }));
+      }
+    }
+  });
+
+  (spec.overlays || []).filter(o => o.type === 'hline').forEach(o => {
+    const yy = cy(Math.floor(o.price / box)) + sel / 2;
+    svg.appendChild(el('line', { x1: PAD.l, y1: yy, x2: PAD.l + cell * nKolom, y2: yy, class: 'tdc-hline' }));
+    if (o.label) svg.appendChild(el('text', { x: PAD.l + 4, y: yy - 4, class: 'tdc-label' }, o.label));
+  });
+
+  svg.appendChild(el('text', { x: PAD.l, y: PAD.t + H_PRICE + 30, class: 'tdc-panel-title' },
+    'Box ' + box + ' · reversal ' + reversal + ' box (butuh ' + (box * reversal) + ' poin untuk kolom baru)'));
+  return svg;
+}
+
 /* ---- penggambar utama ---- */
 TD.renderChart = function (spec) {
+  if (spec.kind === 'pf') return renderPF(spec);
   const data = spec.data || [];
   if (!data.length) return null;
 
@@ -183,6 +288,45 @@ TD.renderChart = function (spec) {
     if (yy < PAD.t - 1 || yy > PAD.t + H_PRICE + 1) return;
     svg.appendChild(el('line', { x1: PAD.l, y1: yy, x2: W - PAD.r, y2: yy, class: 'tdc-grid' }));
     svg.appendChild(el('text', { x: W - PAD.r + 7, y: yy + 3.5, class: 'tdc-axis' }, fmtPrice(v)));
+  });
+
+  // Volume profile: histogram mendatar di sisi kanan, volume per LEVEL HARGA.
+  // Berbeda dari panel volume biasa yang menghitung volume per satuan WAKTU.
+  // Volume tiap batang disebar rata ke seluruh rentang high-low batang itu,
+  // sehingga batang berentang lebar tidak menumpuk seluruh bobotnya di satu level.
+  overlays.filter(o => o.type === 'vprofile').forEach(o => {
+    const nB = o.buckets || 24;
+    const lebar = plotW * (o.width || 0.26);
+    const ember = new Array(nB).fill(0);
+    const kotak = harga => Math.min(nB - 1, Math.max(0, Math.floor((harga - lo) / (hi - lo) * nB)));
+
+    data.forEach(d => {
+      const v = d[4] || 0;
+      const a = kotak(d[2]), b = kotak(d[1]);
+      const n = b - a + 1;
+      for (let k = a; k <= b; k++) ember[k] += v / n;
+    });
+
+    const vmax = Math.max.apply(null, ember) || 1;
+    const poc = ember.indexOf(vmax);                 // point of control: level tersibuk
+    const tinggi = H_PRICE / nB;
+    const x0 = W - PAD.r;                            // batang tumbuh ke KIRI dari tepi kanan
+
+    ember.forEach((v, k) => {
+      const w = (v / vmax) * lebar;
+      if (w < 0.5) return;
+      svg.appendChild(el('rect', {
+        x: x0 - w, y: PAD.t + H_PRICE - (k + 1) * tinggi,
+        width: w, height: Math.max(1, tinggi - 1),
+        class: 'tdc-vp' + (k === poc ? ' is-poc' : '')
+      }));
+    });
+
+    if (o.showPoc !== false) {
+      const yy = PAD.t + H_PRICE - (poc + 0.5) * tinggi;
+      svg.appendChild(el('line', { x1: PAD.l, y1: yy, x2: x0, y2: yy, class: 'tdc-poc' }));
+      svg.appendChild(el('text', { x: PAD.l + 4, y: yy - 4, class: 'tdc-label' }, o.label || 'POC'));
+    }
   });
 
   // zona (di belakang candle)

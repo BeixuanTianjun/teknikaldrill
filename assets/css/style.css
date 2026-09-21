@@ -490,3 +490,13 @@ kbd{font-family:var(--mono);font-size:.78em;background:var(--surface-2);border:1
 .tdc-kumo.is-down{fill:var(--bad);opacity:.26}
 .tdc-tenkan{fill:none;stroke:var(--info);stroke-width:1.5}
 .tdc-kijun{fill:none;stroke:var(--d);stroke-width:1.5}
+
+/* ===== point and figure & volume profile ===== */
+/* Kolom X memakai silang dan kolom O memakai lingkaran, jadi arahnya terbaca
+   dari BENTUK, bukan dari warna saja. */
+.tdc-pf-x{stroke:var(--ok);stroke-width:2;stroke-linecap:round}
+.tdc-pf-o{fill:none;stroke:var(--bad);stroke-width:2}
+/* Batang profil volume sengaja redam supaya tidak bersaing dengan candle. */
+.tdc-vp{fill:var(--ink-3);opacity:.20}
+.tdc-vp.is-poc{fill:var(--accent);opacity:.55}
+.tdc-poc{stroke:var(--accent);stroke-width:1.5;stroke-dasharray:5 4;opacity:.85}
