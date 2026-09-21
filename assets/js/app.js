@@ -1047,6 +1047,24 @@ function bind() {
     save(); renderStats(); renderHome();
     toast('Pencapaian direset ke 0 — semua unit balik ke belum disentuh.', 'ok');
   }
+  /* Ekspor hasil: memakai dialog cetak bawaan, yang di semua peramban modern
+     punya pilihan Simpan sebagai PDF. Kop laporan diisi dulu supaya berkasnya
+     berdiri sendiri dan jelas sesi mana yang dicetak. */
+  $('#exportBtn').addEventListener('click', () => {
+    // Data sesi terakhir sudah tersimpan di riwayat saat sesi selesai,
+    // jadi tidak perlu menyimpannya kedua kali di variabel terpisah.
+    const h = S.history[0];
+    if (!h) { toast('Belum ada hasil untuk dicetak.', 'bad'); return; }
+    const t = new Date(h.ts);
+    const tgl = t.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+    const jam = t.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+    const nama = MODE_INFO[h.mode] ? MODE_INFO[h.mode].title : h.mode;
+    $('#printMeta').textContent =
+      `${nama} · ${h.total} soal · benar ${h.correct} (${h.pct}%) · ` +
+      `waktu ${fmtTime(h.dur)} · ${tgl} pukul ${jam}`;
+    window.print();
+  });
+
   $('#resetProgress').addEventListener('click', resetProgress);
   $('#resetHome').addEventListener('click', resetProgress);
 

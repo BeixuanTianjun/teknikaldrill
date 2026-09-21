@@ -238,6 +238,10 @@
 
   <!-- ============ RESULT ============ -->
   <section class="view view-result" id="view-result">
+    <div class="print-head" id="printHead" aria-hidden="true">
+      <h1>Laporan Hasil Latihan — TeknikalDrill</h1>
+      <p id="printMeta"></p>
+    </div>
     <div class="result-hero" id="resultHero">
       <div class="score-ring" id="scoreRing"><span id="scorePct">0%</span></div>
       <h1 id="resultTitle">Selesai!</h1>
@@ -246,6 +250,7 @@
       <div class="result-actions">
         <button class="btn btn-primary" id="retryWrong" type="button">Ulang soal yang salah</button>
         <button class="btn btn-ghost" id="retrySame" type="button">Ulang sesi baru</button>
+        <button class="btn btn-ghost" id="exportBtn" type="button">Simpan PDF</button>
         <button class="btn btn-ghost" id="backHome" type="button">Beranda</button>
       </div>
     </div>

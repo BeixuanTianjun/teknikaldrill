@@ -531,3 +531,38 @@ kbd{font-family:var(--mono);font-size:.78em;background:var(--surface-2);border:1
   margin-top:9px;padding:8px 11px;border-radius:9px;font-size:12.5px;line-height:1.5;
   background:color-mix(in srgb,var(--accent) 14%,transparent);
   border-left:3px solid var(--accent);color:var(--ink-2)}
+
+/* ===== ekspor hasil ke PDF lewat cetak bawaan browser ===== */
+/* Dipilih daripada memuat pustaka PDF: tidak menambah berat, tetap jalan
+   offline, dan pengguna bisa langsung pilih Simpan sebagai PDF di dialog
+   cetak mana pun, termasuk di ponsel. */
+.print-head{display:none}
+
+@media print{
+  /* Sisakan hanya halaman hasil. Menyembunyikan lewat anak langsung body
+     tidak bisa dipakai: seluruh tampilan berada di dalam <main>, jadi
+     aturan itu justru mengosongkan seluruh halaman cetak. */
+  .view:not(.view-result),
+  .topbar, .result-actions, #reviewFilter, .back-link, .toast,
+  .confetti, .bp-note{display:none !important}
+
+  .view-result{display:block !important;animation:none}
+  .print-head{display:block;margin-bottom:18px;border-bottom:2px solid #333;padding-bottom:10px}
+  .print-head h1{font-size:18pt;margin:0 0 4px}
+  .print-head p{font-size:9.5pt;color:#555;margin:0}
+
+  /* warna latar sering dibuang printer, jadi andalkan garis dan teks */
+  *{background:transparent !important;color:#111 !important;box-shadow:none !important}
+  .rev, .breakdown > *, .result-stats > *{
+    border:1px solid #bbb !important;border-radius:6px;padding:8px 10px;margin-bottom:7px}
+  .rev{break-inside:avoid;page-break-inside:avoid}
+  .section-head{margin:16px 0 8px;page-break-after:avoid}
+  .section-head h2{font-size:13pt}
+  .score-ring{border:3px solid #333 !important;border-radius:50%}
+
+  /* jejak jawaban benar/salah tetap terbaca tanpa warna */
+  .rev.is-wrong{border-left:4px solid #111 !important}
+  .rev.is-wrong .rev-line b::after{content:' (salah)'}
+
+  @page{margin:14mm}
+}
