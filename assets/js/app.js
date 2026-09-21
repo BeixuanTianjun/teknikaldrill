@@ -215,6 +215,35 @@ function updateSetupSummary() {
   $('#startBtn').style.opacity = pool.length === 0 ? .5 : 1;
 }
 
+/* Merapatkan soal berantai.
+
+   Soal pada kasus berantai membangun hitungan bertahap: LANGKAH 2 memakai
+   hasil LANGKAH 1, dan seterusnya. Kalau urutannya teracak atau terpotong di
+   tengah, rangkaiannya kehilangan makna. Jadi seluruh soal satu rantai
+   dikumpulkan ke posisi soal pertamanya yang muncul, lalu diurutkan kembali
+   menurut nomor langkahnya. Soal biasa tidak tersentuh. */
+function rapatkanRantai(pool) {
+  const rantai = {};
+  pool.forEach(q => {
+    if (q.caseId && q.caseId.indexOf('rantai-') === 0) {
+      (rantai[q.caseId] = rantai[q.caseId] || []).push(q);
+    }
+  });
+  if (!Object.keys(rantai).length) return pool;
+
+  Object.values(rantai).forEach(g => g.sort((a, b) => a.id.localeCompare(b.id)));
+  const sudah = {};
+  const out = [];
+  pool.forEach(q => {
+    const k = q.caseId && q.caseId.indexOf('rantai-') === 0 ? q.caseId : null;
+    if (!k) { out.push(q); return; }
+    if (sudah[k]) return;                 // anggota lain sudah ikut di posisi pertama
+    sudah[k] = true;
+    rantai[k].forEach(x => out.push(x));
+  });
+  return out;
+}
+
 /* ---------------- session ---------------- */
 let sess = null;
 let tickHandle = null;
@@ -230,6 +259,8 @@ function startSession() {
   } else {
     pool = $('#optShuffle').checked ? shuffle(pool) : pool.slice();
   }
+
+  pool = rapatkanRantai(pool);
 
   const n = setupState.count === 0 ? pool.length : Math.min(setupState.count, pool.length);
   // Urutan opsi selalu diacak, terlepas dari pilihan acak urutan soal:
