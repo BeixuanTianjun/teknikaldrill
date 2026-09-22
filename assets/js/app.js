@@ -145,7 +145,13 @@ const MODE_INFO = {
    resmi per unit tidak dipublikasikan, jadi tidak ada yang bisa diklaim. */
 function paketSertifikasi(level, jumlah) {
   const unit = TD.MODULES.filter(m => m.level === level).map(m => m.id);
-  const bank = allQuestions();
+  // Soal berantai tidak ikut ke paket sertifikasi. Satu rantai berisi empat
+  // soal dan seluruhnya ada di satu unit, padahal jatah per unit di sini cuma
+  // sekitar lima soal: kalau ikut, satu rantai menghabiskan hampir seluruh
+  // jatah unit itu. Kalau diambil sebagian, yang muncul cuma "LANGKAH 3"
+  // tanpa langkah sebelumnya — membingungkan pada ujian berwaktu. Rantai
+  // sudah punya tempat sendiri di mode Studi Kasus.
+  const bank = allQuestions().filter(q => !(q.caseId && q.caseId.indexOf('rantai-') === 0));
   const per = {};
   unit.forEach(id => { per[id] = shuffle(bank.filter(q => q.module === id)); });
 
@@ -268,7 +274,9 @@ function updateSetupSummary() {
 function ringkasSertifikasi() {
   const level = setupState.levels[0] || 'RTA';
   const paket = paketSertifikasi(level, setupState.count);
-  const menit = Math.round(setupState.count * 1.2);
+  // dihitung dari jumlah soal yang BENAR-BENAR terkumpul, bukan dari angka yang
+  // diklik, supaya waktunya tidak berbeda dari yang dijalankan saat bank kurang
+  const menit = Math.round(paket.soal.length * 1.2);
   const rincian = paket.unit.map(id =>
     `<span class="bp-unit">${esc(modOf(id).name)} <b>${paket.jatah[id]}</b></span>`).join('');
 
