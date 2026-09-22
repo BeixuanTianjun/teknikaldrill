@@ -1,38 +1,75 @@
-# TeknikalDrill — Mock Test RTA & CTA
+# TeknikalDrill — Mock Test Sertifikasi Analis Pasar Modal
 
-Aplikasi web latihan soal bergaya Quizizz untuk persiapan sertifikasi analis teknikal
-**RTA® (Regular/Registered Technical Analyst)** dan **CTA® (Certified Technical Analyst)**.
+Aplikasi web latihan soal bergaya Quizizz untuk persiapan sertifikasi analis pasar modal Indonesia:
+**RTA** dan **CTA** (analisis teknikal) serta **RSA** dan **CSA** (analisis efek).
 Setiap soal punya **pembahasan**, jadi yang salah langsung ketahuan salahnya di mana.
 
 Statis sepenuhnya — tanpa build, tanpa server, tanpa dependency. Buka `index.html`, langsung jalan.
+Bisa juga **dipasang sebagai aplikasi** dan dipakai **tanpa internet** (lihat bagian *Pasang sebagai aplikasi*).
 
 ## Isi bank soal
 
-**537 soal orisinal** yang disusun mengikuti unit kompetensi skema sertifikasi analis teknikal BNSP,
-**61 di antaranya soal baca chart** yang menampilkan grafik harga:
+**1.519 soal orisinal** yang disusun mengikuti unit kompetensi empat skema sertifikasi,
+**68 di antaranya soal baca chart** yang menampilkan grafik harga.
 
-| Level | Unit kompetensi | Soal |
+| Skema | Bidang | Unit | Soal |
+|---|---|---|---|
+| RTA | Analisis teknikal — pelaksanaan | 7 | 438 |
+| CTA | Analisis teknikal — pengelolaan | 9 | 401 |
+| RSA | Analisis efek — pelaksanaan | 7 | 282 |
+| CSA | Analisis efek — pengelolaan | 9 | 398 |
+
+<details>
+<summary>Rincian per unit kompetensi</summary>
+
+| Skema | Unit kompetensi | Soal |
 |---|---|---|
-| RTA | Pengertian & Penggunaan Analisis Teknikal | 35 |
-| RTA | Mengkonstruksi Grafik (Chart) | 31 |
-| RTA | Trend, Reversal & Consolidation | 35 |
-| RTA | Menentukan Level Kunci Harga | 30 |
-| RTA | Menerapkan Indikator Teknikal | 45 |
-| RTA | Rencana Trading & Manajemen Risiko | 28 |
-| RTA | Menyusun & Mempublikasikan Riset Teknikal | 20 |
-| CTA | Teori & Filosofi Lanjutan | 22 |
-| CTA | Elliott Wave & Rasio Fibonacci | 25 |
-| CTA | Candlestick & Price Action Lanjutan | 25 |
-| CTA | Siklus, Seasonality & Analisis Waktu | 18 |
-| CTA | Market Breadth, Sentimen & Intermarket | 22 |
-| CTA | Sistem Trading, Backtesting & Optimasi | 25 |
-| CTA | Manajemen Portofolio & Position Sizing | 22 |
-| CTA | Analisis Multi-Aset | 25 |
-| CTA | Statistik & Kuantitatif untuk Analis | 20 |
+| RTA | Pengertian & Penggunaan Analisis Teknikal | 60 |
+| RTA | Mengkonstruksi Grafik (Chart) | 53 |
+| RTA | Trend, Reversal & Consolidation | 85 |
+| RTA | Menentukan Level Kunci Harga | 59 |
+| RTA | Menerapkan Indikator Teknikal | 75 |
+| RTA | Rencana Trading & Manajemen Risiko | 72 |
+| RTA | Menyusun & Mempublikasikan Riset Teknikal | 34 |
+| CTA | Teori & Filosofi Lanjutan | 45 |
+| CTA | Elliott Wave & Rasio Fibonacci | 45 |
+| CTA | Candlestick & Price Action Lanjutan | 49 |
+| CTA | Siklus, Seasonality & Analisis Waktu | 33 |
+| CTA | Market Breadth, Sentimen & Intermarket | 41 |
+| CTA | Sistem Trading, Backtesting & Optimasi | 55 |
+| CTA | Manajemen Portofolio & Position Sizing | 46 |
+| CTA | Analisis Multi-Aset | 45 |
+| CTA | Statistik & Kuantitatif untuk Analis | 42 |
+| RSA | Struktur & Mekanisme Pasar Modal | 42 |
+| RSA | Ekonomi Makro & Analisis Industri | 39 |
+| RSA | Membaca Laporan Keuangan | 38 |
+| RSA | Analisis Rasio & Kinerja Keuangan | 39 |
+| RSA | Valuasi Dasar Saham | 42 |
+| RSA | Efek Utang & Instrumen Pasar Uang | 42 |
+| RSA | Regulasi, Etika & Laporan Riset | 40 |
+| CSA | Kualitas Laba & Akuntansi Lanjutan | 34 |
+| CSA | Valuasi Arus Kas Terdiskonto | 44 |
+| CSA | Valuasi Relatif & Valuasi Khusus | 44 |
+| CSA | Pemodelan Keuangan & Proyeksi | 44 |
+| CSA | Efek Pendapatan Tetap Lanjutan | 47 |
+| CSA | Teori Portofolio & Manajemen Investasi | 50 |
+| CSA | Derivatif & Manajemen Risiko | 49 |
+| CSA | Aksi Korporasi & Situasi Khusus | 47 |
+| CSA | Tata Kelola, ESG & Standar Riset | 39 |
 
-Soal dan materi ditulis sendiri berdasarkan literatur standar analisis teknikal (Murphy, Wilder,
-Dow Theory, Elliott, Wyckoff, Pring, Bollinger, dll), **bukan hasil menyalin bank soal berbayar
-milik pihak lain** dan bukan soal ujian resmi BNSP/LSP.
+</details>
+
+**41,9% soal tergolong HOTS** (C4 ke atas menurut taksonomi Bloom): menuntut analisis kasus,
+penimbangan bukti yang bertentangan, atau pengambilan keputusan — bukan sekadar mengenali istilah.
+Sebarannya diukur oleh `tools/audit-syllabus.js`.
+
+Soal dan materi ditulis sendiri berdasarkan literatur standar, **bukan hasil menyalin bank soal
+berbayar milik pihak lain** dan bukan soal ujian resmi dari lembaga sertifikasi mana pun.
+
+> **Catatan kejujuran.** Rincian unit kompetensi disusun dari ruang lingkup yang dipublikasikan
+> masing-masing skema, **bukan salinan silabus resmi**. Pada Simulasi Sertifikasi, soal dibagi
+> **rata** antar unit karena bobot resmi per unit tidak dipublikasikan — keterangan itu juga
+> ditampilkan di aplikasinya.
 
 ## Mode latihan
 
@@ -40,6 +77,7 @@ milik pihak lain** dan bukan soal ujian resmi BNSP/LSP.
 |---|---|
 | 🎯 **Latihan per Unit** | Pilih unit kompetensi, tanpa batas waktu, pembahasan langsung muncul tiap soal |
 | ⏱️ **Simulasi Ujian** | 50/75/100 soal, timer 120 menit, pembahasan baru dibuka di akhir, passing grade 70% |
+| 🎓 **Simulasi Sertifikasi** | Pilih satu skema, soal dibagi rata ke SEMUA unit kompetensi skema itu, timer 1,2 menit per soal |
 | ⚡ **Rapid Fire** | 20 detik per soal, poin bonus untuk kecepatan dan streak |
 | 🩹 **Drill Soal Salah** | Hanya soal yang pernah dijawab salah atau ditandai |
 | 🧩 **Studi Kasus** | Skenario panjang bertabel data, lalu beberapa soal turunan — format vignette |
@@ -54,8 +92,10 @@ tema mengikuti sistem dengan tombol ganti manual, pintasan keyboard (`1`–`4` u
 
 ## Studi kasus
 
-Dua belas skenario bergaya vignette, masing-masing dengan empat soal turunan, total 48 soal
-tingkat sulit. Tiap kasus menyajikan narasi situasi plus tabel data, lalu soal-soalnya menuntut hitungan
+Lima belas skenario bergaya vignette, masing-masing dengan empat soal turunan, total 60 soal
+tingkat sulit. Tiga di antaranya **berantai**: jawaban tiap langkah dipakai di langkah berikutnya,
+dan angka hasil langkah sebelumnya selalu ditulis ulang supaya satu kekeliruan di awal tidak
+menghukum seluruh rangkaian. Tiap kasus menyajikan narasi situasi plus tabel data, lalu soal-soalnya menuntut hitungan
 berlapis atau penimbangan bukti yang saling bertentangan — bukan sekadar mengenali istilah.
 
 Topiknya: penentuan ukuran posisi berlapis, sinyal yang bertentangan antar timeframe, risiko
@@ -79,7 +119,7 @@ sehingga posisi kunci pada berkas data tidak pernah terbaca pengguna.
 
 ## Soal baca chart
 
-61 soal menampilkan grafik harga yang **digambar sebagai SVG dari deret OHLC yang menempel di
+68 soal menampilkan grafik harga yang **digambar sebagai SVG dari deret OHLC yang menempel di
 soal** — bukan berkas gambar. Konsekuensinya: tajam di resolusi apa pun, ikut tema gelap maupun
 terang, dan tidak menambah satu pun permintaan jaringan.
 
@@ -115,14 +155,90 @@ Berkas `data/chart-questions.js` dibangkitkan otomatis — sunting generatornya,
 
 Selain bank soal, tiap unit kompetensi punya halaman materi dengan tiga tab:
 
-- **📖 Ringkasan** — 78 topik berisi **334 poin kunci** (definisi, rumus, angka yang sering ditanya)
-- **🧠 Mind Map** — peta konsep interaktif dengan **302 node**, cabang bisa dibuka-tutup,
+- **📖 Ringkasan** — 127 topik berisi **447 poin kunci** (definisi, rumus, angka yang sering ditanya)
+- **🧠 Mind Map** — peta konsep interaktif dengan **530 node**, cabang bisa dibuka-tutup,
   konektor digambar otomatis sebagai kurva SVG mengikuti posisi elemen
-- **⚠️ Jebakan Ujian** — **38 catatan** kesalahan yang sering terjadi (mis. RSI di atas 70 pada
-  tren kuat bukan sinyal jual; volatilitas disetahunkan pakai √252, bukan ×252)
+- **⚠️ Jebakan Ujian** — **87 catatan** kesalahan yang sering terjadi (mis. RSI di atas 70 pada
+  tren kuat bukan sinyal jual; rasio cepat mengeluarkan persediaan; di model Gordon dividennya
+  harus ditumbuhkan satu tahun dulu sebelum dibagi)
 
 Dari halaman materi ada tombol langsung ke **latihan soal unit itu** atau **flashcard unit itu**.
 Isi mind map diturunkan otomatis dari label `mm` tiap section, jadi materi tidak perlu ditulis dua kali.
+
+## Pasang sebagai aplikasi
+
+Aplikasi ini sepenuhnya statis, jadi seluruh isinya muat untuk disimpan di perangkat. Setelah
+dipasang, aplikasinya dibuka dari layar utama dan **bekerja penuh tanpa internet** — 1.519 soal,
+pembahasan, materi, grafik, sampai simulasi berwaktu.
+
+| Perangkat | Cara pasang |
+|---|---|
+| Android (Chrome/Edge) | Tombol **⤓ Pasang** di kanan atas, atau menu ⋮ → *Install app* |
+| Desktop (Chrome/Edge) | Tombol **⤓ Pasang**, atau ikon pasang di bilah alamat |
+| iPhone / iPad (Safari) | Tombol **Bagikan** → *Add to Home Screen* (iOS tidak punya tombol pasang otomatis) |
+
+Empat pintasan tersedia dari ikon aplikasi (tekan lama di Android): Simulasi Sertifikasi,
+Latihan per Unit, Drill Soal Salah, dan Materi. Pintasan ini memakai parameter `?mode=` yang juga
+bisa dipakai sebagai tautan langsung, misalnya `?mode=blueprint`.
+
+Ketika ada versi baru, sebuah palang muncul dan **penggunanya yang memutuskan kapan memuat
+ulang** — pembaruan tidak pernah dipaksakan di tengah sesi, karena menukar berkas saat ujian
+berwaktu sedang berjalan jelas merugikan.
+
+> Pemasangan menuntut `https` (atau `localhost`). Membuka lewat `file://` tetap bekerja penuh,
+> hanya saja tanpa pemasangan dan tanpa cache luring.
+
+### Menyusun ulang aset aplikasi
+
+Dua berkas dibangkitkan otomatis dan **tidak boleh disunting tangan**:
+
+```bash
+node tools/gen-icons.js    # menulis assets/icons/*.png
+node tools/gen-sw.js       # menulis sw.js (daftar pracache + versi cache)
+```
+
+`gen-sw.js` membaca daftar berkasnya langsung dari `index.html`, jadi menambah bank soal tidak
+menuntut penyuntingan service worker — cukup jalankan ulang. Versi cache diturunkan dari isi
+seluruh berkas, sehingga satu perubahan kecil sudah cukup memicu pembaruan di perangkat pengguna.
+
+**Wajib dijalankan ulang setiap kali isi berubah.** Kalau lupa, pengguna yang sudah memasang
+aplikasi akan terus disuguhi versi lama dari cache — karena itu `tools/validate.js` memeriksanya
+dan memberi peringatan bila `sw.js` sudah usang.
+
+`gen-icons.js` menggambar ikonnya secara terprogram lalu menulis PNG-nya sendiri (deflate + CRC32),
+jadi tidak butuh ImageMagick, Inkscape, maupun pustaka gambar apa pun.
+
+## Menambah skema sertifikasi baru
+
+Nama skema tidak tertanam di kode. `TD.SCHEMES` di `assets/js/data.js` adalah satu-satunya sumber:
+tombol pemilih di beranda dan halaman materi, chip pada layar persiapan, judul beranda, penyusun
+paket Simulasi Sertifikasi, sampai nilai bawaan soal impor semuanya dibangun dari daftar itu.
+
+```js
+// 1. assets/js/data.js — daftarkan skemanya
+TD.SCHEMES = [
+  ...,
+  { id:'CFA3', nama:'CFA Level III', bidang:'Manajemen Investasi',
+    lembaga:'CFA Institute', warna:'a' }
+];
+
+// 2. assets/js/data.js — tambahkan unit kompetensinya
+TD.MODULES = [
+  ...,
+  { id:'cfa3-perilaku', level:'CFA3', name:'Behavioral Finance', emoji:'🧠',
+    desc:'Bias kognitif dan emosional dalam keputusan investasi.' }
+];
+```
+
+Lalu buat `data/cfa3-perilaku.js` berisi `TD.register([...])`, daftarkan `<script>`-nya di
+`index.html`, tambahkan materinya lewat `TD.registerNotes([...])`, dan jalankan:
+
+```bash
+node tools/validate.js && node tools/gen-sw.js
+```
+
+Tidak ada markup atau logika yang perlu disunting. Skema baru langsung muncul di semua mode,
+termasuk mendapat paket Simulasi Sertifikasinya sendiri.
 
 ## Menjalankan
 
@@ -153,7 +269,66 @@ Berkas `.nojekyll` di root repo membuat Pages menyajikan berkas apa adanya tanpa
 supaya folder proyek lain di repo ini tidak bisa menggagalkan deploy.
 
 Aplikasi berada di root repo ini sehingga terbit langsung di root situs, dan semua path bersifat
-relatif sehingga tetap berjalan bila suatu saat dipindah ke subfolder.
+relatif sehingga tetap berjalan bila suatu saat dipindah ke subfolder — termasuk service worker,
+yang cakupannya mengikuti direktori tempat `sw.js` berada.
+
+### VPS dengan Nginx
+
+Karena tidak ada langkah build, memindahkannya ke VPS cuma soal menyalin folder dan menyajikannya.
+Yang perlu diperhatikan hanya dua hal: **HTTPS wajib** supaya aplikasinya bisa dipasang, dan
+`sw.js` **jangan di-cache lama** supaya pembaruan sampai ke pengguna.
+
+```nginx
+server {
+    listen 443 ssl http2;
+    server_name contoh.com;
+
+    # sertifikat dari certbot
+    ssl_certificate     /etc/letsencrypt/live/contoh.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/contoh.com/privkey.pem;
+
+    root /var/www/teknikaldrill;
+    index index.html;
+
+    # service worker harus selalu diperiksa ulang, kalau tidak
+    # pembaruan tidak pernah sampai ke perangkat yang sudah memasang
+    location = /sw.js {
+        add_header Cache-Control "no-cache, must-revalidate";
+    }
+    location = /manifest.webmanifest {
+        types { application/manifest+json webmanifest; }
+        add_header Cache-Control "no-cache";
+    }
+
+    # sisanya aman di-cache lama: versinya sudah dijaga service worker
+    location ~* \.(js|css|png|svg|woff2)$ {
+        expires 30d;
+        add_header Cache-Control "public, immutable";
+    }
+
+    gzip on;
+    gzip_types text/css application/javascript application/json image/svg+xml;
+}
+
+server {
+    listen 80;
+    server_name contoh.com;
+    return 301 https://$host$request_uri;
+}
+```
+
+Pemasangannya:
+
+```bash
+sudo apt install nginx certbot python3-certbot-nginx
+sudo git clone https://github.com/BeixuanTianjun/teknikaldrill.git /var/www/teknikaldrill
+sudo certbot --nginx -d contoh.com
+# pembaruan berikutnya cukup:
+cd /var/www/teknikaldrill && sudo git pull
+```
+
+Tanpa HTTPS, aplikasinya tetap terbuka di peramban tetapi **tidak bisa dipasang** dan **tidak
+punya cache luring**, karena service worker hanya hidup di `https` dan `localhost`.
 
 ### Publikasi sebagai Artifact
 
@@ -211,21 +386,32 @@ tiap unit dan ringkasan sebaran soal per unit maupun tingkat kesulitan.
 ## Struktur
 
 ```
-RTA_CTA_Quiz/
-├── index.html              # kerangka semua halaman
-├── assets/css/style.css    # tema, komponen, responsif
-├── assets/js/data.js       # metadata unit kompetensi + registry bank soal
-├── assets/js/app.js        # mesin kuis (sesi, skor, timer, review, import)
-├── data/rta-*.js           # bank soal RTA per unit kompetensi
-├── data/cta-*.js           # bank soal CTA per unit kompetensi
-├── data/notes-*.js         # materi ringkas + label mind map + jebakan ujian
-├── data/chart-questions.js # soal baca chart (dibangkitkan otomatis)
-├── assets/js/chart.js      # penggambar grafik SVG dari deret OHLC
-└── tools/validate.js       # validator bank soal
+teknikaldrill/
+├── index.html                  # kerangka semua halaman
+├── manifest.webmanifest        # metadata aplikasi terpasang
+├── sw.js                       # service worker (DIBANGKITKAN — jangan disunting)
+├── assets/css/style.css        # tema, komponen, responsif
+├── assets/icons/*.png          # ikon aplikasi (DIBANGKITKAN)
+├── assets/js/data.js           # daftar skema + unit kompetensi + registry bank soal
+├── assets/js/app.js            # mesin kuis (sesi, skor, timer, review, import, PWA)
+├── assets/js/chart.js          # penggambar grafik SVG dari deret OHLC
+├── data/rta-*.js  data/cta-*.js   # bank soal analisis teknikal
+├── data/rsa-*.js  data/csa-*.js   # bank soal analisis efek
+├── data/hots-*.js              # soal HOTS berbasis skenario
+├── data/notes-*.js             # materi ringkas + label mind map + jebakan ujian
+├── data/cases*.js              # studi kasus bergaya vignette
+├── data/chart-questions.js     # soal baca chart (DIBANGKITKAN)
+└── tools/
+    ├── validate.js             # validator bank soal + pemeriksa sw.js usang
+    ├── audit-quality.js        # audit mutu pengecoh
+    ├── audit-syllabus.js       # sebaran taksonomi Bloom per unit
+    ├── gen-chart-questions.js  # pembangkit soal bergrafik
+    ├── gen-icons.js            # pembangkit ikon PNG
+    └── gen-sw.js               # pembangkit service worker
 ```
 
 ## Catatan
 
 Aplikasi ini alat latihan mandiri, bukan produk resmi dan tidak berafiliasi dengan
-BNSP, LSP, AATI, maupun IFTA. Materi ujian sebenarnya dapat berbeda — gunakan ini sebagai
+BNSP, LSP, AATI, AAEI, IFTA, maupun lembaga sertifikasi lainnya. Materi ujian sebenarnya dapat berbeda — gunakan ini sebagai
 pelengkap materi resmi dari lembaga pelatihan, bukan pengganti.
