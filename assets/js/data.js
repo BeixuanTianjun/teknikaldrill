@@ -4,8 +4,34 @@
 
 window.TD = window.TD || {};
 
-/* Unit kompetensi mengacu pada skema sertifikasi analis teknikal BNSP:
-   RTA = Pelaksanaan Analisis Teknikal, CTA = Pengelolaan Analisis Teknikal. */
+/* Daftar skema sertifikasi yang ditampung aplikasi.
+
+   Nama skema tidak lagi tertanam di kode: seluruh tombol pemilih, penyaring,
+   dan penyusun paket simulasi dibangun dari daftar ini. Menambah skema baru
+   cukup menambah satu baris di sini, lalu unit kompetensi dan bank soalnya.
+   Urutannya menentukan urutan tampil, dan skema pertama dipakai sebagai
+   nilai bawaan ketika sebuah soal tidak menyebutkan skemanya.
+
+   Catatan kejujuran: rincian unit di bawah disusun dari ruang lingkup yang
+   dipublikasikan masing-masing skema, BUKAN salinan silabus resmi. Yang
+   dijamin di sini cuma cakupan materinya masuk akal dan merata. */
+TD.SCHEMES = [
+  { id:'RTA', nama:'Regular Technical Analyst',   bidang:'Analisis Teknikal',
+    lembaga:'BNSP · AATI', warna:'a' },
+  { id:'CTA', nama:'Certified Technical Analyst', bidang:'Analisis Teknikal',
+    lembaga:'BNSP · AATI', warna:'b' },
+  { id:'RSA', nama:'Registered Securities Analyst', bidang:'Analisis Efek',
+    lembaga:'AAEI', warna:'c' },
+  { id:'CSA', nama:'Certified Securities Analyst',  bidang:'Analisis Efek',
+    lembaga:'AAEI', warna:'d' }
+];
+TD.SCHEME_MAP = TD.SCHEMES.reduce((m, x) => (m[x.id] = x, m), {});
+TD.schemeIds = function () { return TD.SCHEMES.map(s => s.id); };
+TD.defaultScheme = function () { return TD.SCHEMES[0].id; };
+
+/* Unit kompetensi tiap skema.
+   RTA = Pelaksanaan Analisis Teknikal, CTA = Pengelolaan Analisis Teknikal,
+   RSA = Pelaksanaan Analisis Efek,     CSA = Pengelolaan Analisis Efek. */
 TD.MODULES = [
   { id:'rta-dasar',     level:'RTA', name:'Pengertian & Penggunaan Analisis Teknikal', emoji:'🧭',
     desc:'Asumsi dasar, Dow Theory, tipe pasar, teknikal vs fundamental.' },
@@ -39,7 +65,41 @@ TD.MODULES = [
   { id:'cta-aset',      level:'CTA', name:'Analisis Multi-Aset', emoji:'🪙',
     desc:'Obligasi, valas, komoditas, derivatif, dan aset kripto.' },
   { id:'cta-statistik', level:'CTA', name:'Statistik & Kuantitatif untuk Analis', emoji:'📐',
-    desc:'Volatilitas, korelasi, distribusi return, uji signifikansi.' }
+    desc:'Volatilitas, korelasi, distribusi return, uji signifikansi.' },
+
+  { id:'rsa-pasar',     level:'RSA', name:'Struktur & Mekanisme Pasar Modal', emoji:'🏦',
+    desc:'OJK, BEI, KSEI, KPEI, jenis efek, IPO, mekanisme perdagangan, indeks.' },
+  { id:'rsa-makro',     level:'RSA', name:'Ekonomi Makro & Analisis Industri', emoji:'🌏',
+    desc:'PDB, inflasi, suku bunga, kurs, siklus industri, analisis top-down.' },
+  { id:'rsa-laporan',   level:'RSA', name:'Membaca Laporan Keuangan', emoji:'📑',
+    desc:'Neraca, laba rugi, arus kas, ekuitas, catatan atas laporan keuangan.' },
+  { id:'rsa-rasio',     level:'RSA', name:'Analisis Rasio & Kinerja Keuangan', emoji:'🧾',
+    desc:'Likuiditas, solvabilitas, profitabilitas, aktivitas, DuPont, common size.' },
+  { id:'rsa-valuasi',   level:'RSA', name:'Valuasi Dasar Saham', emoji:'⚖️',
+    desc:'PER, PBV, EV/EBITDA, PEG, dividend discount model, dividend yield.' },
+  { id:'rsa-obligasi',  level:'RSA', name:'Efek Utang & Instrumen Pasar Uang', emoji:'📜',
+    desc:'Kupon, harga dan imbal hasil, YTM, peringkat, sukuk, pasar uang.' },
+  { id:'rsa-etika',     level:'RSA', name:'Regulasi, Etika & Laporan Riset', emoji:'⚖️',
+    desc:'UU Pasar Modal, POJK, benturan kepentingan, insider trading, struktur riset.' },
+
+  { id:'csa-akuntansi', level:'CSA', name:'Kualitas Laba & Akuntansi Lanjutan', emoji:'🔍',
+    desc:'Akrual, pengakuan pendapatan, konsolidasi, sewa, segmen, sinyal bahaya.' },
+  { id:'csa-dcf',       level:'CSA', name:'Valuasi Arus Kas Terdiskonto', emoji:'💧',
+    desc:'FCFF, FCFE, WACC, biaya ekuitas, nilai terminal, analisis sensitivitas.' },
+  { id:'csa-relatif',   level:'CSA', name:'Valuasi Relatif & Valuasi Khusus', emoji:'🔗',
+    desc:'Pemilihan pembanding, SOTP, valuasi bank dan properti, residual income.' },
+  { id:'csa-model',     level:'CSA', name:'Pemodelan Keuangan & Proyeksi', emoji:'🧱',
+    desc:'Pendorong asumsi, model tiga laporan, skenario, uji kewajaran proyeksi.' },
+  { id:'csa-obligasi',  level:'CSA', name:'Efek Pendapatan Tetap Lanjutan', emoji:'📉',
+    desc:'Durasi, konveksitas, kurva imbal hasil, spread kredit, obligasi opsional.' },
+  { id:'csa-portofolio',level:'CSA', name:'Teori Portofolio & Manajemen Investasi', emoji:'🧺',
+    desc:'Diversifikasi, CAPM, garis pasar modal, Sharpe, alokasi aset, atribusi.' },
+  { id:'csa-derivatif', level:'CSA', name:'Derivatif & Manajemen Risiko', emoji:'🎛️',
+    desc:'Opsi, kontrak berjangka, paritas put-call, lindung nilai, value at risk.' },
+  { id:'csa-korporasi', level:'CSA', name:'Aksi Korporasi & Situasi Khusus', emoji:'🏗️',
+    desc:'Rights issue, dilusi, pemecahan saham, pembelian kembali, merger, IPO.' },
+  { id:'csa-tatakelola',level:'CSA', name:'Tata Kelola, ESG & Standar Riset', emoji:'🏛️',
+    desc:'GCG, hak pemegang saham minoritas, ESG, independensi dan standar riset.' }
 ];
 
 TD.MODULE_MAP = TD.MODULES.reduce((m, x) => (m[x.id] = x, m), {});
@@ -57,8 +117,8 @@ TD.register = function (list) {
     const mod = TD.MODULE_MAP[q.module];
     TD.BANK.push({
       id: q.id || (q.module || 'soal') + '-' + (TD.BANK.length + 1),
-      level: q.level || (mod ? mod.level : 'RTA'),
-      module: q.module || 'rta-dasar',
+      level: q.level || (mod ? mod.level : TD.defaultScheme()),
+      module: q.module || TD.MODULES[0].id,
       difficulty: q.difficulty || 'sedang',
       q: q.q,
       options: q.options.slice(),

@@ -120,7 +120,7 @@ function renderHome() {
 }
 
 /* ---------------- setup ---------------- */
-const setupState = { mode: 'practice', levels: ['RTA', 'CTA'], modules: [], count: 20 };
+const setupState = { mode: 'practice', levels: TD.schemeIds(), modules: [], count: 20 };
 
 const MODE_INFO = {
   practice: { title: 'Latihan per Unit', sub: 'Pembahasan muncul tiap kali lo jawab. Tanpa batas waktu.', counts: [10, 20, 30, 50, 0] },
@@ -135,7 +135,7 @@ const MODE_INFO = {
 
 /* Menyusun paket soal untuk simulasi sertifikasi.
 
-   RTA dan CTA adalah dua skema terpisah, jadi satu sesi hanya mengambil unit
+   Tiap skema diuji terpisah, jadi satu sesi hanya mengambil unit
    dari satu skema. Pembagiannya rata antar unit kompetensi, bukan acak dari
    seluruh bank: skema BNSP menilai kompetensi PER UNIT, sehingga tiap unit
    harus terwakili. Pengambilan acak biasa bisa meninggalkan satu unit tanpa
@@ -173,15 +173,42 @@ function paketSertifikasi(level, jumlah) {
   return { soal: shuffle(out), jatah: jatah, unit: unit, kurang: kurang };
 }
 
+/* Unit pertama sebuah skema — dipakai sebagai tempat parkir soal import yang
+   modulnya tidak dikenali, supaya soalnya tetap masuk dan bisa dipindah. */
+function unitPertama(level) {
+  const m = TD.MODULES.filter(x => x.level === level)[0];
+  return (m || TD.MODULES[0]).id;
+}
+
+/* Membangun seluruh tombol pemilih skema dari TD.SCHEMES.
+
+   Tombolnya tidak ditulis di index.html supaya menambah skema baru tidak
+   menuntut penyuntingan markup di beberapa tempat sekaligus. */
+function bangunPemilihSkema() {
+  const tombol = TD.SCHEMES.map(s =>
+    `<button class="lvl-btn" data-level="${esc(s.id)}" type="button" title="${esc(s.nama)}">${esc(s.id)}</button>`).join('');
+  ['#levelSwitch', '#notesLevelSwitch'].forEach(sel => {
+    const box = $(sel);
+    if (box) box.innerHTML = '<button class="lvl-btn is-active" data-level="ALL" type="button">Semua</button>' + tombol;
+  });
+  const judul = $('#heroSchemes');
+  if (judul) judul.innerHTML = TD.SCHEMES
+    .map((s, i) => `<span class="grad grad-${i % 4}">${esc(s.id)}</span>`).join(' · ');
+  const bidang = $('#heroEyebrow');
+  if (bidang) bidang.textContent = 'Sertifikasi ' +
+    Array.from(new Set(TD.SCHEMES.map(s => s.bidang))).join(' & ') + ' · ' +
+    Array.from(new Set(TD.SCHEMES.map(s => s.lembaga))).join(' / ');
+}
+
 function openSetup(mode, presetModules) {
   setupState.mode = mode;
   setupState.modules = presetModules ? presetModules.slice() : TD.MODULES.map(m => m.id);
   setupState.levels = presetModules
     ? Array.from(new Set(presetModules.map(id => modOf(id).level)))
-    : ['RTA', 'CTA'];
+    : TD.schemeIds();
   const info = MODE_INFO[mode];
   setupState.count = mode === 'exam' ? 100 : mode === 'blueprint' ? 70 : 20;
-  if (mode === 'blueprint') setupState.levels = ['RTA'];   // satu skema per sesi
+  if (mode === 'blueprint') setupState.levels = [TD.defaultScheme()];  // satu skema per sesi
 
   $('#setupTitle').textContent = info.title;
   $('#setupSub').textContent = info.sub;
@@ -193,7 +220,7 @@ function openSetup(mode, presetModules) {
   $('#setupOptBlock').hidden = mode === 'blueprint';
   $('#optShuffle').checked = true;
 
-  $('#setupLevels').innerHTML = ['RTA', 'CTA'].map(l =>
+  $('#setupLevels').innerHTML = TD.schemeIds().map(l =>
     `<button class="chip ${setupState.levels.includes(l) ? 'is-on' : ''}" data-level="${l}" type="button">${l}</button>`).join('');
   $('#setupCounts').innerHTML = info.counts.map(c =>
     `<button class="chip ${c === setupState.count ? 'is-on' : ''}" data-count="${c}" type="button">${c === 0 ? 'Semua' : c + ' soal'}</button>`).join('');
@@ -226,7 +253,7 @@ function bindSetup() {
   $$('#setupLevels .chip').forEach(c => c.addEventListener('click', () => {
     const l = c.dataset.level;
     if (setupState.mode === 'blueprint') {
-      // RTA dan CTA adalah dua skema terpisah, jadi satu sesi hanya satu skema.
+      // Tiap skema diuji terpisah, jadi satu sesi hanya memuat satu skema.
       // Di sini pilihannya mengganti, bukan menambah seperti mode lain.
       setupState.levels = [l];
     } else {
@@ -272,7 +299,7 @@ function updateSetupSummary() {
 /* Memperlihatkan komposisi paket sebelum sesi dimulai, supaya jelas berapa
    soal yang diambil dari tiap unit dan dari skema mana. */
 function ringkasSertifikasi() {
-  const level = setupState.levels[0] || 'RTA';
+  const level = setupState.levels[0] || TD.defaultScheme();
   const paket = paketSertifikasi(level, setupState.count);
   // dihitung dari jumlah soal yang BENAR-BENAR terkumpul, bukan dari angka yang
   // diklik, supaya waktunya tidak berbeda dari yang dijalankan saat bank kurang
@@ -354,7 +381,7 @@ let tickHandle = null;
 function startSession() {
   let pool;
   if (setupState.mode === 'blueprint') {
-    pool = paketSertifikasi(setupState.levels[0] || 'RTA', setupState.count).soal;
+    pool = paketSertifikasi(setupState.levels[0] || TD.defaultScheme(), setupState.count).soal;
   } else {
     pool = candidatePool();
   }
@@ -710,8 +737,8 @@ function importCSV(text) {
     if (opts.length < 2 || ans < 0 || ans >= opts.length) return;
     out.push({
       id: 'imp-' + Date.now().toString(36) + '-' + i,
-      level: (r[col('level')] || 'RTA').trim().toUpperCase(),
-      module: (r[col('module')] || 'rta-dasar').trim(),
+      level: (r[col('level')] || TD.defaultScheme()).trim().toUpperCase(),
+      module: (r[col('module')] || TD.MODULES[0].id).trim(),
       difficulty: (r[col('difficulty')] || 'sedang').trim().toLowerCase(),
       q: (r[col('question')] || '').trim(),
       options: opts, answer: ans,
@@ -727,8 +754,8 @@ function importJSON(text) {
   const list = Array.isArray(data) ? data : (data.questions || []);
   return list.map((q, i) => ({
     id: q.id || 'imp-' + Date.now().toString(36) + '-' + i,
-    level: (q.level || 'RTA').toUpperCase(),
-    module: q.module || 'rta-dasar',
+    level: (q.level || TD.defaultScheme()).toUpperCase(),
+    module: q.module || TD.MODULES[0].id,
     difficulty: q.difficulty || 'sedang',
     q: q.q || q.question || '',
     options: q.options || q.choices || [],
@@ -748,7 +775,7 @@ function handleFiles(files) {
       try {
         const list = /\.csv$/i.test(file.name) ? importCSV(fr.result) : importJSON(fr.result);
         const known = TD.MODULE_MAP;
-        list.forEach(q => { if (!known[q.module]) q.module = q.level === 'CTA' ? 'cta-teori' : 'rta-dasar'; });
+        list.forEach(q => { if (!known[q.module]) q.module = unitPertama(q.level); });
         S.imported = (S.imported || []).concat(list);
         added += list.length;
       } catch (e) { bad++; }
@@ -1122,6 +1149,7 @@ function goHome() { stopTicker(); renderHome(); show('home'); }
 /* ---------------- init ---------------- */
 load();
 applyTheme();
+bangunPemilihSkema();
 bind();
 renderHome();
 

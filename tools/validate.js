@@ -74,8 +74,9 @@ bank.forEach(q => { byMod[q.module] = (byMod[q.module] || 0) + 1; });
 console.log('=== TeknikalDrill — validasi bank soal ===');
 console.log('File data   :', dataFiles.length);
 console.log('Total soal  :', bank.length);
-console.log('  RTA       :', bank.filter(q => q.level === 'RTA').length);
-console.log('  CTA       :', bank.filter(q => q.level === 'CTA').length);
+// daftar skema dibaca dari registry, jadi skema baru langsung ikut terhitung
+sandbox.TD.SCHEMES.forEach(sk =>
+  console.log('  ' + sk.id.padEnd(10) + ':', bank.filter(q => q.level === sk.id).length));
 console.log('\nSebaran per unit kompetensi:');
 TD.MODULES.forEach(m => {
   const n = byMod[m.id] || 0;

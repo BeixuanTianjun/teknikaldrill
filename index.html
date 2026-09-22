@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>TeknikalDrill</title>
-<meta name="description" content="Latihan soal sertifikasi analis teknikal RTA & CTA (BNSP) dengan pembahasan tiap soal.">
+<meta name="description" content="Latihan soal sertifikasi analis pasar modal Indonesia — RTA, CTA, RSA, CSA — dengan pembahasan tiap soal.">
 <meta name="theme-color" content="#120c2e">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📈</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,8 +31,8 @@
   <!-- ============ HOME ============ -->
   <section class="view view-home is-active" id="view-home">
     <div class="hero">
-      <p class="eyebrow">Sertifikasi Analis Teknikal · BNSP</p>
-      <h1>Gaspol latihan soal <span class="grad">RTA</span> &amp; <span class="grad grad-2">CTA</span></h1>
+      <p class="eyebrow" id="heroEyebrow">Sertifikasi Analis Pasar Modal</p>
+      <h1>Gaspol latihan soal <span id="heroSchemes"></span></h1>
       <p class="hero-sub">Soal pilihan ganda per unit kompetensi, feedback instan, dan <b>pembahasan di tiap soal</b> — biar yang salah nggak kejadian dua kali.</p>
       <div class="hero-stats" id="heroStats"></div>
     </div>
@@ -54,7 +54,7 @@
       <button class="mode-card mode-h" data-mode="blueprint" type="button">
         <span class="mode-emoji">🎓</span>
         <h3>Simulasi Sertifikasi</h3>
-        <p>Pilih RTA atau CTA. Soal dibagi rata ke SEMUA unit kompetensi skema itu, lalu ditimer.</p>
+        <p>Pilih satu skema. Soal dibagi rata ke SEMUA unit kompetensi skema itu, lalu ditimer.</p>
         <span class="mode-go">Mulai →</span>
       </button>
       <button class="mode-card mode-c" data-mode="rapid" type="button">
@@ -104,11 +104,8 @@
     <div class="section-head">
       <h2>Penguasaan per unit kompetensi</h2>
       <button class="link-btn" id="resetHome" type="button">reset ke 0</button>
-      <div class="level-switch" id="levelSwitch">
-        <button class="lvl-btn is-active" data-level="ALL" type="button">Semua</button>
-        <button class="lvl-btn" data-level="RTA" type="button">RTA</button>
-        <button class="lvl-btn" data-level="CTA" type="button">CTA</button>
-      </div>
+      <!-- isinya dibangun dari TD.SCHEMES oleh bangunPemilihSkema() -->
+      <div class="level-switch" id="levelSwitch"></div>
     </div>
     <div class="module-grid" id="moduleGrid"></div>
 
@@ -287,11 +284,8 @@
     <p class="setup-sub">Rangkuman tiap unit kompetensi: poin kunci, peta konsep, dan jebakan yang sering keluar di ujian.</p>
     <div class="section-head">
       <h2>Pilih unit</h2>
-      <div class="level-switch" id="notesLevelSwitch">
-        <button class="lvl-btn is-active" data-level="ALL" type="button">Semua</button>
-        <button class="lvl-btn" data-level="RTA" type="button">RTA</button>
-        <button class="lvl-btn" data-level="CTA" type="button">CTA</button>
-      </div>
+      <!-- isinya dibangun dari TD.SCHEMES oleh bangunPemilihSkema() -->
+      <div class="level-switch" id="notesLevelSwitch"></div>
     </div>
     <div class="module-grid" id="notesGrid"></div>
   </section>
@@ -331,7 +325,7 @@
 <canvas class="confetti" id="confetti" aria-hidden="true"></canvas>
 
 <footer class="footer">
-  <p>TeknikalDrill · bank soal latihan orisinal untuk persiapan RTA &amp; CTA. Bukan soal ujian resmi BNSP/LSP.</p>
+  <p>TeknikalDrill · bank soal latihan orisinal untuk persiapan sertifikasi analis pasar modal. Bukan soal ujian resmi dari lembaga sertifikasi mana pun.</p>
 </footer>
 
 <script src="assets/js/data.js"></script>
@@ -369,11 +363,42 @@
 <script src="data/hots-8.js"></script>
 <script src="data/hitung.js"></script>
 
+<!-- skema RSA -->
+<script src="data/rsa-pasar.js"></script>
+<script src="data/rsa-makro.js"></script>
+<script src="data/rsa-laporan.js"></script>
+<script src="data/rsa-rasio.js"></script>
+<script src="data/rsa-valuasi.js"></script>
+<script src="data/rsa-obligasi.js"></script>
+<script src="data/rsa-etika.js"></script>
+
+<!-- skema CSA -->
+<script src="data/csa-akuntansi.js"></script>
+<script src="data/csa-dcf.js"></script>
+<script src="data/csa-relatif.js"></script>
+<script src="data/csa-model.js"></script>
+<script src="data/csa-obligasi.js"></script>
+<script src="data/csa-portofolio.js"></script>
+<script src="data/csa-derivatif.js"></script>
+<script src="data/csa-korporasi.js"></script>
+<script src="data/csa-tatakelola.js"></script>
+
+<!-- soal HOTS RSA & CSA -->
+<script src="data/hots-rsa-1.js"></script>
+<script src="data/hots-rsa-2.js"></script>
+<script src="data/hots-csa-1.js"></script>
+<script src="data/hots-csa-2.js"></script>
+<script src="data/hots-csa-3.js"></script>
+
 <!-- materi ringkas & mind map -->
 <script src="data/notes-rta-1.js"></script>
 <script src="data/notes-rta-2.js"></script>
 <script src="data/notes-cta-1.js"></script>
 <script src="data/notes-cta-2.js"></script>
+<script src="data/notes-rsa-1.js"></script>
+<script src="data/notes-rsa-2.js"></script>
+<script src="data/notes-csa-1.js"></script>
+<script src="data/notes-csa-2.js"></script>
 
 <script src="assets/js/app.js"></script>
 </body>
