@@ -1146,12 +1146,121 @@ function bind() {
 
 function goHome() { stopTicker(); renderHome(); show('home'); }
 
+/* ---------------- aplikasi terpasang (PWA) ---------------- */
+
+/* Mendaftarkan service worker dan menangani pembaruannya.
+
+   Service worker hanya hidup di http dan https. Aplikasi ini juga dipakai
+   dengan membuka berkas langsung (file://), jadi pendaftarannya dilewati
+   di sana supaya tidak memunculkan galat di konsol.
+
+   Pembaruan tidak dipaksakan di tengah sesi: ketika versi baru sudah siap,
+   sebuah palang muncul dan penggunanya yang memutuskan kapan memuat ulang.
+   Menukar berkas di tengah sesi ujian berwaktu jelas bukan hal yang sopan. */
+function siapkanServiceWorker() {
+  if (!('serviceWorker' in navigator)) return;
+  if (location.protocol !== 'http:' && location.protocol !== 'https:') return;
+
+  const palang = $('#updateBar');
+  let menunggu = null;
+
+  const tawarkanPembaruan = (sw) => {
+    menunggu = sw;
+    if (palang) palang.hidden = false;
+  };
+
+  navigator.serviceWorker.register('sw.js').then((reg) => {
+    if (reg.waiting && navigator.serviceWorker.controller) tawarkanPembaruan(reg.waiting);
+    reg.addEventListener('updatefound', () => {
+      const baru = reg.installing;
+      if (!baru) return;
+      baru.addEventListener('statechange', () => {
+        // controller yang sudah ada menandakan ini pembaruan, bukan pemasangan pertama
+        if (baru.state === 'installed' && navigator.serviceWorker.controller) tawarkanPembaruan(baru);
+      });
+    });
+  }).catch(() => { /* aplikasi tetap jalan tanpa service worker */ });
+
+  let sudahMuatUlang = false;
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (sudahMuatUlang) return;                 // cegah putaran muat ulang
+    sudahMuatUlang = true;
+    location.reload();
+  });
+
+  if (palang) {
+    $('#updateBtn').addEventListener('click', () => {
+      palang.hidden = true;
+      if (menunggu) menunggu.postMessage({ tipe: 'PAKAI_SEKARANG' });
+      else location.reload();
+    });
+    $('#updateLater').addEventListener('click', () => { palang.hidden = true; });
+  }
+}
+
+/* Tombol pasang aplikasi.
+
+   Peramban baru memunculkan beforeinstallprompt kalau syarat pemasangan
+   terpenuhi, jadi tombolnya disembunyikan sampai peristiwa itu datang.
+   Di iOS peristiwa ini tidak ada sama sekali, sehingga di sana yang
+   ditampilkan petunjuk manual lewat menu Bagikan. */
+function siapkanTombolPasang() {
+  const tombol = $('#installBtn');
+  if (!tombol) return;
+  let tawaran = null;
+
+  addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    tawaran = e;
+    tombol.hidden = false;
+  });
+
+  tombol.addEventListener('click', async () => {
+    if (!tawaran) return;
+    tombol.hidden = true;
+    tawaran.prompt();
+    const { outcome } = await tawaran.userChoice;
+    tawaran = null;
+    if (outcome === 'accepted') toast('Aplikasi lagi dipasang 🎉', 'ok');
+    else tombol.hidden = false;                 // masih bisa dicoba lagi nanti
+  });
+
+  addEventListener('appinstalled', () => {
+    tombol.hidden = true;
+    tawaran = null;
+    toast('Kepasang! Buka dari layar utama, jalan tanpa internet.', 'ok');
+  });
+
+  // iOS: tidak ada beforeinstallprompt, jadi tombolnya diberi petunjuk manual
+  const iOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+  const terpasang = matchMedia('(display-mode: standalone)').matches || navigator.standalone;
+  if (iOS && !terpasang) {
+    tombol.hidden = false;
+    tombol.addEventListener('click', () => {
+      if (!tawaran) toast('Di iPhone: tombol Bagikan, lalu Add to Home Screen.', 'ok');
+    });
+  }
+}
+
+/* Pintasan dari layar utama membuka mode tertentu lewat ?mode=... */
+function bukaModeDariAlamat() {
+  const mode = new URLSearchParams(location.search).get('mode');
+  if (!mode) return;
+  if (!MODE_INFO[mode] && mode !== 'notes' && mode !== 'stats') return;
+  if (mode === 'stats') { renderStats(); show('stats'); return; }
+  if (mode === 'notes') { renderNotesIndex(); show('notes'); return; }
+  openSetup(mode);
+}
+
 /* ---------------- init ---------------- */
 load();
 applyTheme();
 bangunPemilihSkema();
 bind();
 renderHome();
+siapkanServiceWorker();
+siapkanTombolPasang();
+bukaModeDariAlamat();
 
 if (!TD.BANK.length) {
   toast('Bank soal gagal dimuat — pastikan folder data/ ikut kebawa.', 'bad');

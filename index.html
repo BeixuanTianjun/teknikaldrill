@@ -6,7 +6,14 @@
 <title>TeknikalDrill</title>
 <meta name="description" content="Latihan soal sertifikasi analis pasar modal Indonesia — RTA, CTA, RSA, CSA — dengan pembahasan tiap soal.">
 <meta name="theme-color" content="#120c2e">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="assets/icons/favicon-64.png" sizes="64x64" type="image/png">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📈</text></svg>">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TeknikalDrill">
+<meta name="mobile-web-app-capable" content="yes">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
@@ -22,6 +29,7 @@
   </button>
   <div class="topbar-actions">
     <span class="pill pill-ghost" id="bankCount" title="Jumlah soal di bank">— soal</span>
+    <button class="btn-pasang" id="installBtn" type="button" hidden>⤓ Pasang</button>
     <button class="icon-btn" id="themeToggle" type="button" title="Ganti tema" aria-label="Ganti tema">🌗</button>
   </div>
 </header>
@@ -322,6 +330,13 @@
 </main>
 
 <div class="toast-wrap" id="toastWrap" aria-live="polite"></div>
+
+<!-- pemberitahuan versi baru; muncul hanya kalau service worker menyiapkan pembaruan -->
+<div class="update-bar" id="updateBar" hidden role="status">
+  <span>Versi baru tersedia.</span>
+  <button class="btn btn-primary" id="updateBtn" type="button">Muat ulang</button>
+  <button class="link-btn" id="updateLater" type="button">Nanti</button>
+</div>
 <canvas class="confetti" id="confetti" aria-hidden="true"></canvas>
 
 <footer class="footer">

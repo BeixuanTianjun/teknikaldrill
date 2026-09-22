@@ -5,6 +5,7 @@
 const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
+const crypto = require('crypto');
 
 const root = path.join(__dirname, '..');
 const sandbox = { window: {}, console };
@@ -130,6 +131,36 @@ bank.forEach(q => {
 console.log('\nMutu pengecoh:');
 console.log('  Kunci jauh lebih panjang dari semua pengecoh:', tell,
             '(' + (tell / bank.length * 100).toFixed(1) + '%) — jalankan tools/audit-quality.js --list');
+
+/* Service worker memuat daftar berkas dan sidik jari isinya. Kalau bank soal
+   berubah tanpa menyusun ulang service worker, pengguna yang sudah memasang
+   aplikasi akan terus disuguhi versi lama dari cache. Jadi kondisinya
+   diperiksa di sini, bukan diserahkan pada ingatan. */
+(function periksaServiceWorker() {
+  const swPath = path.join(root, 'sw.js');
+  if (!fs.existsSync(swPath)) { warns.push('sw.js belum ada — jalankan node tools/gen-sw.js'); return; }
+  const versiTerpasang = (fs.readFileSync(swPath, 'utf8').match(/VERSI = '(\w+)'/) || [])[1];
+  const htmlSw = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+  const daftar = new Set(['index.html', 'manifest.webmanifest']);
+  const pola = /(?:src|href)="([^"]+)"/g;
+  let m;
+  while ((m = pola.exec(htmlSw)) !== null) {
+    if (/^(https?:|data:|#|mailto:)/.test(m[1])) continue;
+    daftar.add(m[1].replace(/^\.\//, ''));
+  }
+  ['assets/icons/icon-192.png', 'assets/icons/icon-512.png',
+   'assets/icons/icon-maskable-512.png', 'assets/icons/apple-touch-icon.png',
+   'assets/icons/favicon-64.png'].forEach(f => daftar.add(f));
+  const ringkas = crypto.createHash('sha256');
+  Array.from(daftar).sort().forEach(f => {
+    const fp = path.join(root, f);
+    if (!fs.existsSync(fp)) return;
+    ringkas.update(f); ringkas.update(fs.readFileSync(fp));
+  });
+  const versiSeharusnya = ringkas.digest('hex').slice(0, 12);
+  if (versiTerpasang !== versiSeharusnya)
+    warns.push('sw.js sudah usang terhadap isi terkini — jalankan node tools/gen-sw.js');
+})();
 
 if (warns.length) { console.log('\nPeringatan (' + warns.length + '):'); warns.forEach(w => console.log('  ! ' + w)); }
 if (errors.length) { console.log('\nERROR (' + errors.length + '):'); errors.forEach(e => console.log('  x ' + e)); process.exit(1); }

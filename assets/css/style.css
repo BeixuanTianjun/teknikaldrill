@@ -572,3 +572,24 @@ kbd{font-family:var(--mono);font-size:.78em;background:var(--surface-2);border:1
 
   @page{margin:14mm}
 }
+
+/* ---------- aplikasi terpasang (PWA) ---------- */
+/* tombol pasang hanya muncul setelah peramban menyatakan aplikasi ini bisa
+   dipasang; di perangkat yang sudah memasangnya tombol ini tidak pernah tampil */
+.btn-pasang{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:12px;
+  border:1px solid var(--brand);background:transparent;color:var(--brand-2);
+  font:inherit;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap}
+.btn-pasang:hover{background:var(--brand);color:#fff;transform:translateY(-1px)}
+@media (max-width:520px){.btn-pasang{padding:7px 10px;font-size:12px}}
+
+.update-bar{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom));
+  z-index:60;display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center;
+  max-width:min(520px,calc(100vw - 24px));padding:12px 16px;border-radius:16px;
+  background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow-lg);font-size:14px}
+.update-bar .btn{padding:8px 14px;font-size:13px}
+
+/* di mode terpasang, sisakan ruang untuk area aman perangkat */
+@media (display-mode:standalone){
+  body{padding-bottom:env(safe-area-inset-bottom)}
+  .topbar{padding-top:calc(10px + env(safe-area-inset-top))}
+}

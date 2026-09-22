@@ -1,0 +1,31 @@
+{
+  "name": "TeknikalDrill — Latihan Sertifikasi Analis Pasar Modal",
+  "short_name": "TeknikalDrill",
+  "description": "Latihan soal sertifikasi analis pasar modal Indonesia (RTA, CTA, RSA, CSA) dengan pembahasan di tiap soal, materi ringkas, dan simulasi ujian berwaktu.",
+  "lang": "id",
+  "dir": "ltr",
+  "start_url": ".",
+  "scope": ".",
+  "id": "teknikaldrill",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "portrait-primary",
+  "background_color": "#120c2e",
+  "theme_color": "#120c2e",
+  "categories": ["education", "finance", "productivity"],
+  "icons": [
+    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Simulasi Sertifikasi", "short_name": "Sertifikasi", "url": "./?mode=blueprint",
+      "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Latihan per Unit", "short_name": "Latihan", "url": "./?mode=practice",
+      "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Drill Soal Salah", "short_name": "Soal Salah", "url": "./?mode=weak",
+      "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Materi & Mind Map", "short_name": "Materi", "url": "./?mode=notes",
+      "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192" }] }
+  ]
+}
