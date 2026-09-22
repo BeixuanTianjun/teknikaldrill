@@ -321,6 +321,32 @@ function rapatkanRantai(pool) {
   return out;
 }
 
+/* Memotong daftar soal sampai jumlah yang diminta tanpa meninggalkan rantai
+   setengah jadi di ekor.
+
+   rapatkanRantai sudah menaruh seluruh anggota satu rantai berurutan, jadi di
+   sini panjangnya tinggal dihitung dari posisinya. Kalau rantainya tidak muat
+   utuh pada sisa jatah, seluruh rantai itu dilewati dan tempatnya diisi soal
+   berikutnya — lebih baik kehilangan satu rantai daripada menyodorkan
+   "LANGKAH 1 dan 2" lalu berhenti. Jumlah soal sesi tetap sesuai yang dipilih
+   selama masih ada soal lain di kolam. */
+function potongRapi(pool, n) {
+  if (n >= pool.length) return pool.slice();
+  const out = [];
+  for (let i = 0; i < pool.length && out.length < n; i++) {
+    const q = pool[i];
+    const k = q.caseId && q.caseId.indexOf('rantai-') === 0 ? q.caseId : null;
+    if (!k) { out.push(q); continue; }
+    let j = i;
+    while (j < pool.length && pool[j].caseId === k) j++;
+    if (out.length + (j - i) <= n) { for (let x = i; x < j; x++) out.push(pool[x]); }
+    i = j - 1;                       // rantai dilewati atau diambil sekaligus
+  }
+  // kolam yang isinya rantai semua dan tidak satu pun muat jangan sampai
+  // menghasilkan sesi kosong; tampilkan apa adanya sebagai jalan terakhir
+  return out.length ? out : pool.slice(0, n);
+}
+
 /* ---------------- session ---------------- */
 let sess = null;
 let tickHandle = null;
@@ -350,7 +376,7 @@ function startSession() {
   // Urutan opsi selalu diacak, terlepas dari pilihan acak urutan soal:
   // posisi kunci pada data tidak tersebar merata, dan membiarkannya tetap
   // membuat jawaban bisa ditebak dari posisinya saja.
-  const picked = pool.slice(0, n).map(q =>
+  const picked = potongRapi(pool, n).map(q =>
     Object.assign({}, q, { order: shuffle(q.options.map((_, i) => i)) }));
 
   sess = {
