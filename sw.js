@@ -12,7 +12,7 @@
 
    Seluruh jalur ditulis relatif supaya aplikasi bisa dipasang di
    subdirektori (misalnya GitHub Pages) tanpa penyesuaian. */
-const VERSI = '9fb1ac8b9237';
+const VERSI = '6d73b40dd7f1';
 const CACHE_APP = 'td-app-' + VERSI;
 const CACHE_LUAR = 'td-luar-v1';
 
@@ -29,6 +29,8 @@ const BERKAS = [
   "assets/js/data.js",
   "data/cases-2.js",
   "data/cases-3.js",
+  "data/cases-wmi.js",
+  "data/cases-wppe.js",
   "data/cases.js",
   "data/chart-questions.js",
   "data/csa-akuntansi.js",

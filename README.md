@@ -10,7 +10,7 @@ Bisa juga **dipasang sebagai aplikasi** dan dipakai **tanpa internet** (lihat ba
 
 ## Isi bank soal
 
-**2.237 soal orisinal** yang disusun mengikuti unit kompetensi enam skema sertifikasi,
+**2.281 soal orisinal** yang disusun mengikuti unit kompetensi enam skema sertifikasi,
 **68 di antaranya soal baca chart** yang menampilkan grafik harga.
 
 | Skema | Bidang | Unit | Soal |
@@ -19,8 +19,8 @@ Bisa juga **dipasang sebagai aplikasi** dan dipakai **tanpa internet** (lihat ba
 | CTA | Analisis teknikal — pengelolaan | 9 | 401 |
 | RSA | Analisis efek — pelaksanaan | 7 | 282 |
 | CSA | Analisis efek — pengelolaan | 9 | 398 |
-| WPPE | Izin profesi — perantara pedagang efek | 7 | 296 |
-| WMI | Izin profesi — manajer investasi | 9 | 422 |
+| WPPE | Izin profesi — perantara pedagang efek | 7 | 316 |
+| WMI | Izin profesi — manajer investasi | 9 | 446 |
 
 <details>
 <summary>Rincian per unit kompetensi</summary>
@@ -59,26 +59,26 @@ Bisa juga **dipasang sebagai aplikasi** dan dipakai **tanpa internet** (lihat ba
 | CSA | Derivatif & Manajemen Risiko | 49 |
 | CSA | Aksi Korporasi & Situasi Khusus | 47 |
 | CSA | Tata Kelola, ESG & Standar Riset | 39 |
-| WPPE | Ketentuan Umum & Kelembagaan Pasar Modal | 46 |
+| WPPE | Ketentuan Umum & Kelembagaan Pasar Modal | 47 |
 | WPPE | Produk & Instrumen Pasar Modal | 44 |
-| WPPE | Mekanisme Perdagangan & Penyelesaian | 46 |
-| WPPE | Pembukaan Rekening, KYC & APU-PPT | 40 |
-| WPPE | Operasional Perusahaan Efek | 40 |
-| WPPE | Etika, Perilaku Pasar & Sanksi | 40 |
+| WPPE | Mekanisme Perdagangan & Penyelesaian | 48 |
+| WPPE | Pembukaan Rekening, KYC & APU-PPT | 45 |
+| WPPE | Operasional Perusahaan Efek | 47 |
+| WPPE | Etika, Perilaku Pasar & Sanksi | 45 |
 | WPPE | Layanan Nasabah & Dasar Analisis Efek | 40 |
 | WMI | Kelembagaan & Regulasi Pengelolaan Investasi | 40 |
 | WMI | Produk Pengelolaan Investasi | 51 |
 | WMI | Analisis Ekonomi & Pasar Keuangan | 40 |
 | WMI | Analisis Efek Ekuitas & Pendapatan Tetap | 46 |
-| WMI | Teori Portofolio & Alokasi Aset | 49 |
-| WMI | Pengukuran & Evaluasi Kinerja | 52 |
-| WMI | Manajemen Risiko Investasi | 52 |
-| WMI | Kode Etik & Standar Profesi | 40 |
-| WMI | Operasional, Kustodian & Pelaporan | 52 |
+| WMI | Teori Portofolio & Alokasi Aset | 53 |
+| WMI | Pengukuran & Evaluasi Kinerja | 56 |
+| WMI | Manajemen Risiko Investasi | 58 |
+| WMI | Kode Etik & Standar Profesi | 45 |
+| WMI | Operasional, Kustodian & Pelaporan | 57 |
 
 </details>
 
-**42,6% soal tergolong HOTS** (C4 ke atas menurut taksonomi Bloom): menuntut analisis kasus,
+**43,0% soal tergolong HOTS** (C4 ke atas menurut taksonomi Bloom): menuntut analisis kasus,
 penimbangan bukti yang bertentangan, atau pengambilan keputusan — bukan sekadar mengenali istilah.
 Sebarannya diukur oleh `tools/audit-syllabus.js`.
 
