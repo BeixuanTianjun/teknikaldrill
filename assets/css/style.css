@@ -119,8 +119,14 @@ kbd{font-family:var(--mono);font-size:.78em;background:var(--surface-2);border:1
 .mode-go{display:inline-block;margin-top:16px;font-size:13px;font-weight:700;color:var(--mc,var(--brand))}
 
 /* ===== module grid ===== */
-.level-switch{display:flex;gap:6px;background:var(--surface);border:1px solid var(--line);padding:5px;border-radius:999px}
-.lvl-btn{border:0;background:none;color:var(--ink-2);font-size:13px;font-weight:700;padding:7px 16px;border-radius:999px;cursor:pointer;transition:.2s}
+.level-switch{display:flex;flex-wrap:wrap;gap:6px;background:var(--surface);border:1px solid var(--line);padding:5px;border-radius:999px}
+.lvl-btn{border:0;background:none;color:var(--ink-2);font-size:13px;font-weight:700;padding:7px 16px;border-radius:999px;cursor:pointer;transition:.2s;white-space:nowrap}
+/* dengan skema yang terus bertambah, barisnya harus boleh melipat dan
+   tombolnya mengecil di layar sempit supaya tidak ada yang terpotong */
+@media (max-width:640px){
+  .level-switch{border-radius:18px}
+  .lvl-btn{padding:6px 11px;font-size:12px}
+}
 .lvl-btn.is-active{background:var(--brand);color:#fff;box-shadow:0 4px 14px var(--ring)}
 .module-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(285px,1fr));gap:14px}
 .module-card{

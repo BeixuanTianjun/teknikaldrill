@@ -23,7 +23,11 @@ TD.SCHEMES = [
   { id:'RSA', nama:'Registered Securities Analyst', bidang:'Analisis Efek',
     lembaga:'AAEI', warna:'c' },
   { id:'CSA', nama:'Certified Securities Analyst',  bidang:'Analisis Efek',
-    lembaga:'AAEI', warna:'d' }
+    lembaga:'AAEI', warna:'d' },
+  { id:'WPPE', nama:'Wakil Perantara Pedagang Efek', bidang:'Izin Profesi',
+    lembaga:'OJK', warna:'a' },
+  { id:'WMI',  nama:'Wakil Manajer Investasi',       bidang:'Izin Profesi',
+    lembaga:'OJK', warna:'b' }
 ];
 TD.SCHEME_MAP = TD.SCHEMES.reduce((m, x) => (m[x.id] = x, m), {});
 TD.schemeIds = function () { return TD.SCHEMES.map(s => s.id); };
@@ -99,7 +103,41 @@ TD.MODULES = [
   { id:'csa-korporasi', level:'CSA', name:'Aksi Korporasi & Situasi Khusus', emoji:'🏗️',
     desc:'Rights issue, dilusi, pemecahan saham, pembelian kembali, merger, IPO.' },
   { id:'csa-tatakelola',level:'CSA', name:'Tata Kelola, ESG & Standar Riset', emoji:'🏛️',
-    desc:'GCG, hak pemegang saham minoritas, ESG, independensi dan standar riset.' }
+    desc:'GCG, hak pemegang saham minoritas, ESG, independensi dan standar riset.' },
+
+  { id:'wppe-dasar',    level:'WPPE', name:'Ketentuan Umum & Kelembagaan Pasar Modal', emoji:'🏛️',
+    desc:'UU Pasar Modal, OJK, SRO, profesi dan lembaga penunjang, izin usaha.' },
+  { id:'wppe-produk',   level:'WPPE', name:'Produk & Instrumen Pasar Modal', emoji:'🧺',
+    desc:'Saham, obligasi, sukuk, reksa dana, ETF, waran, derivatif, efek syariah.' },
+  { id:'wppe-transaksi',level:'WPPE', name:'Mekanisme Perdagangan & Penyelesaian', emoji:'🔁',
+    desc:'Sesi bursa, jenis pasar, prioritas order, kliring, penyelesaian, suspensi.' },
+  { id:'wppe-nasabah',  level:'WPPE', name:'Pembukaan Rekening, KYC & APU-PPT', emoji:'🪪',
+    desc:'Prinsip mengenal nasabah, profil risiko, SID, RDN, pelaporan transaksi.' },
+  { id:'wppe-operasional',level:'WPPE', name:'Operasional Perusahaan Efek', emoji:'⚙️',
+    desc:'MKBD, pemisahan aset nasabah, transaksi margin, rekonsiliasi, pengendalian.' },
+  { id:'wppe-etika',    level:'WPPE', name:'Etika, Perilaku Pasar & Sanksi', emoji:'⚖️',
+    desc:'Kode etik, benturan kepentingan, manipulasi, orang dalam, jenis sanksi.' },
+  { id:'wppe-layanan',  level:'WPPE', name:'Layanan Nasabah & Dasar Analisis Efek', emoji:'🤝',
+    desc:'Kesesuaian produk, dasar analisis fundamental dan teknikal, komunikasi risiko.' },
+
+  { id:'wmi-lembaga',   level:'WMI', name:'Kelembagaan & Regulasi Pengelolaan Investasi', emoji:'🏦',
+    desc:'Izin MI dan WMI, bank kustodian, POJK pengelolaan investasi, pengawasan.' },
+  { id:'wmi-produk',    level:'WMI', name:'Produk Pengelolaan Investasi', emoji:'📦',
+    desc:'Reksa dana konvensional dan syariah, KPD, ETF, EBA, DIRE, DINFRA.' },
+  { id:'wmi-ekonomi',   level:'WMI', name:'Analisis Ekonomi & Pasar Keuangan', emoji:'🌏',
+    desc:'Siklus ekonomi, kebijakan moneter dan fiskal, kurs, arah suku bunga.' },
+  { id:'wmi-efek',      level:'WMI', name:'Analisis Efek Ekuitas & Pendapatan Tetap', emoji:'🔎',
+    desc:'Valuasi saham, imbal hasil dan durasi obligasi, risiko kredit, seleksi efek.' },
+  { id:'wmi-portofolio',level:'WMI', name:'Teori Portofolio & Alokasi Aset', emoji:'🧮',
+    desc:'Diversifikasi, perbatasan efisien, CAPM, alokasi strategis dan taktis.' },
+  { id:'wmi-kinerja',   level:'WMI', name:'Pengukuran & Evaluasi Kinerja', emoji:'📈',
+    desc:'Imbal hasil tertimbang waktu dan uang, Sharpe, alfa, acuan, atribusi.' },
+  { id:'wmi-risiko',    level:'WMI', name:'Manajemen Risiko Investasi', emoji:'🛡️',
+    desc:'Risiko pasar, likuiditas, kredit, operasional, batasan portofolio, VaR.' },
+  { id:'wmi-etika',     level:'WMI', name:'Kode Etik & Standar Profesi', emoji:'⚖️',
+    desc:'Kewajiban fidusia, benturan kepentingan, alokasi transaksi, pemasaran jujur.' },
+  { id:'wmi-operasional',level:'WMI', name:'Operasional, Kustodian & Pelaporan', emoji:'🗂️',
+    desc:'Perhitungan NAB, penyelesaian, pemisahan aset, pelaporan berkala dan insidentil.' }
 ];
 
 TD.MODULE_MAP = TD.MODULES.reduce((m, x) => (m[x.id] = x, m), {});

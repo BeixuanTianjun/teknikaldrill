@@ -184,6 +184,12 @@ function unitPertama(level) {
 
    Tombolnya tidak ditulis di index.html supaya menambah skema baru tidak
    menuntut penyuntingan markup di beberapa tempat sekaligus. */
+/* "A", "A & B", lalu "A, B & C" — biar daftar bidang yang makin panjang tetap enak dibaca. */
+function gabung(daftar) {
+  if (daftar.length < 3) return daftar.join(' & ');
+  return daftar.slice(0, -1).join(', ') + ' & ' + daftar[daftar.length - 1];
+}
+
 function bangunPemilihSkema() {
   const tombol = TD.SCHEMES.map(s =>
     `<button class="lvl-btn" data-level="${esc(s.id)}" type="button" title="${esc(s.nama)}">${esc(s.id)}</button>`).join('');
@@ -196,7 +202,7 @@ function bangunPemilihSkema() {
     .map((s, i) => `<span class="grad grad-${i % 4}">${esc(s.id)}</span>`).join(' · ');
   const bidang = $('#heroEyebrow');
   if (bidang) bidang.textContent = 'Sertifikasi ' +
-    Array.from(new Set(TD.SCHEMES.map(s => s.bidang))).join(' & ') + ' · ' +
+    gabung(Array.from(new Set(TD.SCHEMES.map(s => s.bidang)))) + ' · ' +
     Array.from(new Set(TD.SCHEMES.map(s => s.lembaga))).join(' / ');
 }
 

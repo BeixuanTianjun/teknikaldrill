@@ -12,7 +12,7 @@
 
    Seluruh jalur ditulis relatif supaya aplikasi bisa dipasang di
    subdirektori (misalnya GitHub Pages) tanpa penyesuaian. */
-const VERSI = '6a87cba1f596';
+const VERSI = '9fb1ac8b9237';
 const CACHE_APP = 'td-app-' + VERSI;
 const CACHE_LUAR = 'td-luar-v1';
 
@@ -63,6 +63,9 @@ const BERKAS = [
   "data/hots-csa-3.js",
   "data/hots-rsa-1.js",
   "data/hots-rsa-2.js",
+  "data/hots-wmi-1.js",
+  "data/hots-wmi-2.js",
+  "data/hots-wppe-1.js",
   "data/notes-csa-1.js",
   "data/notes-csa-2.js",
   "data/notes-cta-1.js",
@@ -71,6 +74,10 @@ const BERKAS = [
   "data/notes-rsa-2.js",
   "data/notes-rta-1.js",
   "data/notes-rta-2.js",
+  "data/notes-wmi-1.js",
+  "data/notes-wmi-2.js",
+  "data/notes-wppe-1.js",
+  "data/notes-wppe-2.js",
   "data/rsa-etika.js",
   "data/rsa-laporan.js",
   "data/rsa-makro.js",
@@ -86,6 +93,22 @@ const BERKAS = [
   "data/rta-plan.js",
   "data/rta-riset.js",
   "data/rta-trend.js",
+  "data/wmi-efek.js",
+  "data/wmi-ekonomi.js",
+  "data/wmi-etika.js",
+  "data/wmi-kinerja.js",
+  "data/wmi-lembaga.js",
+  "data/wmi-operasional.js",
+  "data/wmi-portofolio.js",
+  "data/wmi-produk.js",
+  "data/wmi-risiko.js",
+  "data/wppe-dasar.js",
+  "data/wppe-etika.js",
+  "data/wppe-layanan.js",
+  "data/wppe-nasabah.js",
+  "data/wppe-operasional.js",
+  "data/wppe-produk.js",
+  "data/wppe-transaksi.js",
   "index.html",
   "manifest.webmanifest"
 ];
