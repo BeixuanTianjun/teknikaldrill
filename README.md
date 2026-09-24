@@ -293,60 +293,51 @@ yang cakupannya mengikuti direktori tempat `sw.js` berada.
 
 ### VPS dengan Nginx
 
-Karena tidak ada langkah build, memindahkannya ke VPS cuma soal menyalin folder dan menyajikannya.
-Yang perlu diperhatikan hanya dua hal: **HTTPS wajib** supaya aplikasinya bisa dipasang, dan
-`sw.js` **jangan di-cache lama** supaya pembaruan sampai ke pengguna.
+Seluruh langkahnya sudah dibungkus dalam `deploy/`, jadi pemasangannya satu perintah.
 
-```nginx
-server {
-    listen 443 ssl http2;
-    server_name contoh.com;
+**1. Siapkan nama host.** PWA hanya dapat dipasang lewat HTTPS, dan HTTPS butuh nama host —
+alamat IP telanjang tidak bisa disertifikatkan. Kalau belum punya domain, daftar gratis di
+[DuckDNS](https://www.duckdns.org), buat subdomain, lalu isikan alamat IP VPS.
 
-    # sertifikat dari certbot
-    ssl_certificate     /etc/letsencrypt/live/contoh.com/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/contoh.com/privkey.pem;
+> Hindari `sslip.io` dan `nip.io` untuk keperluan ini. Keduanya tidak terdaftar pada Public
+> Suffix List, sehingga seluruh subdomainnya di dunia berbagi satu jatah penerbitan sertifikat
+> Let's Encrypt dan penerbitan sering ditolak. `duckdns.org` terdaftar, jadi tiap subdomain
+> memperoleh jatahnya sendiri.
 
-    root /var/www/teknikaldrill;
-    index index.html;
-
-    # service worker harus selalu diperiksa ulang, kalau tidak
-    # pembaruan tidak pernah sampai ke perangkat yang sudah memasang
-    location = /sw.js {
-        add_header Cache-Control "no-cache, must-revalidate";
-    }
-    location = /manifest.webmanifest {
-        types { application/manifest+json webmanifest; }
-        add_header Cache-Control "no-cache";
-    }
-
-    # sisanya aman di-cache lama: versinya sudah dijaga service worker
-    location ~* \.(js|css|png|svg|woff2)$ {
-        expires 30d;
-        add_header Cache-Control "public, immutable";
-    }
-
-    gzip on;
-    gzip_types text/css application/javascript application/json image/svg+xml;
-}
-
-server {
-    listen 80;
-    server_name contoh.com;
-    return 301 https://$host$request_uri;
-}
-```
-
-Pemasangannya:
+**2. Jalankan pemasangnya** di VPS Ubuntu atau Debian:
 
 ```bash
-sudo apt install nginx certbot python3-certbot-nginx
-sudo git clone https://github.com/BeixuanTianjun/teknikaldrill.git /var/www/teknikaldrill
-sudo certbot --nginx -d contoh.com
-# pembaruan berikutnya cukup:
-cd /var/www/teknikaldrill && sudo git pull
+git clone https://github.com/BeixuanTianjun/teknikaldrill.git
+sudo bash teknikaldrill/deploy/install.sh namamu.duckdns.org email@kamu.com
 ```
 
-Tanpa HTTPS, aplikasinya tetap terbuka di peramban tetapi **tidak bisa dipasang** dan **tidak
+Yang dikerjakan skrip itu: memasang nginx, certbot, dan git; menaruh kode di
+`/var/www/teknikaldrill`; menyalakan nginx dengan vhost sementara; mengambil sertifikat
+Let's Encrypt; mengganti vhost menjadi HTTPS penuh; lalu memasang timer pembaruan harian.
+
+Setelah itu pembaruan berjalan sendiri. Untuk memaksanya sekarang:
+
+```bash
+sudo teknikaldrill-update
+```
+
+#### Yang dikerjakan konfigurasinya, dan kenapa
+
+Berkasnya ada di `deploy/teknikaldrill.nginx.conf`, disusun `deploy/render-conf.sh` menyesuaikan
+mesin yang dipakai. Beberapa hal di dalamnya bukan pilihan gaya, melainkan syarat agar
+aplikasinya benar-benar bekerja sebagai PWA:
+
+| Yang diatur | Alasannya |
+|---|---|
+| `sw.js` dan `index.html` dikirim `no-cache` | Kalau keduanya di-cache lama, perangkat yang sudah memasang aplikasinya tidak pernah tahu ada versi baru |
+| Berkas lain `immutable` 30 hari | Versi cache service worker diturunkan dari isi berkas, jadi perubahan isi otomatis menghasilkan cache baru |
+| `expires` sengaja tidak dipakai | Direktif itu menulis `Cache-Control` sendiri, sehingga tanggapannya membawa dua `Cache-Control` sekaligus |
+| Blok `deny` ditaruh di atas blok ekstensi berkas | Nginx memakai `location` regex yang pertama cocok; kalau urutannya dibalik, `/tools/validate.js` tetap tersaji |
+| `/.well-known/acme-challenge/` tidak ikut dialihkan ke HTTPS | Kalau ikut dialihkan, perpanjangan sertifikat otomatis akan gagal |
+| Bentuk direktif `http2` dipilih saat pemasangan | `http2 on;` baru ada pada nginx 1.25.1, sedangkan Ubuntu 22.04 membawa 1.18 dan Debian 12 membawa 1.22 |
+| Baris `listen [::]` dilewati bila IPv6 mati | Tanpa ini nginx gagal start di VPS yang IPv6-nya dimatikan |
+
+Tanpa HTTPS aplikasinya tetap terbuka di peramban, tetapi **tidak bisa dipasang** dan **tidak
 punya cache luring**, karena service worker hanya hidup di `https` dan `localhost`.
 
 ### Publikasi sebagai Artifact
@@ -421,6 +412,11 @@ teknikaldrill/
 ├── data/notes-*.js             # materi ringkas + label mind map + jebakan ujian
 ├── data/cases*.js              # studi kasus bergaya vignette
 ├── data/chart-questions.js     # soal baca chart (DIBANGKITKAN)
+├── deploy/
+│   ├── install.sh              # pemasangan di VPS, sekali jalan
+│   ├── update.sh               # penarik pembaruan, dipanggil timer harian
+│   ├── render-conf.sh          # penyusun vhost sesuai versi nginx dan IPv6
+│   └── teknikaldrill.nginx.conf  # templat vhost
 └── tools/
     ├── validate.js             # validator bank soal + pemeriksa sw.js usang
     ├── audit-quality.js        # audit mutu pengecoh
