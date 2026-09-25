@@ -10,12 +10,12 @@ Bisa juga **dipasang sebagai aplikasi** dan dipakai **tanpa internet** (lihat ba
 
 ## Isi bank soal
 
-**2.281 soal orisinal** yang disusun mengikuti unit kompetensi enam skema sertifikasi,
+**2.354 soal orisinal** yang disusun mengikuti unit kompetensi enam skema sertifikasi,
 **68 di antaranya soal baca chart** yang menampilkan grafik harga.
 
 | Skema | Bidang | Unit | Soal |
 |---|---|---|---|
-| RTA | Analisis teknikal — pelaksanaan | 7 | 438 |
+| RTA | Analisis teknikal — pelaksanaan | 8 | 511 |
 | CTA | Analisis teknikal — pengelolaan | 9 | 401 |
 | RSA | Analisis efek — pelaksanaan | 7 | 282 |
 | CSA | Analisis efek — pengelolaan | 9 | 398 |
@@ -27,12 +27,13 @@ Bisa juga **dipasang sebagai aplikasi** dan dipakai **tanpa internet** (lihat ba
 
 | Skema | Unit kompetensi | Soal |
 |---|---|---|
-| RTA | Pengertian & Penggunaan Analisis Teknikal | 60 |
-| RTA | Mengkonstruksi Grafik (Chart) | 53 |
+| RTA | Pengertian & Penggunaan Analisis Teknikal | 67 |
+| RTA | Mengkonstruksi Grafik (Chart) | 56 |
 | RTA | Trend, Reversal & Consolidation | 85 |
 | RTA | Menentukan Level Kunci Harga | 59 |
+| RTA | Pola Candlestick | 61 |
 | RTA | Menerapkan Indikator Teknikal | 75 |
-| RTA | Rencana Trading & Manajemen Risiko | 72 |
+| RTA | Rencana Trading & Manajemen Risiko | 74 |
 | RTA | Menyusun & Mempublikasikan Riset Teknikal | 34 |
 | CTA | Teori & Filosofi Lanjutan | 45 |
 | CTA | Elliott Wave & Rasio Fibonacci | 45 |
@@ -78,12 +79,17 @@ Bisa juga **dipasang sebagai aplikasi** dan dipakai **tanpa internet** (lihat ba
 
 </details>
 
-**43,0% soal tergolong HOTS** (C4 ke atas menurut taksonomi Bloom): menuntut analisis kasus,
+**42,9% soal tergolong HOTS** (C4 ke atas menurut taksonomi Bloom): menuntut analisis kasus,
 penimbangan bukti yang bertentangan, atau pengambilan keputusan — bukan sekadar mengenali istilah.
 Sebarannya diukur oleh `tools/audit-syllabus.js`.
 
 Soal dan materi ditulis sendiri berdasarkan literatur standar, **bukan hasil menyalin bank soal
 berbayar milik pihak lain** dan bukan soal ujian resmi dari lembaga sertifikasi mana pun.
+
+Cakupan unit RTA disusun mengikuti pokok bahasan yang muncul pada materi pelatihan RTA yang
+beredar — tiga modul: pengantar dan konsep dasar, teori Dow dan pola chart, lalu candlestick dan
+indikator. Yang dipakai hanya daftar pokok bahasannya sebagai penanda cakupan; seluruh soal,
+pembahasan, dan materi ringkasnya tetap ditulis sendiri.
 
 > **Catatan kejujuran.** Rincian unit kompetensi disusun dari ruang lingkup yang dipublikasikan
 > masing-masing skema, **bukan salinan silabus resmi**. Pada Simulasi Sertifikasi, soal dibagi

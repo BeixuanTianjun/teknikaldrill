@@ -45,6 +45,8 @@ TD.MODULES = [
     desc:'Garis tren, channel, pola pembalikan dan penerusan.' },
   { id:'rta-level',     level:'RTA', name:'Menentukan Level Kunci Harga', emoji:'🎚️',
     desc:'Support, resistance, Fibonacci, pivot point, gap.' },
+  { id:'rta-candle',    level:'RTA', name:'Pola Candlestick', emoji:'🕯️',
+    desc:'Anatomi candle, pola satu sampai tiga candle, dan aturan pemakaiannya.' },
   { id:'rta-indikator', level:'RTA', name:'Menerapkan Indikator Teknikal', emoji:'🧮',
     desc:'Moving average, MACD, RSI, stochastic, Bollinger, indikator volume.' },
   { id:'rta-plan',      level:'RTA', name:'Rencana Trading & Manajemen Risiko', emoji:'🛡️',
