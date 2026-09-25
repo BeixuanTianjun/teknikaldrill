@@ -83,25 +83,25 @@ TD.register([
  explain:"Hitung dampaknya: 11 kekalahan x 2 persen = sekitar 22 persen ekuitas tergerus. Dan ini BUKAN skenario terburuk yang dikarang — ini yang sudah kejadian di data uji, jadi rentetan serupa atau lebih panjang hampir pasti terulang. Di win rate 38 persen, kalah beruntun itu hal biasa secara statistik. Yang wajib disampaikan ke komite: apakah mereka sanggup menatap angka itu tanpa menghentikan sistemnya di titik terdalam."},
 
 /* ===== rantai-03: membaca pola sampai keputusan ===== */
-{id:"rantai-03-q1",module:"rta-trend",level:"RTA",difficulty:"sedang",caseId:"rantai-03",
+{id:"rantai-03-q1",module:"rta-pola",level:"RTA",difficulty:"sedang",caseId:"rantai-03",
  q:"LANGKAH 1. Berapa tinggi pola head and shoulders pada kasus ini, dan di harga berapa target proyeksi minimumnya?",
  options:["Tinggi 360 poin, target Rp1.100","Tinggi 360 poin, target Rp1.820","Tinggi 180 poin, target Rp1.280","Tinggi 640 poin, target Rp820"],
  answer:0,
  explain:"Dua langkah. Satu: tinggi pola = puncak head dikurangi neckline = 1.820 dikurangi 1.460 = 360 poin. Dua: target = titik breakout dikurangi tinggi pola = 1.460 dikurangi 360 = Rp1.100. Perhatikan kata MINIMUM: ini proyeksi paling sedikit, bukan batas maksimum. Dan yang diukur dari head, bukan dari bahu."},
 
-{id:"rantai-03-q2",module:"rta-trend",level:"RTA",difficulty:"sulit",caseId:"rantai-03",
+{id:"rantai-03-q2",module:"rta-pola",level:"RTA",difficulty:"sulit",caseId:"rantai-03",
  q:"LANGKAH 2. Bagaimana pola volume pada kasus ini menilai keabsahan formasi tersebut?",
  options:["Mendukung, tetapi hanya karena volume bahu kanan adalah yang terkecil","Mendukung, karena volume menurun dari bahu kiri ke head ke bahu kanan seperti yang diharapkan","Membatalkan, karena volume seharusnya meningkat dari bahu kiri ke bahu kanan","Netral, karena volume tidak pernah berperan dalam menilai pola head and shoulders"],
  answer:1,
  explain:"Volumenya 1,8 juta lalu 1,3 juta lalu 0,9 juta — MENURUN berurutan, dan itu persis pola ideal head and shoulders. Ceritanya nyambung sama harganya: tiap puncak partisipasinya makin sedikit, artinya pembelinya makin habis. Yang bikin polanya kuat itu keselarasan antara bentuk dan volume. Kalau bahu kanan justru bervolume paling besar, ceritanya bertentangan dan polanya patut dicurigai."},
 
-{id:"rantai-03-q3",module:"rta-trend",level:"RTA",difficulty:"sulit",caseId:"rantai-03",
+{id:"rantai-03-q3",module:"rta-pola",level:"RTA",difficulty:"sulit",caseId:"rantai-03",
  q:"LANGKAH 3. Analis berencana masuk posisi jual saat neckline Rp1.460 ditembus, dengan stop di atas puncak bahu kanan. Berapa rasio risiko terhadap imbal hasil menuju target Rp1.100?",
  options:["Sekitar 1 banding 1,2","Sekitar 1 banding 4,8","Sekitar 1 banding 2,1","Sekitar 1 banding 3,5"],
  answer:2,
  explain:"Risiko = stop di atas bahu kanan (1.630) dikurangi harga masuk (1.460) = 170 poin. Potensi untung = 1.460 dikurangi target 1.100 = 360 poin. Rasio = 170 banding 360 = 1 banding 2,1. Masih layak, tapi perhatikan: stop di atas bahu kanan itu JAUH. Sebagian analis memilih stop yang lebih rapat dengan konsekuensi lebih rawan tersentuh, dan itu pertukaran yang harus dipilih sadar-sadar."},
 
-{id:"rantai-03-q4",module:"rta-trend",level:"RTA",difficulty:"sulit",caseId:"rantai-03",
+{id:"rantai-03-q4",module:"rta-pola",level:"RTA",difficulty:"sulit",caseId:"rantai-03",
  q:"LANGKAH 4. Harga menembus neckline dan turun, tetapi berhenti di Rp1.190 dan mulai memantul. Target proyeksi Rp1.100 belum tercapai. Tindakan yang paling tepat adalah...",
  options:["Menahan seluruh posisi sampai Rp1.100 tercapai karena target pola belum terpenuhi","Menambah posisi jual karena selisih menuju target masih tersisa 90 poin","Membatalkan seluruh analisis karena polanya gagal mencapai target","Merealisasikan sebagian, karena harga berhenti tepat di atas support historis Rp1.180 yang lebih menentukan daripada target pola"],
  answer:3,

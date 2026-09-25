@@ -110,13 +110,13 @@ TD.register([
  answer:0,
  explain:"SMA 5 = jumlahin lima close terakhir, bagi lima. Jumlahnya: 1.020 + 1.040 + 1.010 + 1.060 + 1.070 = 5.200. Dibagi 5 = 1.040. Sederhana banget, dan justru di situ kelemahannya: harga lima hari lalu dianggap sepenting harga kemarin. Itu yang bikin SMA lambat, dan itu yang mau diperbaiki EMA."},
 
-{id:"hit-018",module:"rta-indikator",level:"RTA",difficulty:"sulit",
+{id:"hit-018",module:"rta-kekuatan",level:"RTA",difficulty:"sulit",
  q:"Sebuah saham memiliki ATR(14) sebesar Rp180. Analis memakai stop 2 kali ATR dari harga masuk Rp6.000, dengan risiko rupiah Rp5.400.000. Berapa jumlah lembar yang boleh dibeli?",
  options:["7.500 lembar","15.000 lembar","30.000 lembar","900 lembar"],
  answer:1,
  explain:"Dua langkah. Satu: jarak stop = 2 x ATR = 2 x 180 = Rp360 per lembar. Dua: jumlah lembar = risiko rupiah dibagi jarak stop = 5.400.000 dibagi 360 = 15.000 lembar. Perhatikan keunggulan cara ini: di saham yang lebih liar, ATR-nya lebih besar, stop otomatis melebar, dan jumlah lembarnya otomatis mengecil. Risiko rupiahnya tetap sama."},
 
-{id:"hit-019",module:"rta-indikator",level:"RTA",difficulty:"sedang",
+{id:"hit-019",module:"rta-kekuatan",level:"RTA",difficulty:"sedang",
  q:"Harga saat ini Rp4.500 dan harga 10 periode lalu Rp4.000. Berapa nilai Rate of Change 10 periode?",
  options:["11,1 persen","1,125 persen","12,5 persen","500 poin"],
  answer:2,
@@ -135,13 +135,13 @@ TD.register([
  answer:0,
  explain:"Kolom baru butuh pembalikan sebesar box size DIKALI reversal = 25 x 3 = 75 poin. Gerakan di bawah 75 poin nggak ninggalin jejak sama sekali di chart. Inilah cara point and figure nyaring noise: dia sengaja BUTA sama gerakan kecil. Enak buat ngelihat level, tapi konsekuensinya lo juga telat tau kalau ada pembalikan beneran."},
 
-{id:"hit-022",module:"rta-trend",level:"RTA",difficulty:"sedang",
+{id:"hit-022",module:"rta-pola",level:"RTA",difficulty:"sedang",
  q:"Sebuah pola head and shoulders memiliki puncak head di Rp8.600 dan neckline di Rp7.400. Berapa target proyeksi minimum setelah neckline ditembus?",
  options:["Rp6.800","Rp6.200","Rp8.600","Rp7.400"],
  answer:1,
  explain:"Dua langkah. Satu: tinggi pola = head dikurangi neckline = 8.600 dikurangi 7.400 = 1.200 poin. Dua: target = titik breakout dikurangi tinggi pola = 7.400 dikurangi 1.200 = Rp6.200. Perhatikan kata MINIMUM: ini proyeksi paling sedikit, bukan batas. Dan wajib dicek ke level support historis di jalurnya, karena level yang punya alasan pasar lebih menentukan daripada hasil ngukur."},
 
-{id:"hit-023",module:"rta-trend",level:"RTA",difficulty:"sulit",
+{id:"hit-023",module:"rta-pola",level:"RTA",difficulty:"sulit",
  q:"Sebuah bendera terbentuk setelah kenaikan dari Rp1.500 ke Rp2.100, lalu harga terkoreksi ke Rp1.950 sebelum menembus ke atas. Berapa target measured move-nya?",
  options:["Rp2.250","Rp3.150","Rp2.550","Rp2.700"],
  answer:2,

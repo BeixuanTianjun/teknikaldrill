@@ -50,6 +50,15 @@ function toast(msg, kind) {
   setTimeout(() => el.remove(), 3000);
 }
 function allQuestions() { return TD.BANK.concat(S.imported || []); }
+/* Kode SKKNI ditampilkan bila unitnya memang unit kompetensi yang dinilai.
+   Unit bertanda tambahan diberi label supaya jelas ia di luar asesmen; unit
+   skema lain yang kodenya belum didata tidak diberi penanda apa pun. */
+function penandaUnit(m) {
+  if (m.kode) return `<span class="unit-kode">${esc(m.kode)}</span>`;
+  if (m.tambahan) return '<span class="unit-kode unit-kode-extra">materi tambahan</span>';
+  return '';
+}
+
 function modOf(id) { return TD.MODULE_MAP[id] || { id, name: id, level: '—', emoji: '📌', desc: '' }; }
 
 /* ---------------- views ---------------- */
@@ -106,6 +115,7 @@ function renderHome() {
     return `<button class="module-card" data-module="${esc(m.id)}" type="button">
       <div class="module-top">
         <h4>${m.emoji} ${esc(m.name)}</h4>
+        ${penandaUnit(m)}
         <span class="muted">${esc(m.level)}</span>
       </div>
       <p class="muted" style="font-weight:500">${esc(m.desc)}</p>
@@ -144,7 +154,10 @@ const MODE_INFO = {
    Catatan jujur: ini pembagian rata, BUKAN salinan bobot resmi ujian. Bobot
    resmi per unit tidak dipublikasikan, jadi tidak ada yang bisa diklaim. */
 function paketSertifikasi(level, jumlah) {
-  const unit = TD.MODULES.filter(m => m.level === level).map(m => m.id);
+  // Hanya unit yang benar-benar dinilai pada asesmen yang ikut dibagi. Unit
+  // bertanda tambahan berguna untuk praktik tetapi tidak diuji, jadi kalau
+  // ikut masuk, bobot tiap unit asesmen malah mengecil tanpa alasan.
+  const unit = TD.MODULES.filter(m => m.level === level && !m.tambahan).map(m => m.id);
   // Soal berantai tidak ikut ke paket sertifikasi. Satu rantai berisi empat
   // soal dan seluruhnya ada di satu unit, padahal jatah per unit di sini cuma
   // sekitar lima soal: kalau ikut, satu rantai menghabiskan hampir seluruh
@@ -310,8 +323,11 @@ function ringkasSertifikasi() {
   // dihitung dari jumlah soal yang BENAR-BENAR terkumpul, bukan dari angka yang
   // diklik, supaya waktunya tidak berbeda dari yang dijalankan saat bank kurang
   const menit = Math.round(paket.soal.length * 1.2);
-  const rincian = paket.unit.map(id =>
-    `<span class="bp-unit">${esc(modOf(id).name)} <b>${paket.jatah[id]}</b></span>`).join('');
+  const rincian = paket.unit.map(id => {
+    const m = modOf(id);
+    const kode = m.kode ? `<i class="bp-kode">${esc(m.kode)}</i>` : '';
+    return `<span class="bp-unit">${kode}${esc(m.name)} <b>${paket.jatah[id]}</b></span>`;
+  }).join('');
 
   $('#setupSummary').innerHTML =
     `Skema <b>${esc(level)}</b> · <b>${paket.soal.length}</b> soal dari <b>${paket.unit.length}</b> unit kompetensi · waktu <b>${menit} menit</b>` +
@@ -319,7 +335,10 @@ function ringkasSertifikasi() {
     (paket.kurang.length
       ? `<div class="bp-warn">Bank soal belum cukup untuk memenuhi jatah penuh di: ${paket.kurang.map(id => esc(modOf(id).name)).join(', ')}.</div>`
       : '') +
-    `<div class="bp-note">Pembagiannya RATA antar unit, bukan salinan bobot resmi ujian. Bobot resmi per unit tidak dipublikasikan, jadi yang dijamin di sini cuma satu: semua unit kompetensi kebagian soal.</div>`;
+    `<div class="bp-note">Pembagiannya RATA antar unit, bukan salinan bobot resmi ujian. Bobot resmi per unit tidak dipublikasikan, jadi yang dijamin di sini cuma satu: semua unit kompetensi kebagian soal.${
+      TD.MODULES.some(m => m.level === level && m.tambahan)
+        ? ' Unit bertanda materi tambahan tidak ikut karena bukan unit yang dinilai pada asesmen.' : ''
+    }</div>`;
 
   $('#startBtn').disabled = paket.soal.length === 0;
   $('#startBtn').style.opacity = paket.soal.length === 0 ? .5 : 1;
@@ -860,6 +879,7 @@ function renderNotesIndex() {
     return `<button class="module-card" data-note="${esc(m.id)}" type="button" ${note ? '' : 'disabled style="opacity:.5"'}>
       <div class="module-top">
         <h4>${m.emoji} ${esc(m.name)}</h4>
+        ${penandaUnit(m)}
         <span class="muted">${esc(m.level)}</span>
       </div>
       <p class="muted" style="font-weight:500">${esc(note ? note.tagline : m.desc)}</p>

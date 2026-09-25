@@ -45,7 +45,7 @@ TD.register([
  answer:0,
  explain:"Bahaya aslinya bukan di pilihan metodenya, tapi di kebebasan PINDAH metode setelah lihat hasilnya. Itu cara analis ngebenerin posisi yang salah: 'oh ternyata pakai close belum tembus kok'. Banyak praktisi milih basis close karena penembusan sesaat sama ekor bayangan sering palsu. Apa pun pilihan lo, tulis di rencana SEBELUM posisi dibuka. Metode yang ditentuin setelah kejadian itu bukan analisis, itu pembelaan diri."},
 
-{id:"rta-trend-h08",module:"rta-trend",level:"RTA",difficulty:"sulit",
+{id:"rta-trend-h08",module:"rta-pola",level:"RTA",difficulty:"sulit",
  q:"Harga menembus resistance yang telah diuji empat kali, tetapi volume pada hari penembusan hanya setengah rata-rata 20 hari. Sepekan kemudian harga masih bertahan di atasnya. Bagaimana menilainya?",
  options:["Harus menunggu resistance itu diuji untuk kelima kalinya sebelum penilaian apa pun dibuat","Bertahannya harga adalah konfirmasi tersendiri, meski kualitas penembusannya lebih rendah dari ideal","Penembusan itu pasti palsu karena volume rendah membatalkan setiap penembusan tanpa kecuali","Volume tidak relevan sama sekali sehingga penembusan ini setara dengan penembusan bervolume tinggi"],
  answer:1,
@@ -57,7 +57,7 @@ TD.register([
  answer:2,
  explain:"Susunan kayak gini justru yang DICARI, bukan bikin bingung. Mingguan naik = arah. Harian turun = lagi ada koreksi, artinya lo dapet harga lebih murah. Jam berbalik naik = koreksinya mulai abis, waktunya masuk. Tiga-tiganya punya tugas beda: arah, diskon, timing. Nungguin ketiganya searah biasanya berarti lo masuk telat pas semua orang udah masuk, dengan stop yang jauh banget di bawah."},
 
-{id:"rta-trend-h10",module:"rta-trend",level:"RTA",difficulty:"sulit",
+{id:"rta-trend-h10",module:"rta-pola",level:"RTA",difficulty:"sulit",
  q:"Sebuah saham membentuk pola double top dengan dua puncak di 5.000 dan lembah di 4.400, lalu menembus ke bawah. Namun sektornya sedang menguat dan indeks mencetak rekor baru. Apa sikap yang paling tepat?",
  options:["Membatalkan pola itu sepenuhnya karena kekuatan indeks selalu mengalahkan pola saham individu","Menggandakan posisi jual karena pola yang muncul saat pasar kuat justru lebih bertenaga","Mengabaikan indeks dan sektor karena analisis saham individu berdiri sendiri sepenuhnya","Tetap mengikuti sinyal polanya dengan ukuran lebih kecil, karena konteks yang berlawanan menurunkan peluang keberhasilan"],
  answer:3,
@@ -69,7 +69,7 @@ TD.register([
  answer:0,
  explain:"Pasar cuma bertren sekitar sepertiga waktunya, sisanya jalan nyamping. Maksain narik garis tren di pasar mendatar itu cara klasik ngeliat sesuatu yang nggak ada — otak manusia emang dirancang nemuin pola, termasuk di tempat yang nggak ada polanya. Alat yang cocok buat kondisi ini beda: batas atas dan bawah range, osilator yang kerja di dua ujung, atau ya udah nunggu aja sampai range-nya jebol. Nggak semua kondisi pasar harus ditradingin."},
 
-{id:"rta-trend-h12",module:"rta-trend",level:"RTA",difficulty:"sulit",
+{id:"rta-trend-h12",module:"rta-pola",level:"RTA",difficulty:"sulit",
  q:"Harga menembus rentang konsolidasi ke atas, lalu dalam dua hari kembali turun ke tengah rentang. Apa pembacaan yang paling tepat?",
  options:["Harga akan otomatis kembali menembus ke atas karena arah penembusan pertama menentukan","Penembusan palsu, dan harga sering bergerak jauh ke arah berlawanan karena pembeli baru terjebak","Penembusan itu tetap sah karena harga sudah pernah berada di atas batas rentang","Konsolidasi hanya berlanjut, sehingga batas rentang lama tetap berlaku seperti sebelumnya"],
  answer:1,
@@ -131,7 +131,7 @@ TD.register([
  answer:2,
  explain:"Ini namanya redundansi indikator. RSI, stochastic, CCI, Williams %R itu semuanya berakar dari hal yang sama: bandingin harga sekarang sama range terakhir. Korelasinya tinggi banget, jadi mereka hampir SELALU sepakat. Rasa yakin yang timbul itu palsu — lo cuma dapet satu bukti yang diulang empat kali. Kombinasi yang beneran nambah informasi itu ngukur dimensi beda: satu tren, satu momentum, satu volume, satu volatilitas."},
 
-{id:"rta-ind-h09",module:"rta-indikator",level:"RTA",difficulty:"sulit",
+{id:"rta-ind-h09",module:"rta-kekuatan",level:"RTA",difficulty:"sulit",
  q:"Harga sebuah saham naik 40 persen dalam enam pekan dan ATR-nya berlipat dari 50 menjadi 140 poin. Apa penyesuaian yang paling tepat pada posisi baru?",
  options:["Memperbesar jumlah lembar karena kenaikan volatilitas menandakan peluang keuntungan lebih besar","Mempertahankan jumlah lembar yang sama karena ATR tidak berkaitan dengan ukuran posisi","Berhenti memakai ATR dan menggantinya dengan stop persentase tetap yang lebih sederhana","Memperkecil jumlah lembar karena stop berbasis ATR kini jauh lebih lebar untuk risiko rupiah yang sama"],
  answer:3,

@@ -1,5 +1,5 @@
-/* Study notes + mind map — RTA bagian 1.
-   sections[].mm = label pendek untuk cabang mind map. */
+/* Study notes + mind map — RTA unit 001, 002, 003.
+   sections[].mm = "Label :: keterangan" untuk cabang mind map. */
 TD.registerNotes([
 {module:"rta-dasar", tagline:"Fondasi: kenapa harga layak dianalisis dari grafik.",
  sections:[
@@ -61,7 +61,7 @@ TD.registerNotes([
   "JEBAKAN: Renko dan P&F ngehapus dimensi WAKTU, jadi analisis siklus dan pola musiman nggak bisa dikerjain di situ.",
   "JEBAKAN: candle mingguan — open = sesi PERTAMA minggu itu, close = sesi TERAKHIR, high/low = ekstrem sepanjang minggu. Bukan rata-rata."]},
 
-{module:"rta-trend", tagline:"Struktur tren dan pola yang menandai lanjut atau balik arah.",
+{module:"rta-trend", tagline:"Arah tren dibaca dari strukturnya, dan candle merekam siapa yang menang tiap periodenya.",
  sections:[
   {h:"Struktur & garis tren", mm:["HH-HL / LH-LL :: Uptrend = higher high DAN higher low. Definisi paling objektif, nggak bisa didebat kayak garis tren.","Garis tren :: Minimal dua lembah meninggi. Tapi dua titik selalu bisa disambung — titik ketiga yang bikin dia bermakna.","Channel :: Garis sejajar di sisi seberang. Harga yang gagal nyentuh batas atas itu sinyal dini tren melemah.","Fan principle :: Penembusan garis tren itu PROSES. Garis ketiga jebol = tren sebelumnya umumnya dinyatakan berakhir."], points:[
    "Uptrend = higher high + higher low (dua-duanya, bukan salah satu). Downtrend kebalikannya. Begitu strukturnya patah, trennya dipertanyakan — dan ini definisi yang OBJEKTIF, nggak bisa didebat.",
@@ -69,62 +69,27 @@ TD.registerNotes([
    "Makin banyak sentuhan dan makin lama bertahan, makin sahih garisnya. Tapi garis yang kelewat curam justru RAPUH — kenaikan curam biasanya didorong euforia yang cepat habis.",
    "Channel: garis sejajar di sisi seberang. Tembus batas atas bisa berarti akselerasi, bisa juga blow off — yang mbedain baru keliatan sesudahnya.",
    "Fan principle: penembusan garis tren itu PROSES, bukan satu peristiwa. Sekali wajar, dua kali curiga, garis KETIGA jebol = tren sebelumnya umumnya dinyatakan berakhir."]},
-  {h:"Pola pembalikan", mm:["Head & shoulders :: Tiga puncak, yang tengah tertinggi. Sah cuma setelah CLOSE nembus neckline, bukan pas bahu kanan jadi.","Double/triple top :: Gagal nembus level sama berulang kali. Sah setelah lembah di antaranya ditembus.","Rounding :: Perpindahan barang yang pelan banget. Ngebosenin berbulan-bulan, makanya paling sering kelewat.","Island :: Gap naik, beberapa sesi terisolasi, gap turun. Semua yang beli di pulau itu langsung nyangkut.","V :: Pembalikan tanpa fase basis. Susah ditradingin karena konfirmasinya baru dateng pas harga udah jauh."], points:[
-   "Head and shoulders: bahu kiri – head – bahu kanan + neckline. Sah cuma setelah CLOSE nembus neckline, bukan pas bahu kanan kebentuk. Target = tinggi head ke neckline, diproyeksiin dari titik breakout.",
-   "Volume ideal H&S: MENURUN dari bahu kiri ke head ke bahu kanan, terus MELONJAK pas neckline jebol. Kalau volumenya nggak gitu, ceritanya nggak nyambung — curigai polanya.",
-   "Double/triple top-bottom: gagal nembus level yang sama berulang kali. Sah SETELAH level di antaranya ditembus. Triple dianggap lebih kuat karena basisnya lebih matang.",
-   "Rounding/saucer: perpindahan barang yang pelan banget. Volume ngering di dasar (penjual kehabisan barang) terus membesar seiring naik. Ngebosenin, makanya sering kelewat.",
-   "Island reversal: gap searah tren → beberapa sesi terisolasi kayak pulau → gap berlawanan. Semua yang beli di pulau itu langsung nyangkut. V bottom susah ditradingin karena nggak ada fase basis buat masuk.",
-   "Prasyarat SEMUA pola pembalikan: harus ADA tren sebelumnya buat dibalik. Bullish engulfing di tengah range mendatar itu mau ngebalik apa?"]},
-  {h:"Pola penerusan", mm:["Segitiga :: Simetris = netral, menaik = condong bullish, menurun = condong bearish. Breakout andal di 1/2 sampai 3/4 panjang pola.","Flag/pennant :: Konsolidasi PENDEK setelah gerakan tajam. Kalau berlarut-larut, itu bukan bendera lagi.","Rectangle :: Selesai pas CLOSE di luar batas dengan volume mendukung. Sentuhan intraday nggak cukup.","Cup & handle :: Bentuk U + koreksi dangkal. Handle idealnya sepertiga kedalaman cup atau kurang."], points:[
-   "Segitiga simetris: dua sisi nyempit, arahnya netral. Menaik: resistance datar + lembah naik = pembeli makin agresif, condong bullish. Menurun: kebalikannya.",
-   "Breakout segitiga paling andal di 1/2 sampai 3/4 panjang pola. Kalau harga merayap sampai apex, tenaganya udah kelepas bertahap dan breakout-nya lemah.",
-   "Flag: konsolidasi PENDEK yang miring melawan tren, setelah kenaikan tajam (tiang bendera). Target sepanjang tiangnya. Kalau berlarut-larut, itu bukan bendera lagi.",
-   "Rectangle: selesai pas CLOSE di luar batas dengan volume mendukung. Sentuhan intraday nggak cukup — itu sering cuma liquidity sweep.",
-   "Cup and handle: akumulasi bentuk U + koreksi DANGKAL (patokannya sepertiga kedalaman cup atau kurang). Kalau handle-nya kedalaman, artinya masih banyak yang mau keluar."]},
-  {h:"Wedge & broadening", mm:["Rising wedge :: Dua garis naik menyempit = tiap dorongan makin pendek = BEARISH, meski bentuknya naik.","Falling wedge :: Dua garis turun menyempit = tekanan jual melemah = BULLISH. Wedge melawan arah kemiringannya.","Megaphone :: Puncak makin tinggi DAN lembah makin rendah. Pasar makin nggak stabil, sering muncul di puncak.","Diamond :: Melebar lalu menyempit. Jarang muncul, tapi kalau di puncak besar maknanya serius."], points:[
-   "Rising wedge (dua garis naik menyempit) = tiap dorongan makin pendek = BEARISH. Falling wedge = BULLISH. Aturannya: wedge itu polanya melawan arah kemiringannya.",
-   "Broadening/megaphone: puncak makin tinggi DAN lembah makin rendah — pasar makin nggak stabil. Sering muncul di puncak pas emosi lagi tinggi. Susah ditradingin, stop-nya harus lebar banget.",
-   "Diamond top: melebar dulu terus menyempit, jadi bentuknya kayak berlian. Tembus sisi kanan bawah = bearish. Jarang muncul, tapi kalau muncul di puncak besar maknanya serius."]},
-  {h:"Breakout & jebakan", mm:["Throwback :: Harga balik nguji level breakout dari sisi seberang. WAJAR, dan malah ngasih entry kedua dengan stop lebih rapat.","False breakout :: Penembusan bervolume tipis yang cepat ditarik balik. Yang kejebak jadi bahan bakar gerakan sebaliknya.","Filter :: Wajib close di luar level, ambang persen, atau tunggu retest. Ongkosnya: masuk lebih telat dengan harga lebih jelek."], points:[
-   "Throwback: harga balik nguji level breakout dari sisi seberang (role reversal). Ini WAJAR, bukan tanda gagal — dan justru ngasih entry kedua dengan stop jauh lebih rapat.",
-   "False breakout/bull trap: penembusan bervolume tipis yang cepat ditarik balik. Yang kejebak sekarang nyangkut, dan jualan mereka ndorong harga ke arah sebaliknya — makanya sinyal ini bertenaga.",
-   "Penyaring anti-jebakan: wajib CLOSE di luar level, ambang persentase (2-3 persen), syarat volume, atau tunggu retest. Ongkosnya sama: lo masuk lebih telat dengan harga lebih jelek.",
-   "Divergensi: harga higher high tapi momentum lower high. Ini ngukur TENAGA, bukan ARAH — peringatan dini buat ngencengin stop, BUKAN sinyal jual."]}],
+  {h:"Anatomi candle", mm:["Body :: Wilayah open ke close. Ini kesimpulan tarik-menarik hari itu.","Sumbu :: Jejak high dan low — wilayah yang sempat disentuh tapi nggak dipertahankan.","Bullish :: Close DI ATAS open. Dibanding open hari itu sendiri, bukan close kemarin.","Body panjang sumbu pendek :: Satu pihak pegang kendali dari buka sampai tutup.","Body kecil dua sumbu panjang :: Ramai tapi nggak ke mana-mana. Seri."], points:[
+   "Ujung sumbu itu high dan low, ujung body itu open dan close. Paling sering ketuker waktu baca grafik cepat.",
+   "Bar chart dan candlestick isinya sama persis (OHLC). Candlestick cuma lebih gampang dibaca sekilas karena ada warna dan body.",
+   "Di saham tipis, body kecil bukan berarti pembeli dan penjual imbang — bisa jadi memang hampir nggak ada yang transaksi."]},
+  {h:"Pola satu candle", mm:["Doji :: Open dan close nyaris ketemu. Keraguan. Baru berarti kalau muncul SETELAH tren jalan jauh.","Hammer :: Sumbu bawah ≥2x body, SETELAH tren turun. Dua syarat, wajib dua-duanya.","Hanging man :: Bentuknya sama kayak hammer, tapi muncul setelah tren NAIK. Letaknya yang bikin beda arti.","Shooting star :: Sumbu atas panjang, body kecil di bawah, setelah tren naik. Penolakan harga tinggi.","Inverted hammer :: Bentuk sama kayak shooting star, tapi setelah tren TURUN. Condong bullish.","Dragonfly doji :: Bentuk huruf T. Turun jauh lalu pulang penuh. Penolakan harga rendah.","Gravestone doji :: Huruf T terbalik. Naik jauh lalu dikembalikan habis.","Spinning top :: Body kecil, sumbu di dua sisi. Ragu."], points:[
+   "Empat pola ini bentuknya berpasangan dan yang membedakan CUMA letaknya terhadap tren: hammer/hanging man, dan inverted hammer/shooting star.",
+   "Hanging man sendirian itu ambigu — sumbu bawah panjang sebenarnya menunjukkan pembeli masih sanggup dorong balik. Butuh sesi bearish berikutnya buat negasin.",
+   "Doji di pasar mendatar cuma negasin yang udah kelihatan. Yang berarti itu doji di pucuk tren."]},
+  {h:"Pola dua dan tiga candle", mm:["Engulfing :: BODY hari ini nutupin penuh BODY kemarin. Yang dibanding body, bukan sumbu.","Harami :: Kebalikan engulfing — body kedua ngumpet di dalam body pertama. Tenaga tren kendor.","Dark cloud cover :: Buka lebih TINGGI, tutup di bawah tengah body bullish kemarin.","Piercing line :: Buka lebih RENDAH, tutup di atas tengah body bearish kemarin.","Morning star :: Bearish panjang → body kecil → bullish panjang. Tiga babak pembalikan naik.","Evening star :: Kebalikannya, di pucuk.","3 white soldiers :: Tiga sesi bullish, close makin tinggi. Pembeli konsisten.","3 black crows :: Tiga sesi bearish berturut-turut. Tekanan jual yang bertahan."], points:[
+   "Rapikan hafalan dari jumlah candle-nya: 1 candle, 2 candle, 3 candle. Yang 3 candle ceritanya lebih panjang jadi maknanya lebih kokoh.",
+   "Pada dark cloud cover dan piercing line, kuncinya menembus SEPARUH body sebelumnya. Belum sampai separuh berarti belum polanya.",
+   "Head and shoulders dan double top itu pola CHART, bukan pola candle. Beda bab."]},
+  {h:"Aturan pemakaian", mm:["Trend → Area → Entry :: Tren dulu, area kedua, candle terakhir sebagai pemicu.","Tunggu close :: Sebelum tutup, hammer bisa berubah jadi bearish panjang.","Jangan sendirian :: Pola tanpa konteks tren, level, dan volume itu cuma bentuk.","Nggak ada target harga :: Candle bilang siapa menang, bukan seberapa jauh harga pergi.","Volume :: Negasin polanya — banyak barang pindah tangan di level itu atau nggak.","Timeframe besar :: Nentuin arah. Yang kecil dipakai nyari titik masuk di dalam arah itu."], points:[
+   "Pola pembalikan butuh tren buat dibalik. Bullish engulfing di tengah rentang mendatar itu mau ngebalik apa?",
+   "Target harga diambil dari pola chart, level support resistance, atau proyeksi Fibonacci — bukan dari candle-nya.",
+   "Hafal dua puluh pola itu bagian termudah dan paling sedikit gunanya. Yang nentuin hasil: nilai konteksnya, dan siapin batas rugi SEBELUM masuk."]}],
  jebakan:[
   "JEBAKAN: makin panjang dan lebar polanya, makin besar pergerakan sesudahnya. Rectangle 8 bulan jauh lebih bertenaga daripada bendera 2 pekan.",
-  "JEBAKAN: garis tren ditembus = perubahan LAJU, belum tentu tren berbalik. Butuh konfirmasi struktur harga (lihat fan principle).",
-  "JEBAKAN: pola konsolidasi lebih SERING berakhir dengan tren berlanjut, bukan berbalik. Ini turunan dari prinsip Dow."]},
-
-{module:"rta-level", tagline:"Menentukan di harga berapa keputusan diambil.",
- sections:[
-  {h:"Support & resistance", mm:["Definisi :: Support = order beli numpuk yang nahan penurunan. Bukan garis ajaib, cuma tempat numpuknya order.","Role reversal :: Support jebol jadi resistance. Penyebabnya yang nyangkut pengen keluar impas begitu harga balik.","Kekuatan level :: Naik seiring lamanya bertahan dan volume di sekitarnya. Tapi tiap pengujian juga NGEHABISIN sebagian order.","Zona :: Perlakuin sebagai rentang, bukan satu angka. Pasar nggak pernah presisi, order tersebar."], points:[
-   "Support: ada order beli numpuk yang nahan penurunan. Resistance: kebalikannya, pasokan jual yang nahan kenaikan. Dua-duanya bukan garis ajaib, cuma tempat numpuknya order.",
-   "Role reversal: support jebol → jadi resistance, dan sebaliknya. Penyebabnya yang nyangkut pengen keluar impas begitu harga balik ke harga beli mereka.",
-   "Level makin kuat seiring lamanya bertahan dan besarnya volume di sekitarnya. Level yang juga keliatan di timeframe besar lebih dihormati. Catatan: soal jumlah sentuhan ada perdebatan — tiap pengujian juga ngehabisin sebagian order.",
-   "Perlakuin sebagai ZONA, bukan satu angka. Pasar nggak pernah presisi — order tersebar di rentang, bukan numpuk di satu harga.",
-   "Relevansi level MEMUDAR seiring waktu, karena yang nyangkut udah nyerah atau lupa. Pengecualiannya level ekstrem historis yang terus dikutip media."]},
-  {h:"Fibonacci", mm:["Retracement :: 23,6 / 38,2 / 50 / 61,8 / 78,6 persen. Catat: 50 persen BUKAN rasio Fibonacci, itu warisan Dow.","Extension :: Buat target DI LUAR pergerakan: 127,2 / 161,8 / 261,8 persen. Beda dari retracement yang ngukur di dalam.","Cara menarik :: Jangkarkan di ayunan yang JELAS keliatan, dan tandai SEBELUM posisi dibuka. Di situ bias nyelinap."], points:[
-   "Retracement utama: 23,6% / 38,2% / 50% / 61,8% / 78,6%. Catatan yang sering ditanyain: 50% BUKAN rasio Fibonacci, itu warisan Dow Theory yang nyelip masuk.",
-   "Koreksi dangkal (38,2%) = tren kuat, tiap turun langsung dicaplok. Koreksi lewat 61,8% = tekanan jualnya serius, peluang pembalikan naik.",
-   "Extension buat target DI LUAR pergerakan: 127,2% / 161,8% / 261,8%. Beda sama retracement yang ngukur di dalam.",
-   "Kesalahan paling umum: narik dari ayunan yang nggak signifikan. Tiap ayunan kecil ngasih set level sendiri — gambar semuanya, dan pasti ada yang kena di mana pun harga berhenti."]},
-  {h:"Pivot point", mm:["Rumus PP :: (High + Low + Close) dibagi 3. Kekuatannya di rumus baku — semua orang ngitung angka yang sama.","R1-R3 / S1-S3 :: Diturunin dari PP. Banyak dipakai trader harian karena levelnya udah ada sebelum pasar buka."], points:[
-   "Pivot klasik = (High + Low + Close) periode sebelumnya dibagi 3. Kekuatannya di rumus yang BAKU — semua orang ngitung angka yang sama.",
-   "Dari PP diturunin R1 R2 R3 dan S1 S2 S3. Banyak dipakai trader harian karena levelnya udah ada SEBELUM pasar buka."]},
-  {h:"Gap sebagai level", mm:["Breakaway :: Keluar dari konsolidasi, volume besar, nandain AWAL tren. Jarang ketutup cepat.","Runaway :: Di TENGAH tren, sering pas titik tengah pergerakan. Makanya bisa dipakai proyeksiin target.","Exhaustion :: Di UJUNG tren, volume ekstrem, habis itu nggak ada lanjutan. Biasanya cepat ketutup.","Common :: Di saham sepi, cuma ketimpangan order sesaat tanpa makna. Cenderung keisi lagi."], points:[
-   "Breakaway gap: keluar dari konsolidasi, volume besar, nandain AWAL tren. Jarang ketutup cepat karena dia nandain perubahan rezim yang nyata.",
-   "Runaway/measuring gap: di TENGAH tren, sering pas di titik tengah pergerakan. Makanya bisa dipakai proyeksiin target: ukur kaki pertama, proyeksiin lagi dari area gap.",
-   "Exhaustion gap: di UJUNG tren, volume ekstrem, tapi habis itu nggak ada lanjutan. Biasanya cepat ketutup. Bedain dari measuring gap itu baru gampang sesudah kejadian.",
-   "Common gap di saham sepi cenderung keisi lagi — dia cuma ketimpangan order sesaat tanpa makna."]},
-  {h:"Level lain & konfluensi", mm:["Angka bulat :: Manusia suka membulatkan, jadi order numpuk di 5.000 bukan 4.987. Bukan numerologi, bisa dilihat di order book.","MA dinamis :: MA50 dan MA200 jadi support yang levelnya gerak. Jalan karena jutaan mata mantau garis yang sama.","52-week :: High dan low 52 minggu rame dipublikasi media dan dipakai screener institusi. Banyak mata, banyak order.","Confluence :: Beberapa metode ketemu di area sama. Kuat karena kelompok pelaku beda ngawasin alasan beda di titik yang sama."], points:[
-   "Angka bulat (1.000, 5.000) jadi level psikologis karena manusia suka MEMBULATKAN — order beneran numpuk di situ, bisa dilihat di order book. Bukan numerologi.",
-   "MA50 dan MA200 = support/resistance DINAMIS, karena levelnya gerak ngikutin harga. Jalan bukan karena matematikanya sakti, tapi karena jutaan mata mantau garis yang sama.",
-   "High/low 52 minggu jadi acuan psikologis karena rame dipublikasi media dan dipakai screener institusi. Banyak mata, banyak order.",
-   "Confluence: beberapa metode ketemu di area yang sama. Kuat karena kelompok pelaku yang BEDA ngawasin alasan yang BEDA, tapi order mereka numpuk di titik yang SAMA.",
-   "Stop hunting kejadian karena stop numpuk persis di luar level populer, dan tumpukan itu jadi kantong likuiditas. Bukan konspirasi, ini mekanika. Kasih jarak sebesar fraksi ATR."]}],
- jebakan:[
-  "HITUNGAN: naik 1.000 ke 2.000 (range 1.000). Retrace 61,8% = 618 poin dari PUNCAK: 2.000 - 618 = 1.382. Diukur dari puncak ke bawah, bukan dari bawah ke atas.",
-  "HITUNGAN pivot: (1.200 + 1.100 + 1.150) dibagi 3 = 1.150. Close di atas pivot artinya bias intraday cenderung positif.",
-  "JEBAKAN: di tren naik kuat, jual di resistance itu ngelawan arus. Yang bener beli pas pullback ke support — searah tren, stop lebih rapat."]}
+  "JEBAKAN: hammer dan hanging man bentuknya sama; yang membedakan letaknya terhadap tren. Begitu juga inverted hammer dan shooting star.",
+  "JEBAKAN: pada engulfing yang dibandingkan BODY, bukan sumbu.",
+  "JEBAKAN: candle bullish artinya close di atas OPEN HARI ITU, bukan di atas close kemarin.",
+  "JEBAKAN: pola candlestick TIDAK memberi target harga — targetnya diambil dari alat lain.",
+  "JEBAKAN: pola belum sah sebelum sesinya benar-benar ditutup."]}
 ]);

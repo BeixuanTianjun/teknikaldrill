@@ -84,13 +84,13 @@ TD.register([
  explain:"Naluri bilang: rugi banyak, taruhan digedein biar cepet balik. Dan itu cara paling umum akun jadi nol. Dari 190 juta lo butuh naik 32 persen buat impas. Dengan risiko 3 persen, kalah 10 kali beruntun bikin ekuitas lo tinggal sekitar 140 juta — dan sekarang lo butuh naik 79 persen. Makin dalem lubangnya, makin curam tangganya. Pendekatan yang bener gerak KEBALIKANNYA: kecilin ukuran pas ekuitas turun, biar sistemnya ngerem sendiri."},
 
 /* ===== rta-trend ===== */
-{id:"rta-trend-h16",module:"rta-trend",level:"RTA",difficulty:"sulit",
+{id:"rta-trend-h16",module:"rta-pola",level:"RTA",difficulty:"sulit",
  q:"Sebuah pola segitiga menaik terbentuk selama empat bulan, tetapi menembus ke BAWAH disertai volume besar. Sikap yang paling tepat adalah...",
  options:["Menerima penembusan itu, karena arah penembusan yang nyata mengalahkan kecenderungan pola","Menganggap penembusan itu palsu karena segitiga menaik selalu berakhir bullish","Menunggu harga kembali ke dalam segitiga sebelum mengambil keputusan apa pun","Membatalkan seluruh analisis karena polanya terbukti keliru sejak awal"],
  answer:0,
  explain:"Segitiga menaik itu CONDONG bullish, bukan dijamin bullish. Kata condong itu penting. Kalau tembusnya ke bawah dengan volume besar, itu informasi nyata yang ngalahin kecenderungan statistik. Yang salah itu ngotot nunggu harga balik naik karena polanya 'harusnya' bullish — itu namanya maksa pasar ngikutin buku. Bonusnya: penembusan yang berlawanan dari yang diharapkan sering justru tajam, karena banyak yang kejebak di sisi yang salah."},
 
-{id:"rta-trend-h17",module:"rta-trend",level:"RTA",difficulty:"sulit",
+{id:"rta-trend-h17",module:"rta-pola",level:"RTA",difficulty:"sulit",
  q:"Harga menembus resistance dengan volume dua kali rata-rata. Keesokan harinya harga turun kembali ke bawah level itu, tetapi volumenya hanya sepertiga rata-rata. Pembacaan yang paling tepat adalah...",
  options:["Polanya berubah menjadi bearish dan layak dijadikan sinyal jual","Kemungkinan besar throwback biasa, karena penarikan turun tidak didukung partisipasi","Penembusan terbukti palsu dan posisi harus ditutup seluruhnya","Volume pada hari penembusan tidak bermakna karena sudah dibatalkan"],
  answer:1,
@@ -102,7 +102,7 @@ TD.register([
  answer:2,
  explain:"Nggak ada yang bertentangan di sini — ini tren berjenjang yang normal. Kenaikan tiga bulan di harian bisa jadi cuma pantulan di dalam tren turun mingguan yang masih hidup, selama dia belum ngelewatin lower high terakhir. Praktisnya penting: posisi beli di sini masih ngelawan arus yang lebih besar, jadi ukurannya dikecilin dan targetnya jangan kejauhan. Tren mingguan baru dinyatakan berbalik kalau lower high-nya ditembus."},
 
-{id:"rta-trend-h19",module:"rta-trend",level:"RTA",difficulty:"sulit",
+{id:"rta-trend-h19",module:"rta-pola",level:"RTA",difficulty:"sulit",
  q:"Analis mengamati bahwa sebuah pola head and shoulders telah terbentuk sempurna, tetapi harga tidak pernah menembus neckline dan justru naik melewati puncak head. Pelajaran metodologis yang paling penting dari kejadian ini adalah...",
  options:["Pola head and shoulders memang tidak dapat diandalkan pada saham individual","Analisisnya keliru karena yang terbentuk pasti bukan head and shoulders","Pola tersebut tetap sah dan harga pasti akan kembali turun ke neckline","Pola belum sah sebelum penembusan terjadi, sehingga bentuk saja tidak pernah cukup jadi dasar posisi"],
  answer:3,
@@ -128,7 +128,7 @@ TD.register([
  explain:"Besarnya pantulan itu petunjuk yang sering kelewat. Pantulan 12 persen artinya antrean order beli di situ tebel banget. Pantulan 3 persen artinya antrean itu udah hampir abis — tiap pengujian nyerap sebagian order tanpa selalu ada yang gantiin. Jadi bertahan empat kali itu BUKAN tanda makin kuat, justru sebaliknya. Perhatiin polanya: pantulan yang makin pendek dan makin cepet balik diuji lagi itu ciri support yang lagi sekarat."},
 
 /* ===== rta-indikator ===== */
-{id:"rta-ind-h12",module:"rta-indikator",level:"RTA",difficulty:"sulit",
+{id:"rta-ind-h12",module:"rta-kekuatan",level:"RTA",difficulty:"sulit",
  q:"Sebuah saham yang biasanya bergerak 1 persen per hari tiba-tiba bergerak 6 persen dalam sehari. Bollinger Bands seketika melebar. Analis menyimpulkan volatilitas sedang tinggi sehingga menunda entry. Kelemahan penalaran ini adalah...",
  options:["Bollinger Bands tidak pernah dapat dipakai untuk menilai volatilitas","Volatilitas tinggi justru selalu merupakan kondisi terbaik untuk masuk","Pelebaran pita hanya bermakna bila terjadi bersamaan dengan sinyal RSI","Pelebaran pita adalah akibat dari pergerakan itu sendiri, jadi belum tentu menandakan volatilitas akan berlanjut"],
  answer:3,

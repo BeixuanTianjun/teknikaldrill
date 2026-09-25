@@ -76,7 +76,7 @@ TD.register([
  explain:"Dua bukti negatif numpuk: volume breakout tipis DAN ada rilis laporan dua sesi lagi yang bikin risiko gap. Keputusan yang konsisten: masuk dengan ukuran DIPERKECIL, atau tunggu sampai rilisnya lewat. Perhatiin polanya — di situasi yang bukti-buktinya campuran, jawaban profesional hampir selalu nyesuaiin UKURAN RISIKO, bukan milih ekstrem antara all-in atau nggak sama sekali."},
 
 /* case-08 */
-{id:"case-08-q1",caseId:"case-08",module:"rta-indikator",level:"RTA",difficulty:"sulit",
+{id:"case-08-q1",caseId:"case-08",module:"rta-kekuatan",level:"RTA",difficulty:"sulit",
  q:"Harga menempel pita atas Bollinger selama sembilan sesi. Pembacaan yang paling tepat adalah...",
  options:["Fenomena walking the bands yang justru menandakan tren sedang sangat kuat","Tanda pita Bollinger perlu disetel ulang karena parameternya tidak sesuai","Indikasi bahwa volatilitas sedang menurun sehingga pita akan segera menyempit","Sinyal jual, karena harga berada di luar batas wajar dua standar deviasi"],
  answer:0,

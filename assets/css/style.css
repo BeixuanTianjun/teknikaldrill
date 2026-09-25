@@ -599,3 +599,15 @@ kbd{font-family:var(--mono);font-size:.78em;background:var(--surface-2);border:1
   body{padding-bottom:env(safe-area-inset-bottom)}
   .topbar{padding-top:calc(10px + env(safe-area-inset-top))}
 }
+
+/* Kode unit kompetensi pada kartu unit dan rincian paket sertifikasi. */
+.unit-kode{
+  display:inline-block;margin:2px 0 6px;padding:2px 7px;border-radius:6px;
+  font-family:var(--mono,monospace);font-size:11px;font-weight:600;letter-spacing:.02em;
+  background:var(--chip);color:var(--muted);
+}
+.unit-kode-extra{font-family:inherit;letter-spacing:0;font-style:italic}
+.bp-kode{
+  display:block;font-family:var(--mono,monospace);font-size:10px;font-style:normal;
+  opacity:.65;margin-bottom:2px;
+}

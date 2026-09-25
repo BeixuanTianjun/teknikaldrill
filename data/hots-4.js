@@ -1,19 +1,19 @@
 /* Soal HOTS batch 4 — rta-trend, rta-level, rta-indikator, rta-riset, cta-portfolio, cta-candle */
 TD.register([
 /* ===== rta-trend ===== */
-{id:"rta-trend-h01",module:"rta-trend",level:"RTA",difficulty:"sulit",
+{id:"rta-trend-h01",module:"rta-pola",level:"RTA",difficulty:"sulit",
  q:"Harga menembus neckline head and shoulders dengan volume dua kali rata-rata, lalu tiga sesi kemudian kembali naik menutup di atas neckline. Bagaimana analis sebaiknya menyikapinya?",
  options:["Menambah posisi jual karena harga kembali ke level yang lebih menguntungkan","Mengabaikannya karena tiga sesi terlalu singkat untuk membatalkan sebuah pola","Memperlakukan pola itu gagal dan keluar, karena penembusan yang dibatalkan sering berbalik tajam","Menahan posisi jual karena volume penembusan sudah mengonfirmasi polanya"],
  answer:2,
  explain:"Pola yang gagal itu INFORMASI, bukan gangguan. Breakdown yang keliatan meyakinkan terus dibatalin artinya banyak yang masuk searah breakdown sekarang kejebak dan harus nutup posisi. Mereka harus BELI buat keluar, dan itu ndorong harga naik lebih cepet lagi. Aturan praktisnya yang sering bikin orang kaget: breakout yang DIBATALIN itu lebih dipercaya daripada breakout-nya sendiri. Jadi begitu harga balik nutup di atas neckline, keluar, jangan diajak debat."},
 
-{id:"rta-trend-h02",module:"rta-trend",level:"RTA",difficulty:"sulit",
+{id:"rta-trend-h02",module:"rta-pola",level:"RTA",difficulty:"sulit",
  q:"Sebuah segitiga simetris terbentuk selama enam bulan, dan harga merayap sampai hampir menyentuh apex sebelum akhirnya menembus. Mengapa penembusan itu kurang dapat diandalkan?",
  options:["Segitiga simetris memang tidak pernah menghasilkan penembusan yang bertahan","Penembusan di apex selalu berarah berlawanan dari yang ditunjukkan pola","Volume pada apex terlalu tinggi sehingga sinyalnya menjadi tidak sah","Energi pola sudah habis terpakai oleh konsolidasi yang terlalu panjang"],
  answer:3,
  explain:"Segitiga jalan karena kompresi nyiptain ketegangan yang akhirnya dilepas sekaligus. Kalau harga merayap pelan sampai apex, pelepasannya udah kejadian BERTAHAP sepanjang pola, jadi nggak ada tenaga tersisa buat gerakan besar. Ibaratnya per yang ditekan pelan-pelan terus dilepas pelan-pelan juga. Makanya breakout paling andal kejadian di setengah sampai tiga perempat panjang pola, bukan di ujung runcingnya."},
 
-{id:"rta-trend-h03",module:"rta-trend",level:"RTA",difficulty:"sulit",
+{id:"rta-trend-h03",module:"rta-pola",level:"RTA",difficulty:"sulit",
  q:"Puncak head and shoulders berada di 2.400 dan neckline di 2.100. Harga menembus neckline lalu berhenti di 1.950, tepat di atas support historis kuat di 1.930. Apa yang paling tepat dilakukan?",
  options:["Merealisasikan sebagian, karena support historis sering lebih menentukan daripada target pola","Menahan seluruh posisi sampai target proyeksi 1.800 tercapai sepenuhnya","Menambah posisi jual karena target pola belum tercapai sehingga penurunan berlanjut","Membatalkan skenario karena harga berhenti sebelum mencapai target proyeksinya"],
  answer:0,
@@ -25,7 +25,7 @@ TD.register([
  answer:1,
  explain:"Fan principle mandang penembusan garis tren sebagai PROSES, bukan satu peristiwa. Tiap kali garis ditembus, artinya laju kenaikannya melambat, dan analis narik garis baru yang lebih landai. Sekali itu wajar. Dua kali mulai mencurigakan. Pas garis KETIGA ikut tertembus, pelambatan itu udah kejadian berulang kali dan trennya umumnya dinyatakan berakhir. Tiga itu angka pentingnya, bukan satu atau dua."},
 
-{id:"rta-trend-h05",module:"rta-trend",level:"RTA",difficulty:"sulit",
+{id:"rta-trend-h05",module:"rta-pola",level:"RTA",difficulty:"sulit",
  q:"Dua pola terbentuk pada saham yang sama: bendera berdurasi dua pekan dan rectangle berdurasi delapan bulan. Keduanya menembus ke atas. Pergerakan mana yang secara umum berimplikasi lebih besar?",
  options:["Keduanya setara, karena besarnya pergerakan hanya ditentukan volume penembusan","Tidak dapat dibandingkan karena keduanya termasuk jenis pola yang berbeda","Rectangle, karena basis yang lebih luas dan lama menyimpan energi yang lebih besar","Bendera, karena polanya terbentuk setelah pergerakan tajam yang bertenaga"],
  answer:2,
@@ -69,7 +69,7 @@ TD.register([
  explain:"Measuring gap alias runaway gap secara empiris cenderung muncul di sekitar TITIK TENGAH keseluruhan pergerakan. Jadi kaki pertama sepanjang 200 poin (1.000 ke 1.200) diproyeksiin lagi dari area gap yang ada sedikit di atas 1.230, ngasih target sekitar 1.430. Kuncinya ngenalin JENIS gap-nya: breakaway di awal, measuring di tengah, exhaustion di ujung. Salah nebak jenisnya, targetnya ikut ngaco."},
 
 /* ===== rta-indikator ===== */
-{id:"rta-ind-h01",module:"rta-indikator",level:"RTA",difficulty:"sulit",
+{id:"rta-ind-h01",module:"rta-kekuatan",level:"RTA",difficulty:"sulit",
  q:"ADX berada di 15 sementara sistem persilangan moving average memberi sinyal beli. Apa yang sebaiknya dilakukan, dan mengapa?",
  options:["Menambah periode moving average sampai ADX naik di atas 25","Menunda mengikuti sinyal, karena ADX rendah menandakan pasar tidak sedang trending","Mengikuti sinyal, karena persilangan MA adalah konfirmasi tren yang berdiri sendiri","Membalik sinyal menjadi jual, karena ADX rendah menandakan tren akan berbalik"],
  answer:1,
@@ -81,13 +81,13 @@ TD.register([
  answer:2,
  explain:"RSI, stochastic, dan Williams %R itu semuanya berakar dari hal yang sama: bandingin harga sekarang sama range terakhir. Korelasinya tinggi banget, jadi mereka hampir SELALU sepakat. Lo nggak dapet tiga konfirmasi, lo dapet SATU bukti yang diulang tiga kali. Rasa yakinnya palsu. Kombinasi yang beneran nambah informasi itu ngukur dimensi beda: satu buat tren (ADX/MA), satu momentum (RSI), satu volume (OBV), satu volatilitas (ATR)."},
 
-{id:"rta-ind-h03",module:"rta-indikator",level:"RTA",difficulty:"sulit",
+{id:"rta-ind-h03",module:"rta-kekuatan",level:"RTA",difficulty:"sulit",
  q:"Pita Bollinger menyempit ke level tersempit dalam setahun. Seorang trader membeli karena menduga akan terjadi penembusan ke atas. Kelemahan mendasar keputusan itu adalah...",
  options:["Penyempitan justru menandakan tren akan berlanjut, bukan berbalik arah","Pita Bollinger tidak dapat dipakai pada pasar yang volatilitasnya rendah","Penyempitan terjadi karena periode yang dipakai terlalu panjang untuk kondisi itu","Penyempitan hanya berbicara soal volatilitas, sama sekali tidak menunjukkan arah"],
  answer:3,
  explain:"Bollinger squeeze cuma ngomong satu hal: volatilitas lagi rendah banget dan kemungkinan besar bakal meledak. Dia NGGAK ngomong ke arah mana. Nol. Beli cuma modal squeeze itu sama aja lempar koin, cuma dengan grafik yang keliatan ilmiah. Yang bener: tunggu ARAH-nya kekonfirmasi — harga nembus batas mana, volume gimana. Squeeze itu alarm 'siap-siap', bukan panah penunjuk arah."},
 
-{id:"rta-ind-h04",module:"rta-indikator",level:"RTA",difficulty:"sulit",
+{id:"rta-ind-h04",module:"rta-kekuatan",level:"RTA",difficulty:"sulit",
  q:"Sebuah saham bergerak rata-rata 3 persen per hari, saham lain 0,8 persen. Mengapa memakai stop 5 persen untuk keduanya adalah kekeliruan?",
  options:["Stop yang sama mewakili ruang gerak yang sangat berbeda relatif terhadap volatilitas masing-masing","Saham bervolatilitas tinggi seharusnya memakai stop lebih rapat agar kerugiannya terbatas","Persentase stop harus selalu sama agar risiko portofolio dapat dibandingkan","Stop 5 persen terlalu longgar untuk kedua saham tersebut tanpa terkecuali"],
  answer:0,

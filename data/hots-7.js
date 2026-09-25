@@ -89,19 +89,19 @@ TD.register([
  explain:"Ada dua masalah numpuk di sini. Pertama urusan hukum: perjanjian langganan data biasanya ngelarang lo nyebarin ulang. Kedua, dan ini yang lebih mendasar, nyebut sumber itu syarat biar pembaca bisa ngecek sendiri. Analisis yang datanya nggak bisa ditelusuri itu nggak bisa diuji, dan yang nggak bisa diuji susah disebut riset. Nyantumin sumber itu murah banget, satu baris doang, tapi yang bedain laporan profesional sama tangkapan layar di grup."},
 
 /* ===== rta-trend ===== */
-{id:"rta-trend-h13",module:"rta-trend",level:"RTA",difficulty:"sulit",
+{id:"rta-trend-h13",module:"rta-pola",level:"RTA",difficulty:"sulit",
  q:"Pola cup and handle terbentuk, tetapi bagian handle mengoreksi sampai 55 persen dari kedalaman cup. Apa yang perlu diwaspadai?",
  options:["Kedalaman handle tidak berkaitan dengan keandalan pola dalam bentuk apa pun","Pola menjadi batal dan berubah menjadi pola double top secara otomatis","Handle yang terlalu dalam menandakan penjualan masih kuat, sehingga keandalan polanya menurun","Handle yang dalam selalu memperkuat pola karena memberi harga masuk yang lebih baik"],
  answer:2,
  explain:"Handle itu harusnya cuma ambil untung tipis dari yang udah duluan masuk, bukan gelombang jualan baru. Patokannya sekitar sepertiga kedalaman cup atau kurang. Kalau handle-nya turun 55%, artinya masih banyak yang mau keluar, dan naiknya cup tadi belum beneran nyerap semua barang. Polanya nggak otomatis batal, tapi lo butuh volume breakout yang jauh lebih meyakinkan sebelum percaya. Kalau handle-nya lebih dalem lagi, itu udah bukan handle, itu cup gagal."},
 
-{id:"rta-trend-h14",module:"rta-trend",level:"RTA",difficulty:"sulit",
+{id:"rta-trend-h14",module:"rta-pola",level:"RTA",difficulty:"sulit",
  q:"Harga membentuk rounding bottom selama delapan bulan dengan volume yang mengering di dasar lalu membesar perlahan seiring naiknya harga. Mengapa pola volume ini penting?",
  options:["Volume yang mengering di dasar menandakan saham itu sedang kehilangan minat dan sebaiknya dihindari","Pola volume tidak relevan karena rounding bottom hanya dinilai dari bentuk harganya","Volume seharusnya memuncak tepat di dasar agar polanya dianggap sah","Ia menggambarkan peralihan kepemilikan yang bertahap dari penjual lelah ke pembeli sabar, dasar dari pemulihan yang tahan lama"],
  answer:3,
  explain:"Rounding bottom itu cerita tentang WAKTU, bukan tentang satu kejadian dramatis. Volume kering di dasar artinya yang mau jual udah abis barangnya, nggak ada lagi yang kepepet ngelepas. Terus volume naik pelan-pelan seiring harga naik, artinya minat balik tapi belum euforia. Justru karena nggak ada momen dramatisnya, pola ini paling sering kelewat. Nggak ada candle gede, nggak ada berita, cuma ngebosenin selama delapan bulan, terus tiba-tiba udah naik 60%."},
 
-{id:"rta-trend-h15",module:"rta-trend",level:"RTA",difficulty:"sulit",
+{id:"rta-trend-h15",module:"rta-pola",level:"RTA",difficulty:"sulit",
  q:"Sebuah saham membentuk tiga puncak pada level yang hampir sama selama lima bulan dengan volume menurun pada setiap puncak. Apa pembacaan yang paling tepat?",
  options:["Distribusi yang sedang berlangsung, karena minat beli melemah pada setiap upaya menembus resistance","Akumulasi yang sehat, karena harga berhasil kembali ke resistance sebanyak tiga kali","Konsolidasi netral tanpa arah, karena harga belum menembus ke mana pun","Pola segitiga naik yang akan menembus ke atas karena puncaknya sejajar"],
  answer:0,
